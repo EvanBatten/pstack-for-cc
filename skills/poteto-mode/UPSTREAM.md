@@ -1,0 +1,23 @@
+# Where these skills came from
+
+`poteto-mode` and the 27 skills installed beside it are Lauren Tan's pstack v0.15.2, from [cursor/plugins@032be14](https://github.com/cursor/plugins/tree/032be146865d973682535de75f2287da438550bf/pstack), plus four `cursor-team-kit` skills it depends on: `control-cli`, `control-ui`, `deslop` and `verify-this`. Both are MIT licensed. The license files are in `licenses/`.
+
+They were ported to Claude Code in `~/pstack-test/pstack-cc`, which stays as the unmodified reference. `pstack-cc/PORT.md` and `pstack-cc/PATCHES.md` there list what the port changed.
+
+The copies in this repo differ from that reference in these ways:
+
+- They are personal skills, so they are invoked as `/how` and `/poteto-mode`, with no plugin prefix.
+- The 23 principles are files under `poteto-mode/principles/`. Every skill names one as `**principle-<slug>**`, which the session hook resolves to `principles/<slug>.md`. The reference still calls them "principle skills".
+- The subagents are `poteto-agent` and `comment-sicko` in `home/agents/`.
+- `hooks/session-context.mjs` resolves skills under `~/.claude/skills`. It has to be registered for `SessionStart`, `SubagentStart` and `UserPromptSubmit` in `home/.claude/settings.json`. The first two inject the full session context, which also names the orchestrate store root, `~/.claude/orchestrate/`. `UserPromptSubmit` injects a four-line reminder instead, and only once the transcript shows the session has entered poteto mode. Cursor holds the mode open through the skill's `mode:` and `reminder:` fields, which Claude Code ignores, so without that reminder the non-negotiables decay after the single injection at session start. A session audited on 2026-09-21 cited no principle in 26 replies and skipped two skill triggers without recording either.
+- `scripts/check-port.mjs` is the gate for the rest of the port. The reference's substitutions caught the quoted form of each Cursor affordance and missed the prose; on 2026-09-22 the check found 151 sites in 20 classes. `scripts/port-codemod.mjs` rewrote the four mechanical classes, and the rest were rewritten by hand against the check. `scripts/port.test.js` runs the check in CI, so a future upstream merge cannot bring any of them back. The classes, each with its Claude Code form: `pstack/skills/` paths and `git show origin/main:` re-reads become reads from `~/.claude/skills`; `/goal` becomes `orch standing`; `readonly` and `run_in_background` are not Agent parameters, so a read-only delegate is told so in its prompt; `paths:` frontmatter has no equivalent, so `typescript-best-practices` now triggers on its description; a todolist is a step list carried in the reply; `/tmp` is the scratchpad directory the system prompt names; a Cursor cloud agent is a cloud session; `skill-creator` is reached as `anthropic-skills:skill-creator`.
+- `scripts/check-plan.mjs` wants `orch standing` and a re-read from `~/.claude/skills` where the reference wants `/goal` and `git show origin/main:`. `scripts/check-plan.test.js` proves a plan in each form.
+- `scripts/worktree-audit.sh` also matches a worktree path in the doubled-backslash spelling transcripts store on Windows. The reference's scan never matched here and marked live worktrees safe.
+- `make-bot-ui` opens by saying it is not ported. It drives Cursor routines and webhook automations that have no counterpart here.
+- `unslop` and `technical-writing` can be invoked by the model, because `home/AGENTS.md` routes all outward-facing prose through them.
+- `playbooks/opening-a-pr.md` titles PRs in the voice of `~/COMMITS.md`. The reference mandates Conventional Commits, which that file forbids.
+- `pstack-models.md` ships the `medium` budget: judgment roles run on the session model, code roles on `sonnet`, panels are two wide.
+- `create-verification-skill` tells the generated skill to derive ports, data dirs and compose project names from the worktree, because agents here run in parallel git worktrees and not in cloud machines.
+- `verify-pstack` beside these is not from pstack. It drives the harness through real headless sessions and is the proof for everything above.
+
+The 28 skills: `architect`, `arena`, `automate-me`, `blast-radius`, `bro`, `control-cli`, `control-ui`, `create-verification-skill`, `deslop`, `figure-it-out`, `how`, `interrogate`, `maintain-verification-skill`, `make-bot-ui`, `no-comments`, `poteto-mode`, `recall`, `reflect`, `setup-pstack`, `show-me-your-work`, `swarm`, `tdd`, `teach`, `technical-writing`, `typescript-best-practices`, `unslop`, `verify-this`, `why`. `hard-rules`, `api-design`, `deep-research`, `documentation-lookup`, `search-first` and `security-review` sit in the same directory and are not part of the port.

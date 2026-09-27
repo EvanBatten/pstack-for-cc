@@ -45,7 +45,7 @@ Launch all reviewers in a single message using the Agent tool. Use the `interrog
 For each reviewer:
 - `subagent_type`: `general-purpose`
 - `model`: the configured `interrogate reviewers` entry, or the table default with no configured line
-- `readonly`: `true`
+- read-only: say "read-only, change no files" in the prompt
 
 If a model slug is rejected as unresolvable when you try to spawn the subagent, check the valid slugs in the Agent tool's error message, pick the closest equivalent (prefer the highest-reasoning tier of the same family), spawn with the valid slug, and open a separate PR to update the configured value or default table. Do not block the review on the slug issue. If the configured value is `inherit-parent` or `auto`, omit `model` instead. Never treat those aliases as broken slugs or enter this fallback for them.
 

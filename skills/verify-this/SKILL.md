@@ -36,10 +36,10 @@ Do not use this for vague claims like "the code is cleaner". Ask for a measurabl
 
 ## Artifact Layout
 
-When safe to write artifacts:
+When safe to write artifacts (`<scratchpad>` is the scratchpad directory the system prompt names):
 
 ```text
-/tmp/verify-this/<claim-slug>/
+<scratchpad>/verify-this/<claim-slug>/
 ├── claim.md
 ├── timeline.md
 ├── baseline/

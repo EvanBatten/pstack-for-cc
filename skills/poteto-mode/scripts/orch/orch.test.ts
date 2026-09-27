@@ -10,7 +10,7 @@ import {
 } from "node:fs/promises";
 import { realpathSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { delimiter, join } from "node:path";
 import {
   NotFoundError,
   UserError,
@@ -120,7 +120,7 @@ async function withFakeGt<T>({
     gt,
     `#!/usr/bin/env bash
 set -euo pipefail
-if [ "$(pwd -P)" != "${realpathSync(join(directory, "repo"))}" ]; then
+if [ "$(pwd -W 2>/dev/null || pwd -P)" != "${realpathSync(join(directory, "repo")).replaceAll("\\", "/")}" ]; then
   printf 'gt ran outside the fixture repo: %s\\n' "$(pwd -P)" >&2
   exit 2
 fi
@@ -145,9 +145,13 @@ esac
 `
   );
   await chmod(gt, 0o755);
+  if (process.platform === "win32") {
+    await writeFile(join(bin, "gt.cmd"), `@bash "%~dp0gt" %*
+`);
+  }
 
   const originalPath = process.env.PATH;
-  process.env.PATH = `${bin}:${originalPath ?? ""}`;
+  process.env.PATH = `${bin}${delimiter}${originalPath ?? ""}`;
   try {
     return await operation(outputPath);
   } finally {

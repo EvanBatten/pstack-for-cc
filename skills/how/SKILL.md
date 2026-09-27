@@ -23,7 +23,7 @@ Decompose the question into 2 to 4 exploration angles, each a distinct slice of 
 
 - `subagent_type`: `general-purpose`
 - `model`: your configured how-explorer model (default `sonnet`)
-- `readonly`: `true`
+- read-only: say "read-only, change no files" in the prompt
 
 Each explorer gets the prompt in `references/explorer-prompt.md` with its angle filled in. Then go to Step 3.
 
@@ -33,7 +33,7 @@ Spawn one Agent subagent that explores and explains in one pass:
 
 - `subagent_type`: `general-purpose`
 - `model`: your configured how-explainer model (default `fable`)
-- `readonly`: `true`
+- read-only: say "read-only, change no files" in the prompt
 
 Build its prompt from `references/explainer-prompt.md` without the explorer-findings section. Go to Step 4.
 
@@ -43,7 +43,7 @@ Once all explorers have returned, spawn one Agent subagent to synthesize their f
 
 - `subagent_type`: `general-purpose`
 - `model`: your configured how-explainer model (default `fable`)
-- `readonly`: `true`
+- read-only: say "read-only, change no files" in the prompt
 
 Build its prompt from `references/explainer-prompt.md` with every explorer's findings filled in.
 

@@ -5,7 +5,7 @@ This directory is the maintained source for verifying the user-facing behavior o
 ## Baseline preconditions
 
 - Launch Notes at `http://127.0.0.1:4173` with a disposable data directory.
-- Set `NOTES_DATA_DIR=/tmp/notes-verify-$RUN_ID` so concurrent runs do not share state.
+- Set `NOTES_DATA_DIR=<scratchpad>/notes-verify-$RUN_ID` so concurrent runs do not share state (`<scratchpad>` is the scratchpad directory the system prompt names).
 - Seed notes titled `Quarterly plan` and `Grocery list`.
 - Put `control-notes` and the `notes` CLI on `PATH`.
 - Run `control-notes doctor` and require the expected URL, data directory, and build revision.

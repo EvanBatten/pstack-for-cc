@@ -5,9 +5,9 @@ description: Configure which models pstack uses per role and at what budget. Wri
 
 # Setup pstack
 
-Write `~/.claude/pstack-models.md`. The pstack SessionStart hook loads it into every session and subagent, and it overrides the skill defaults. When the file is missing the hook falls back to the `pstack-models.md` shipped at the plugin root. `PSTACK_MODELS_FILE` overrides both for one run.
+Write `~/.claude/pstack-models.md`. The pstack SessionStart hook loads it into every session and subagent, and it overrides the skill defaults. When the file is missing the hook falls back to `~/.claude/skills/poteto-mode/pstack-models.md`. `PSTACK_MODELS_FILE` overrides both for one run.
 
-This skill is rewritten for Claude Code. Upstream detects Cursor model slugs and lowers the reasoning-effort token per budget. The Agent tool takes a model alias and has no per-subagent effort, so here a budget picks the tier per role and the length of each panel.
+This skill is rewritten for Claude Code. Upstream detects the editor's model slugs and lowers the reasoning-effort token per budget. The Agent tool takes a model alias and has no per-subagent effort, so here a budget picks the tier per role and the length of each panel.
 
 ## Steps
 
@@ -17,7 +17,7 @@ The values you can pass as Agent `model` are the aliases in the Agent tool's sch
 
 ### 2. Load current state
 
-If `~/.claude/pstack-models.md` exists, read it and treat its `# budget` line and its role values as the current choices. Otherwise start from the plugin-root `pstack-models.md`.
+If `~/.claude/pstack-models.md` exists, read it and treat its `# budget` line and its role values as the current choices. Otherwise start from `~/.claude/skills/poteto-mode/pstack-models.md`.
 
 ### 3. Budget, map, and confirm
 
@@ -32,7 +32,7 @@ If `~/.claude/pstack-models.md` exists, read it and treat its `# budget` line an
 
 Judgment roles are `judgment and prose`, `hardest tasks`, `how explainer`, `why synthesizer`, and the `reflect` judgment line. Code roles are `feature, refactoring`, `bug-fix`, `perf-issue`, `hillclimb`, `how explorer`, `why investigators`, `swarm workers`. Panels are `arena runners`, `arena cross-judge pool`, `architect runners`, `interrogate reviewers`. `reflect tooling` follows the judgment column except under `unlimited`, where it stays `opus`.
 
-No panel drops below two entries. The **exhaust-the-design-space** principle needs two structurally distinct candidates.
+No panel drops below two entries. The **principle-exhaust-the-design-space** principle needs two structurally distinct candidates.
 
 **(b) Apply it.** Build the working table from the budget row. On a re-run keep any role the user changed by hand.
 
@@ -44,7 +44,7 @@ Every alias written must be in the Agent tool's schema. `inherit-parent` and `au
 
 ### 5. Write the file
 
-Write `~/.claude/pstack-models.md` in the same shape as the plugin-root `pstack-models.md`: the comment header, a `# budget:` line with the chosen label, and one line per role using the same labels poteto-mode uses. Overwrite the whole file so re-runs stay idempotent.
+Write `~/.claude/pstack-models.md` in the same shape as `~/.claude/skills/poteto-mode/pstack-models.md`: the comment header, a `# budget:` line with the chosen label, and one line per role using the same labels poteto-mode uses. Overwrite the whole file so re-runs stay idempotent.
 
 ### 6. Confirm
 

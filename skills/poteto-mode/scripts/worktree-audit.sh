@@ -65,9 +65,12 @@ git worktree list --porcelain | awk '/^worktree /{print $2}' | while read -r wt;
 
 	# Most recent chat whose transcript operated in this worktree. Match path
 	# followed by "/" or a quote so glint-482 does not match glint-482-r37.
+	# Transcripts store the cwd as JSON, so on Windows the path arrives with
+	# doubled backslashes; match that spelling too.
 	last="-"; last_ts=0
 	wt_transcripts="$HOME/.claude/projects/$(slugify "$wt")"
-	f=$( { [ -d "$transcripts" ] && rg -l -e "${wt}/" -e "${wt}\"" "$transcripts" 2>/dev/null
+	wt_bs=${wt////\\}
+	f=$( { [ -d "$transcripts" ] && rg -l -F -e "${wt}/" -e "${wt}\"" -e "${wt_bs}\\\\" -e "${wt_bs}\"" "$transcripts" 2>/dev/null
 		ls "$wt_transcripts"/*.jsonl 2>/dev/null; } \
 		| while IFS= read -r t; do mtime_name "$t" 2>/dev/null; done | sort -rn | head -1)
 	if [ -n "$f" ]; then last_ts=$(echo "$f" | awk '{print $1}')

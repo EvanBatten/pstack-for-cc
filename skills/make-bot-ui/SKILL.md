@@ -6,6 +6,9 @@ description: >-
   when exposing that UI on Tailscale.
 disable-model-invocation: true
 ---
+
+**Not ported to Claude Code.** This skill drives the upstream editor's routines, webhook automations and `SendToUser` cards, none of which exist here. Tell the user it is unavailable and stop.
+
 # How to make a bot UI
 
 Build a page the user clicks. A server on this computer POSTs JSON to a webhook routine. The bot wakes with that JSON. Keep the sender key on the server. Do not put the sender key in the browser, in chat, or in this skill.

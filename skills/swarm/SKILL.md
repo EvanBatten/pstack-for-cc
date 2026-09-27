@@ -6,11 +6,11 @@ disable-model-invocation: true
 
 # Swarm
 
-Fan out N parallel cloud workers. They may cover separate slices, race the same brief, or mix both. The parent waits, aggregates, and returns one report.
+Fan out N parallel workers. They may cover separate slices, race the same brief, or mix both. The parent waits, aggregates, and returns one report.
 
 ## Start
 
-Open a todolist with one entry per phase before launching anything.
+Carry one line per phase in your reply, each with its state, before launching anything.
 
 1. Frame
 2. Fan out
@@ -27,7 +27,7 @@ Open a todolist with one entry per phase before launching anything.
 
 ## Phase B: Fan out
 
-Spawn all N workers in one message with `subagent_type: general-purpose`, `isolation: "worktree"`, `run_in_background: true`, and the configured model. Drop the isolation only when the worker needs the user's live working tree.
+Spawn all N workers in one message with `subagent_type: general-purpose`, `isolation: "worktree"`, and the configured model. Drop the isolation only when the worker needs the user's live working tree.
 
 When a worker must start from a non-default pushed branch, tell it to check that branch out in its worktree first.
 

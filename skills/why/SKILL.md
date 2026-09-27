@@ -80,7 +80,7 @@ Launch all matching investigators in a single message so they run concurrently. 
 Subagent config (each):
 - `subagent_type`: `general-purpose`
 - `model`: your configured why-investigators model (default `sonnet`)
-- `readonly`: `false` (agent mode). **Do not use readonly/Ask mode.** It strips MCP access, which disables MCP-backed investigators entirely. Investigators still shouldn't write anything.
+- Not read-only. The investigators need MCP access for their sources, so do not mark them read-only in the prompt. They still write nothing.
 
 Each investigator gets:
 1. The base prompt from `references/investigator-prompt.md`
@@ -124,7 +124,7 @@ Spawn one synthesizer subagent:
 
 - `subagent_type`: `general-purpose`
 - `model`: your configured why-synthesizer model (default `fable`)
-- `readonly`: `false` (agent mode). The synthesizer's quality check spot-verifies citations, which can require MCP access. Readonly/Ask mode strips MCPs and defeats that.
+- Not read-only. The synthesizer's quality check spot-verifies citations, which can need MCP access.
 
 The synthesizer gets:
 1. The investigator findings, including any null results and any categories skipped with justification
