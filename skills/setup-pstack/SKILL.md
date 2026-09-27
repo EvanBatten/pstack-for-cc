@@ -13,7 +13,7 @@ This skill is rewritten for Claude Code. Upstream detects the editor's model slu
 
 ### 1. Detect available models
 
-The values you can pass as Agent `model` are the aliases in the Agent tool's schema (`fable`, `opus`, `sonnet`, `haiku`). Never write an alias the schema does not list. `inherit-parent` and `auto` are always valid.
+Any alias the Agent tool's schema lists is a valid Agent `model` value, and so are `inherit-parent` and `auto`. The session context lists pstack's tiers strongest first, from `MODEL_TIERS` in `~/.claude/skills/poteto-mode/hooks/kinds.mjs`. Recommend the top tier for judgment roles.
 
 ### 2. Load current state
 
@@ -23,16 +23,20 @@ If `~/.claude/pstack-models.md` exists, read it and treat its `# budget` line an
 
 **(a) Ask for a budget.** Prefer AskUserQuestion over free text. Offer these four options, and name the current budget when the file records one.
 
-| Budget | Judgment roles | Code roles | Panels |
-|---|---|---|---|
-| `unlimited` | `fable` | `sonnet` | `fable, opus, sonnet` |
-| `large` | `inherit-parent` | `sonnet` | `inherit-parent, opus, sonnet` |
-| `medium` | `inherit-parent` | `sonnet` | `inherit-parent, sonnet` |
-| `small` | `inherit-parent` | `haiku` | `inherit-parent, sonnet` |
+| Budget | Judgment roles | Code roles | Runner panels | Cross-judge pool | Interrogate reviewers |
+|---|---|---|---|---|---|
+| `unlimited` | `tier 1` | `tier 2` | `tier 1, tier 1, tier 2` | `tier 1` | `tier 1, inherit-parent` |
+| `large` | `inherit-parent` | `tier 2` | `inherit-parent, tier 1, tier 2` | `inherit-parent` | `inherit-parent, tier 1` |
+| `medium` | `inherit-parent` | `tier 2` | `inherit-parent, tier 2` | `inherit-parent` | `inherit-parent, inherit-parent` |
+| `small` | `inherit-parent` | `tier 3` | `inherit-parent, tier 2` | `inherit-parent` | `inherit-parent, inherit-parent` |
 
-Judgment roles are `judgment and prose`, `hardest tasks`, `how explainer`, `why synthesizer`, and the `reflect` judgment line. Code roles are `feature, refactoring`, `bug-fix`, `perf-issue`, `hillclimb`, `how explorer`, `why investigators`, `swarm workers`. Panels are `arena runners`, `arena cross-judge pool`, `architect runners`, `interrogate reviewers`. `reflect tooling` follows the judgment column except under `unlimited`, where it stays `opus`.
+`tier 1` is the first alias of the tier list in the session context, `tier 2` the second and `tier 3` the third. Write the alias, never the label.
 
-No panel drops below two entries. The **principle-exhaust-the-design-space** principle needs two structurally distinct candidates.
+Judgment roles are `judgment and prose`, `hardest tasks`, `how explainer`, `why synthesizer`, `reflect tooling` and the `reflect` judgment line. Code roles are `feature, refactoring`, `bug-fix`, `perf-issue`, `hillclimb`, `how explorer`, `why investigators`, `swarm workers`. Runner panels are `arena runners` and `architect runners`.
+
+A judge never runs below the parent model, so every judgment role, the cross-judge pool and the interrogate reviewers take only `inherit-parent`, `auto` or the top tier. Budget lowers the tier of the roles that produce work, never a judge. Runner panels may include `tier 2`, because runners produce candidates and a judge grades them.
+
+No runner panel or reviewer list drops below two entries. The **principle-exhaust-the-design-space** principle needs two structurally distinct candidates. The cross-judge pool is exempt, because Arena spawns one judge from it.
 
 **(b) Apply it.** Build the working table from the budget row. On a re-run keep any role the user changed by hand.
 
@@ -40,7 +44,7 @@ No panel drops below two entries. The **principle-exhaust-the-design-space** pri
 
 ### 4. Validate
 
-Every alias written must be in the Agent tool's schema. `inherit-parent` and `auto` always pass.
+Every alias written must be in the Agent tool's schema. `inherit-parent` and `auto` always pass. Every entry of a judgment role (the `JUDGMENT_ROLES` set in `~/.claude/skills/poteto-mode/hooks/catalog.mjs`) must be `inherit-parent`, `auto` or the top tier. A role the user set below that goes back to the budget row, and you tell them why.
 
 ### 5. Write the file
 
@@ -53,3 +57,11 @@ Tell the user the file was written and that it applies to new sessions. Re-runni
 ### 7. Offer a verification skill (optional)
 
 Check whether the project has a way to drive the real app for proof (a `verify-*` skill, or an existing harness). If not, offer once: "want a project-local verification skill, so agents can drive the app the way a user does and prove changes work? I can generate one with /create-verification-skill." On yes, open the `create-verification-skill` skill and follow it. On no, move on without pushing.
+
+## Standing skips
+
+To waive a writing convention in every session, the user writes `skip <name>: <reason>` lines to `~/.claude/pstack-skips.md`, as in `skip technical-writing: commit messages follow the team's guide`. A standing skip may name only `technical-writing`, `unslop`, `docs-prose`, `pr-prose` or `pr-draft`. A skill name counts as that skill read for every ask, and a rule name drops that ask. The hook ignores a line that names anything else, such as `ledger`, `design`, `deslop` or a playbook, and counts only the name of a line it honors, never its reason.
+
+A `.claude/pstack-skips.md` in the directory a session starts in counts for that project only after the user trusts it. Trust is a line `trust <project root> <sha256 of the file>` in `~/.claude/pstack-skips.md`. A changed file needs a new trust line. At the start of each session the hook shows the user every active, ignored and untrusted standing skip, and for an untrusted file it prints the exact trust line to add.
+
+The hook refuses an agent's write to either file. When the user asks to opt out of a convention for good, give them the exact line to add.

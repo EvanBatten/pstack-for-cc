@@ -6,11 +6,11 @@ disable-model-invocation: true
 
 # Architect
 
-Design before implementing. Sketch types, function signatures, class shapes, and module boundaries with `not implemented` bodies and pseudocode. Synthesize across multiple model perspectives, then fill in code against the chosen sketch. If implementation proves the sketch wrong, throw it out and redesign.
+Design before implementing. Sketch types, function signatures, class shapes, and module boundaries with `not implemented` bodies and pseudocode. Synthesize across several independent runners, then fill in code against the chosen sketch. If implementation proves the sketch wrong, throw it out and redesign.
 
 ## Start
 
-Carry one line per phase in your reply, each with its state, before starting.
+Open a task list with TaskCreate (a deferred tool, loaded through ToolSearch) with one item per phase before starting. Where no task tool exists, carry one line per phase in your reply, each with its state.
 
 1. Ground
 2. Sketch
@@ -30,7 +30,7 @@ Skip Phase A only when the work is genuinely greenfield with no surrounding syst
 
 Run the **arena** skill with the design-sketch task and the Phase A grounding artifacts. Pass `references/runner-prompt.md` as each runner's prompt. Each candidate produces a design package shaped per `references/rationale-template.md`.
 
-Use your configured architect runners (defaults `fable`, `opus`, `sonnet`, `opus`).
+Use your configured architect runners (defaults `opus`, `opus`, `sonnet`, `opus`).
 
 Design it twice. Require at least two structurally distinct candidates before synthesis, even when the first looks sufficient. This is **principle-exhaust-the-design-space** made concrete. Whole-shape alternatives, not point fixes inside one shape.
 

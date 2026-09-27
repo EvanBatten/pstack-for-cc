@@ -62,9 +62,9 @@ At the end of the run, before handing back, check the log told the truth. Read t
 
 Fix the log, not the story. If the work diverged from what a row claims, the row is wrong.
 
-## Cross-model review of the trail
+## Independent review of the trail
 
-Before handing back, spawn a subagent on a different model family from the one that did the work. Self-review is not a substitute. The subagent reads the audit trail and the run's transcript, then flags what the user should pay attention to. Not a redo of the work, a scan for what's suboptimal or risky.
+Before handing back, spawn a fresh subagent that did not do the work, on your `judgment and prose` model. Self-review is not a substitute. The subagent reads the audit trail and the run's transcript, then flags what the user should pay attention to. Not a redo of the work, a scan for what's suboptimal or risky.
 
 - Decisions logged with weak or absent evidence.
 - Verification steps skipped or claimed without proof in the transcript.

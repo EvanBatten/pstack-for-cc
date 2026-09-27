@@ -1,0 +1,13 @@
+{
+  "id": "t02-delegated-feature",
+  "seed": "cart",
+  "expect": { "delegates": true, "readonlyDelegates": false },
+  "turns": [
+    { "index": 0, "prompt": "/poteto-mode Add coupon codes to the cart. SAVE10 takes 10% off the subtotal, FLAT5 takes 5 off, one code per order, and an unknown code is rejected with a clear error. Cover it with tests.",
+      "expect": { "mode": "on", "playbook": "feature", "triggers": ["how", "architect"] } },
+    { "index": 1, "prompt": "FLAT5 is losing us money on small orders. Only accept it when the subtotal is at least 20. Below that, reject it with an error that tells the customer the amount they still need to add.",
+      "expect": { "mode": "on", "playbook": "feature", "triggers": ["how", "architect"] } },
+    { "index": 2, "prompt": "Review the coupon work as if a teammate had sent it to you. What would you block on before it merges?",
+      "expect": { "mode": "on", "playbook": null, "triggers": [] } }
+  ]
+}

@@ -32,15 +32,15 @@ One message, three `Agent` calls, `subagent_type: general-purpose`, explicit `mo
 
 | Lens | `model` | Prompt template |
 |---|---|---|
-| Judgment | your configured reflect-judgment model (default `fable`) | `references/judgment-reviewer.md` |
+| Judgment | your configured reflect-judgment model (default `opus`) | `references/judgment-reviewer.md` |
 | Tooling | your configured reflect-tooling model (default `opus`) | `references/tooling-reviewer.md` |
-| Divergent | your configured reflect-judgment model (default `fable`) | `references/divergent-reviewer.md` |
+| Divergent | your configured reflect-judgment model (default `opus`) | `references/divergent-reviewer.md` |
 
 Pass each template verbatim, substituting the transcript path or digest where marked. Reviewers return findings in the `Agent` response body.
 
 ### 3. Synthesize
 
-One `Agent` call, `subagent_type: general-purpose`, using your configured reflect-judgment model (default `fable`), not read-only, since the synthesizer's quality check spot-verifies citations, which can require MCP access. Use `references/synthesizer.md` verbatim, with each reviewer's full output inlined where marked. The synthesizer returns a structured Accepted / Rejected / Backlog list.
+One `Agent` call, `subagent_type: general-purpose`, using your configured reflect-judgment model (default `opus`), not read-only, since the synthesizer's quality check spot-verifies citations, which can require MCP access. Use `references/synthesizer.md` verbatim, with each reviewer's full output inlined where marked. The synthesizer returns a structured Accepted / Rejected / Backlog list.
 
 ### 4. Structural enforcement check
 

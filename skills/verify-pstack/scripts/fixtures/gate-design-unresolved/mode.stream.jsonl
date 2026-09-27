@@ -1,0 +1,1 @@
+{"type":"result","result":"Route: Bug fix playbook.\n\narchitect skip: one argument of one call changes, so no function boundary moves.\nunslop skip: I applied its rules while writing this reply.\n\nNothing else changes. The fix is still uncommitted in your working tree, and `node total.js 2 3` prints 5."}

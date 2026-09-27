@@ -1,0 +1,3 @@
+# Checkouts use LF whatever core.autocrlf says. The scripts run from a `#!` line
+# under bun, node and bash, and a CRLF checkout breaks that line.
+* text=auto eol=lf

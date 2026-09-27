@@ -11,7 +11,7 @@ import { fileURLToPath } from "node:url";
 const here = dirname(fileURLToPath(import.meta.url));
 const root = process.argv[2] ?? join(here, "..", "..");
 
-const SKIP = [/[\\/]node_modules[\\/]/, /poteto-mode[\\/]UPSTREAM\.md$/];
+const SKIP = [/[\\/]node_modules[\\/]/];
 
 // Ordered. Principles were skills upstream and are files here, so the
 // "principle skill" phrase becomes the bare **principle-<slug>** name the

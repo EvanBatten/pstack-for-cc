@@ -1,8 +1,12 @@
 # pstack behaviors
 
-One file per behavior a session can observe. `scripts/drive.sh` prints one verdict per file here, by the file's name.
+One file per verdict `scripts/drive.sh` prints, by the file's name.
 
-- [Hook context](./hook-context.md) - every session and subagent receives the pstack session context with the three paths and the model table
-- [Mode reminder](./mode-reminder.md) - once a session has entered poteto mode, each later prompt carries the reminder, and a session that never entered it gets none
-- [Playbook run](./playbook-run.md) - a task under the mode is carried as the matched playbook's steps, with the artifact the playbook requires in the reply
-- [Port clean](./port-clean.md) - the skills tree carries no Cursor affordance an agent would act on, and the gates written for Claude Code pass
+- [Hook context](./hook-context.md) - every session and subagent receives the pstack session context
+- [Mode reminder](./mode-reminder.md) - `/poteto-mode` turns on the reminder from its own prompt, and a session without it gets none
+- [Step ledger](./step-ledger.md) - reading a playbook in the mode hands back its steps
+- [Gate](./gate.md) - an in-mode turn ends with the playbook's steps carried and each Stop block answered, and a finding blocks once
+- [Action gate](./action-gate.md) - an in-mode source write is denied once with the data-shape ask, and goes through after the session answers it
+- [Reader](./reader.md) - a `pstack-reader` subagent's shell write is denied
+- [Task tools](./task-tools.md) - TaskCreate is in the session's tool list
+- [Port clean](./port-clean.md) - check-port, the tests and the drift check pass

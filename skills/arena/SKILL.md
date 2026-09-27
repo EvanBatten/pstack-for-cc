@@ -10,7 +10,7 @@ Fan out N parallel attempts at the same task. Read every candidate end to end. P
 
 ## Start
 
-Carry one line per phase in your reply, each with its state, before launching anything.
+Open a task list with TaskCreate (a deferred tool, loaded through ToolSearch) with one item per phase before launching anything. Where no task tool exists, carry one line per phase in your reply, each with its state.
 
 1. Frame
 2. Fan out
@@ -25,7 +25,7 @@ The N candidates will receive the same prompt, so the prompt is the contract.
 
 1. State the artifact each candidate is producing.
 2. Derive the rubric. State what success looks like for *this* task, then turn it into 3-6 concrete gradeable criteria. The rubric is the picker's tool in Phase D. Candidates only see the task.
-3. Pick the runners. Use `arena runners` from `~/.claude/pstack-models.md` when present. Otherwise default to one each on `fable`, `opus`, `sonnet`, `opus`. Spawn more when the arena covers multiple design directions. Same model N times when the work is generation-bound rather than judgment-sensitive.
+3. Pick the runners. Use `arena runners` from `~/.claude/pstack-models.md` when present. Otherwise default to four runners on `opus`, `opus`, `sonnet`, `opus`. Spawn more when the arena covers multiple design directions. Same model N times when the work is generation-bound rather than judgment-sensitive.
 4. Assign output paths. Each candidate writes to its own location (a git worktree where possible, otherwise `<scratchpad>/arena-<slug>/candidate-<n>/`), per **principle-separate-before-serializing-shared-state**. `<scratchpad>` is the scratchpad directory the system prompt names.
 
 ## Phase B: Fan out
@@ -38,7 +38,14 @@ If a candidate fails to produce output, proceed with N-1 and note the dropout in
 
 ## Phase C: Cross-judge
 
-After all Phase B candidates complete, choose one model from the `arena cross-judge pool` in `~/.claude/pstack-models.md` when present. Otherwise use `fable`, `opus`, `sonnet`, `opus`. Prefer a different model family from the parent's. Spawn one readonly judge subagent on that model. It sees the rubric and the candidates by path label, scores each criterion, and recommends a base with rationale. It runs in parallel with the parent's reading in Phase D, not with the candidates themselves. Don't spawn the judge while candidates are still writing.
+After all Phase B candidates complete, spawn one judge with `subagent_type: "pstack-reader"`. Take the strongest entry of the `arena cross-judge pool` line in `~/.claude/pstack-models.md`, the top tier first, then `inherit-parent`. For `inherit-parent`, `auto` or no line, omit `model` so the judge runs on the parent's model. A judge never runs below the parent, because a weaker model grading stronger work misses what the stronger one got right.
+
+Every candidate here is a Claude model, so the judge's independence comes from how it is set up, not from its model:
+- Copy the candidates to neutral labels (A, B, C) in shuffled order. No model name appears in a path, a label or a rationale the judge reads.
+- The judge sees only the rubric and the labelled candidates, in a fresh context.
+- It scores each criterion, cites a file:line or command output for each score, and recommends a base.
+
+The judge runs in parallel with the parent's reading in Phase D, not with the candidates themselves. Don't spawn the judge while candidates are still writing.
 
 ## Phase D: Pick a base
 

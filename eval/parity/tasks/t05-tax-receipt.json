@@ -1,0 +1,11 @@
+{
+  "id": "t05-tax-receipt",
+  "seed": "cart",
+  "expect": { "delegates": true, "readonlyDelegates": false },
+  "turns": [
+    { "index": 0, "prompt": "/poteto-mode Checkout needs sales tax and a receipt. Tax depends on the region the order ships to: CA is 7.25%, NY is 4%, OR has none, and any other region is rejected. Tax applies to the subtotal after the discount, not to shipping. Then give me a receipt: one line per item, then the discount, shipping, tax and total, each amount with two decimals. Keep tax and the receipt out of cart.js and cover both with tests.",
+      "expect": { "mode": "on", "playbook": "feature", "triggers": ["how", "architect"] } },
+    { "index": 1, "prompt": "NY also taxes shipping; CA and OR don't. Make the tax and the receipt handle that.",
+      "expect": { "mode": "on", "playbook": "feature", "triggers": ["how", "architect"] } }
+  ]
+}

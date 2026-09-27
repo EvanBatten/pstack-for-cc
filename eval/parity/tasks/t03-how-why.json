@@ -1,0 +1,11 @@
+{
+  "id": "t03-how-why",
+  "seed": "cart",
+  "expect": { "delegates": true, "readonlyDelegates": true },
+  "turns": [
+    { "index": 0, "prompt": "/poteto-mode How does the cart get from line items to the final total? Answer from the code.",
+      "expect": { "mode": "on", "playbook": "investigation", "triggers": ["how", "unslop"] } },
+    { "index": 1, "prompt": "Why does it round each line instead of rounding the total once? Check the history before you answer.",
+      "expect": { "mode": "on", "playbook": "investigation", "triggers": ["how", "why", "unslop"] } }
+  ]
+}

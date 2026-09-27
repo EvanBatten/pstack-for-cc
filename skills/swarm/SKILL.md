@@ -10,7 +10,7 @@ Fan out N parallel workers. They may cover separate slices, race the same brief,
 
 ## Start
 
-Carry one line per phase in your reply, each with its state, before launching anything.
+Open a task list with TaskCreate (a deferred tool, loaded through ToolSearch) with one item per phase before launching anything. Where no task tool exists, carry one line per phase in your reply, each with its state.
 
 1. Frame
 2. Fan out

@@ -104,6 +104,6 @@ If the CLI needs richer terminal control, use `pty.fork()` or an existing PTY li
 
 - Prefer deterministic waits over sleeps. If you must sleep, explain why.
 - Do not send credentials or destructive commands into a controlled session.
-- Keep the harness in the scratchpad directory the system prompt names unless the repo already has a testing/demo harness. On Windows, where `tmux`, `expect` and Python's `pty` are absent, drive the process through a terminal multiplexer pane when one is installed, or a `child_process` pipe when the CLI needs no TTY.
+- Keep the harness in the scratchpad directory the system prompt names unless the repo already has a testing/demo harness. When `tmux` is unavailable, drive the process through a PTY wrapper such as node-pty or ConPTY, or a child-process pipe when the CLI needs no TTY.
 - Do not hard-code paths from another repository. Adapt commands to the current repo's scripts and runtime.
 - Clean up tmux sessions, temp dirs, inspector processes, and demo artifacts unless the user asks to keep them.

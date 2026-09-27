@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Interrogate
 
-Spawn one reviewer per configured model to adversarially review code changes. Each model gets the same prompt and rubric. The adversarial signal comes from model diversity, not assigned personas.
+Spawn one reviewer per configured entry to adversarially review code changes. Each reviewer gets the same prompt and rubric. The adversarial signal comes from independent reviewers in fresh contexts, not assigned personas. No reviewer runs below the parent model.
 
 The deliverable is a synthesized verdict. Do NOT auto-apply changes.
 
@@ -33,19 +33,16 @@ Write one clear paragraph. If you're unsure about the intent, ask the user befor
 
 ## Step 3, Spawn Reviewers
 
-Launch all reviewers in a single message using the Agent tool. Use the `interrogate reviewers` list from `~/.claude/pstack-models.md` when present, one reviewer per entry, extending or shrinking the Reviewer A/B/C/D labels below to the configured entry count. Otherwise use the table defaults.
+Launch all reviewers in a single message using the Agent tool. Use the `interrogate reviewers` list from `~/.claude/pstack-models.md` when present, one reviewer per entry, extending or shrinking the Reviewer A/B labels below to the configured entry count. Otherwise use the table defaults.
 
 | Subagent | Default model |
 |----------|---------------|
-| Reviewer A | `fable` |
-| Reviewer B | `opus` |
-| Reviewer C | `sonnet` |
-| Reviewer D | `opus` |
+| Reviewer A | `inherit-parent` |
+| Reviewer B | `inherit-parent` |
 
 For each reviewer:
-- `subagent_type`: `general-purpose`
+- `subagent_type`: `pstack-reader`
 - `model`: the configured `interrogate reviewers` entry, or the table default with no configured line
-- read-only: say "read-only, change no files" in the prompt
 
 If a model slug is rejected as unresolvable when you try to spawn the subagent, check the valid slugs in the Agent tool's error message, pick the closest equivalent (prefer the highest-reasoning tier of the same family), spawn with the valid slug, and open a separate PR to update the configured value or default table. Do not block the review on the slug issue. If the configured value is `inherit-parent` or `auto`, omit `model` instead. Never treat those aliases as broken slugs or enter this fallback for them.
 
@@ -55,17 +52,17 @@ Read `references/reviewer-prompt.md` and fill in the template with:
 3. The review rubric from `references/rubric.md`
 4. The code-quality lens from `references/code-quality-review.md`
 
-The same filled template goes to all reviewers, so every model applies the code-quality lens.
+The same filled template goes to all reviewers, so every reviewer applies the code-quality lens.
 
 ## Step 4, Synthesize
 
 As results come back, build a unified picture:
 
 1. **Parse all findings** from the reviewers
-2. **Identify consensus**. Findings raised by 2+ models independently are highest signal.
-3. **Identify lone-model findings**. Still worth reading, but weight accordingly.
-4. **Deduplicate**. Different models may describe the same issue differently. Merge these and note which models raised it.
-5. **Note disagreements**. If one model flags something and another explicitly says the opposite, that's useful context for the verdict.
+2. **Weigh evidence over vote count**. Reviewers on the same model make correlated mistakes, so two of them agreeing is weaker evidence than two vendors agreeing. A finding with a cited line or a failing input outranks one that more reviewers raised without either.
+3. **Identify lone-reviewer findings**. Still worth reading. Judge each by its evidence.
+4. **Deduplicate**. Different reviewers may describe the same issue differently. Merge these and note which reviewers raised it.
+5. **Note disagreements**. If one reviewer flags something and another explicitly says the opposite, that's useful context for the verdict.
 
 ## Step 5, Lead Judgment
 
@@ -81,7 +78,7 @@ Categorize every finding using these buckets:
 - **Dismissed**. Wrong, nitpicky, or missing context. Brief explanation why.
 
 For each finding, include:
-- Which model(s) raised it
+- Which reviewer(s) raised it
 - The category (act on / consider / noted / dismissed)
 - A one-line rationale for the categorization
 
@@ -96,10 +93,10 @@ Present the verdict in this structure:
 - Reviewer [label]: [model name], [N findings] (one bullet per reviewer)
 
 ### Act On
-[Findings that should be addressed. For each: description, which models raised it, why it matters.]
+[Findings that should be addressed. For each: description, which reviewers raised it, why it matters.]
 
 ### Consider
-[Findings worth thinking about. For each: description, which models raised it, tradeoff involved.]
+[Findings worth thinking about. For each: description, which reviewers raised it, tradeoff involved.]
 
 ### Noted
 [Valid but low-priority. Brief list.]
@@ -108,4 +105,4 @@ Present the verdict in this structure:
 [Rejected findings with brief rationale.]
 
 ### Agreement Map
-[Where did models agree, where did they diverge, and what does the pattern of agreement/disagreement tell us?]
+[Where did reviewers agree, where did they diverge, and what does the pattern of agreement/disagreement tell us?]

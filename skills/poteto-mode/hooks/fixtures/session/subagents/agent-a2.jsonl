@@ -1,0 +1,2 @@
+{"type":"user","isSidechain":true,"message":{"role":"user","content":"Find the cart code."}}
+{"type":"assistant","isSidechain":true,"message":{"role":"assistant","model":"<synthetic>","stop_reason":"end_turn","content":[{"type":"text","text":"found"}]}}

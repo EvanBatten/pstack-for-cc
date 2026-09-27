@@ -1,0 +1,5869 @@
+{
+  "judges": {
+    "pair": [
+      "J1",
+      "J3"
+    ],
+    "tiebreak": null,
+    "excluded": {
+      "J2": "Its s1 calibration failed: detect 1.00 over 12 mutants, false flags 0.13 over 46 untouched pairs (6 flips, B13 four times and B6 twice). The B6 and B13 rubric lines were tightened for all judges, but the Cursor account hit its gpt-5.6-sol-high usage limit (resets 2026-10-23) on the 28th regrade, so J2 could not be recalibrated and stays out of the consensus."
+    }
+  },
+  "result": {
+    "gates": [
+      {
+        "id": "V1-control",
+        "pass": false,
+        "detail": "reference minus control = 0.26 over 8 behaviors (need >= 0.3); not counted: B13a-long-dash"
+      },
+      {
+        "id": "V6-sealed",
+        "pass": true,
+        "detail": "no run read outside its own install"
+      },
+      {
+        "id": "calibration-J1",
+        "pass": true,
+        "detail": "detect 1.00 over 11 mutants (need >= 0.9), false flags 0.02 over 41 untouched pairs (need <= 0.1)"
+      },
+      {
+        "id": "calibration-J3",
+        "pass": true,
+        "detail": "detect 1.00 over 11 mutants (need >= 0.9), false flags 0.07 over 44 untouched pairs (need <= 0.1)"
+      },
+      {
+        "id": "V4-valid",
+        "pass": true,
+        "detail": "0/30 runs inconclusive (max 10%), 0/674 judge verdicts dropped (max 5%)"
+      }
+    ],
+    "failedGates": [
+      "V1-control"
+    ],
+    "cells": [
+      {
+        "behavior": "B1-mode-sticky",
+        "arm": "A",
+        "pass": 2,
+        "applicable": 10,
+        "unresolved": 0,
+        "fraction": 0.2,
+        "wilson95": [
+          0.056680947980693314,
+          0.5098431532792765
+        ]
+      },
+      {
+        "behavior": "B1-mode-sticky",
+        "arm": "B",
+        "pass": 10,
+        "applicable": 10,
+        "unresolved": 0,
+        "fraction": 1,
+        "wilson95": [
+          0.7224598312333834,
+          1
+        ]
+      },
+      {
+        "behavior": "B1-mode-sticky",
+        "arm": "C",
+        "pass": 0,
+        "applicable": 10,
+        "unresolved": 0,
+        "fraction": 0,
+        "wilson95": [
+          0,
+          0.2775401687666166
+        ]
+      },
+      {
+        "behavior": "B13a-long-dash",
+        "arm": "A",
+        "pass": 20,
+        "applicable": 20,
+        "unresolved": 0,
+        "fraction": 1,
+        "wilson95": [
+          0.8388698745050667,
+          1
+        ]
+      },
+      {
+        "behavior": "B13a-long-dash",
+        "arm": "B",
+        "pass": 20,
+        "applicable": 20,
+        "unresolved": 0,
+        "fraction": 1,
+        "wilson95": [
+          0.8388698745050667,
+          1
+        ]
+      },
+      {
+        "behavior": "B13a-long-dash",
+        "arm": "C",
+        "pass": 20,
+        "applicable": 20,
+        "unresolved": 0,
+        "fraction": 1,
+        "wilson95": [
+          0.8388698745050667,
+          1
+        ]
+      },
+      {
+        "behavior": "B13b-claim-labels",
+        "arm": "A",
+        "pass": 2,
+        "applicable": 17,
+        "unresolved": 3,
+        "fraction": 0.11764705882352941,
+        "wilson95": [
+          0.03287908001292092,
+          0.3433684249770991
+        ]
+      },
+      {
+        "behavior": "B13b-claim-labels",
+        "arm": "B",
+        "pass": 0,
+        "applicable": 18,
+        "unresolved": 2,
+        "fraction": 0,
+        "wilson95": [
+          0,
+          0.1758845505823749
+        ]
+      },
+      {
+        "behavior": "B13b-claim-labels",
+        "arm": "C",
+        "pass": 5,
+        "applicable": 20,
+        "unresolved": 0,
+        "fraction": 0.25,
+        "wilson95": [
+          0.11186005278940309,
+          0.4687050099580636
+        ]
+      },
+      {
+        "behavior": "B15-playbook-choice",
+        "arm": "A",
+        "pass": 11,
+        "applicable": 18,
+        "unresolved": 0,
+        "fraction": 0.6111111111111112,
+        "wilson95": [
+          0.3861866858065617,
+          0.7969500807306884
+        ]
+      },
+      {
+        "behavior": "B15-playbook-choice",
+        "arm": "B",
+        "pass": 18,
+        "applicable": 18,
+        "unresolved": 0,
+        "fraction": 1,
+        "wilson95": [
+          0.8241154494176252,
+          1
+        ]
+      },
+      {
+        "behavior": "B15-playbook-choice",
+        "arm": "C",
+        "pass": 0,
+        "applicable": 18,
+        "unresolved": 0,
+        "fraction": 0,
+        "wilson95": [
+          0,
+          0.1758845505823749
+        ]
+      },
+      {
+        "behavior": "B2-mode-off",
+        "arm": "A",
+        "pass": 2,
+        "applicable": 2,
+        "unresolved": 0,
+        "fraction": 1,
+        "wilson95": [
+          0.34237195288961925,
+          1
+        ]
+      },
+      {
+        "behavior": "B2-mode-off",
+        "arm": "B",
+        "pass": 2,
+        "applicable": 2,
+        "unresolved": 0,
+        "fraction": 1,
+        "wilson95": [
+          0.34237195288961925,
+          1
+        ]
+      },
+      {
+        "behavior": "B2-mode-off",
+        "arm": "C",
+        "pass": 2,
+        "applicable": 2,
+        "unresolved": 0,
+        "fraction": 1,
+        "wilson95": [
+          0.34237195288961925,
+          1
+        ]
+      },
+      {
+        "behavior": "B3-delegate-mode",
+        "arm": "A",
+        "pass": 0,
+        "applicable": 7,
+        "unresolved": 0,
+        "fraction": 0,
+        "wilson95": [
+          0,
+          0.35433884297520657
+        ]
+      },
+      {
+        "behavior": "B3-delegate-mode",
+        "arm": "B",
+        "pass": 3,
+        "applicable": 10,
+        "unresolved": 0,
+        "fraction": 0.3,
+        "wilson95": [
+          0.10778928748621183,
+          0.6032267800204347
+        ]
+      },
+      {
+        "behavior": "B3-delegate-mode",
+        "arm": "C",
+        "pass": 0,
+        "applicable": 0,
+        "unresolved": 0,
+        "fraction": null,
+        "wilson95": null
+      },
+      {
+        "behavior": "B5-step-list",
+        "arm": "A",
+        "pass": 3,
+        "applicable": 17,
+        "unresolved": 1,
+        "fraction": 0.17647058823529413,
+        "wilson95": [
+          0.0619101371254899,
+          0.41029929017375777
+        ]
+      },
+      {
+        "behavior": "B5-step-list",
+        "arm": "B",
+        "pass": 7,
+        "applicable": 14,
+        "unresolved": 4,
+        "fraction": 0.5,
+        "wilson95": [
+          0.2679886791947528,
+          0.7320113208052472
+        ]
+      },
+      {
+        "behavior": "B5-step-list",
+        "arm": "C",
+        "pass": 0,
+        "applicable": 18,
+        "unresolved": 0,
+        "fraction": 0,
+        "wilson95": [
+          0,
+          0.1758845505823749
+        ]
+      },
+      {
+        "behavior": "B6-trigger-runs",
+        "arm": "A",
+        "pass": 5,
+        "applicable": 18,
+        "unresolved": 0,
+        "fraction": 0.2777777777777778,
+        "wilson95": [
+          0.12499569146355474,
+          0.5087307754619452
+        ]
+      },
+      {
+        "behavior": "B6-trigger-runs",
+        "arm": "B",
+        "pass": 12,
+        "applicable": 17,
+        "unresolved": 1,
+        "fraction": 0.7058823529411765,
+        "wilson95": [
+          0.468664666737861,
+          0.8672020613444361
+        ]
+      },
+      {
+        "behavior": "B6-trigger-runs",
+        "arm": "C",
+        "pass": 0,
+        "applicable": 18,
+        "unresolved": 0,
+        "fraction": 0,
+        "wilson95": [
+          0,
+          0.1758845505823749
+        ]
+      },
+      {
+        "behavior": "B7-cite-read",
+        "arm": "A",
+        "pass": 7,
+        "applicable": 20,
+        "unresolved": 0,
+        "fraction": 0.35,
+        "wilson95": [
+          0.18118954786794464,
+          0.5671494897805354
+        ]
+      },
+      {
+        "behavior": "B7-cite-read",
+        "arm": "B",
+        "pass": 20,
+        "applicable": 20,
+        "unresolved": 0,
+        "fraction": 1,
+        "wilson95": [
+          0.8388698745050667,
+          1
+        ]
+      },
+      {
+        "behavior": "B7-cite-read",
+        "arm": "C",
+        "pass": 0,
+        "applicable": 20,
+        "unresolved": 0,
+        "fraction": 0,
+        "wilson95": [
+          0,
+          0.16113012549493322
+        ]
+      },
+      {
+        "behavior": "B8-readonly-delegates",
+        "arm": "A",
+        "pass": 1,
+        "applicable": 1,
+        "unresolved": 0,
+        "fraction": 1,
+        "wilson95": [
+          0.20654329147389294,
+          1
+        ]
+      },
+      {
+        "behavior": "B8-readonly-delegates",
+        "arm": "B",
+        "pass": 0,
+        "applicable": 0,
+        "unresolved": 0,
+        "fraction": null,
+        "wilson95": null
+      },
+      {
+        "behavior": "B8-readonly-delegates",
+        "arm": "C",
+        "pass": 0,
+        "applicable": 0,
+        "unresolved": 0,
+        "fraction": null,
+        "wilson95": null
+      },
+      {
+        "behavior": "B9-delegated",
+        "arm": "A",
+        "pass": 6,
+        "applicable": 10,
+        "unresolved": 0,
+        "fraction": 0.6,
+        "wilson95": [
+          0.3126695474501864,
+          0.8318224187964902
+        ]
+      },
+      {
+        "behavior": "B9-delegated",
+        "arm": "B",
+        "pass": 6,
+        "applicable": 10,
+        "unresolved": 0,
+        "fraction": 0.6,
+        "wilson95": [
+          0.3126695474501864,
+          0.8318224187964902
+        ]
+      },
+      {
+        "behavior": "B9-delegated",
+        "arm": "C",
+        "pass": 0,
+        "applicable": 10,
+        "unresolved": 0,
+        "fraction": 0,
+        "wilson95": [
+          0,
+          0.2775401687666166
+        ]
+      }
+    ],
+    "comparisons": [
+      {
+        "reference": "A",
+        "treatment": "B",
+        "outcome": "INCONCLUSIVE",
+        "behaviors": [
+          {
+            "behavior": "B1-mode-sticky",
+            "reference": {
+              "behavior": "B1-mode-sticky",
+              "arm": "A",
+              "pass": 2,
+              "applicable": 10,
+              "unresolved": 0,
+              "fraction": 0.2,
+              "wilson95": [
+                0.056680947980693314,
+                0.5098431532792765
+              ]
+            },
+            "treatment": {
+              "behavior": "B1-mode-sticky",
+              "arm": "B",
+              "pass": 10,
+              "applicable": 10,
+              "unresolved": 0,
+              "fraction": 1,
+              "wilson95": [
+                0.7224598312333834,
+                1
+              ]
+            },
+            "verdict": "ok"
+          },
+          {
+            "behavior": "B13a-long-dash",
+            "reference": {
+              "behavior": "B13a-long-dash",
+              "arm": "A",
+              "pass": 20,
+              "applicable": 20,
+              "unresolved": 0,
+              "fraction": 1,
+              "wilson95": [
+                0.8388698745050667,
+                1
+              ]
+            },
+            "treatment": {
+              "behavior": "B13a-long-dash",
+              "arm": "B",
+              "pass": 20,
+              "applicable": 20,
+              "unresolved": 0,
+              "fraction": 1,
+              "wilson95": [
+                0.8388698745050667,
+                1
+              ]
+            },
+            "verdict": "ok"
+          },
+          {
+            "behavior": "B13b-claim-labels",
+            "reference": {
+              "behavior": "B13b-claim-labels",
+              "arm": "A",
+              "pass": 2,
+              "applicable": 17,
+              "unresolved": 3,
+              "fraction": 0.11764705882352941,
+              "wilson95": [
+                0.03287908001292092,
+                0.3433684249770991
+              ]
+            },
+            "treatment": {
+              "behavior": "B13b-claim-labels",
+              "arm": "B",
+              "pass": 0,
+              "applicable": 18,
+              "unresolved": 2,
+              "fraction": 0,
+              "wilson95": [
+                0,
+                0.1758845505823749
+              ]
+            },
+            "verdict": "short"
+          },
+          {
+            "behavior": "B15-playbook-choice",
+            "reference": {
+              "behavior": "B15-playbook-choice",
+              "arm": "A",
+              "pass": 11,
+              "applicable": 18,
+              "unresolved": 0,
+              "fraction": 0.6111111111111112,
+              "wilson95": [
+                0.3861866858065617,
+                0.7969500807306884
+              ]
+            },
+            "treatment": {
+              "behavior": "B15-playbook-choice",
+              "arm": "B",
+              "pass": 18,
+              "applicable": 18,
+              "unresolved": 0,
+              "fraction": 1,
+              "wilson95": [
+                0.8241154494176252,
+                1
+              ]
+            },
+            "verdict": "ok"
+          },
+          {
+            "behavior": "B2-mode-off",
+            "reference": {
+              "behavior": "B2-mode-off",
+              "arm": "A",
+              "pass": 2,
+              "applicable": 2,
+              "unresolved": 0,
+              "fraction": 1,
+              "wilson95": [
+                0.34237195288961925,
+                1
+              ]
+            },
+            "treatment": {
+              "behavior": "B2-mode-off",
+              "arm": "B",
+              "pass": 2,
+              "applicable": 2,
+              "unresolved": 0,
+              "fraction": 1,
+              "wilson95": [
+                0.34237195288961925,
+                1
+              ]
+            },
+            "verdict": "inconclusive"
+          },
+          {
+            "behavior": "B3-delegate-mode",
+            "reference": {
+              "behavior": "B3-delegate-mode",
+              "arm": "A",
+              "pass": 0,
+              "applicable": 7,
+              "unresolved": 0,
+              "fraction": 0,
+              "wilson95": [
+                0,
+                0.35433884297520657
+              ]
+            },
+            "treatment": {
+              "behavior": "B3-delegate-mode",
+              "arm": "B",
+              "pass": 3,
+              "applicable": 10,
+              "unresolved": 0,
+              "fraction": 0.3,
+              "wilson95": [
+                0.10778928748621183,
+                0.6032267800204347
+              ]
+            },
+            "verdict": "ok"
+          },
+          {
+            "behavior": "B5-step-list",
+            "reference": {
+              "behavior": "B5-step-list",
+              "arm": "A",
+              "pass": 3,
+              "applicable": 17,
+              "unresolved": 1,
+              "fraction": 0.17647058823529413,
+              "wilson95": [
+                0.0619101371254899,
+                0.41029929017375777
+              ]
+            },
+            "treatment": {
+              "behavior": "B5-step-list",
+              "arm": "B",
+              "pass": 7,
+              "applicable": 14,
+              "unresolved": 4,
+              "fraction": 0.5,
+              "wilson95": [
+                0.2679886791947528,
+                0.7320113208052472
+              ]
+            },
+            "verdict": "ok"
+          },
+          {
+            "behavior": "B6-trigger-runs",
+            "reference": {
+              "behavior": "B6-trigger-runs",
+              "arm": "A",
+              "pass": 5,
+              "applicable": 18,
+              "unresolved": 0,
+              "fraction": 0.2777777777777778,
+              "wilson95": [
+                0.12499569146355474,
+                0.5087307754619452
+              ]
+            },
+            "treatment": {
+              "behavior": "B6-trigger-runs",
+              "arm": "B",
+              "pass": 12,
+              "applicable": 17,
+              "unresolved": 1,
+              "fraction": 0.7058823529411765,
+              "wilson95": [
+                0.468664666737861,
+                0.8672020613444361
+              ]
+            },
+            "verdict": "ok"
+          },
+          {
+            "behavior": "B7-cite-read",
+            "reference": {
+              "behavior": "B7-cite-read",
+              "arm": "A",
+              "pass": 7,
+              "applicable": 20,
+              "unresolved": 0,
+              "fraction": 0.35,
+              "wilson95": [
+                0.18118954786794464,
+                0.5671494897805354
+              ]
+            },
+            "treatment": {
+              "behavior": "B7-cite-read",
+              "arm": "B",
+              "pass": 20,
+              "applicable": 20,
+              "unresolved": 0,
+              "fraction": 1,
+              "wilson95": [
+                0.8388698745050667,
+                1
+              ]
+            },
+            "verdict": "ok"
+          },
+          {
+            "behavior": "B8-readonly-delegates",
+            "reference": {
+              "behavior": "B8-readonly-delegates",
+              "arm": "A",
+              "pass": 1,
+              "applicable": 1,
+              "unresolved": 0,
+              "fraction": 1,
+              "wilson95": [
+                0.20654329147389294,
+                1
+              ]
+            },
+            "treatment": {
+              "behavior": "B8-readonly-delegates",
+              "arm": "B",
+              "pass": 0,
+              "applicable": 0,
+              "unresolved": 0,
+              "fraction": null,
+              "wilson95": null
+            },
+            "verdict": "inconclusive"
+          },
+          {
+            "behavior": "B9-delegated",
+            "reference": {
+              "behavior": "B9-delegated",
+              "arm": "A",
+              "pass": 6,
+              "applicable": 10,
+              "unresolved": 0,
+              "fraction": 0.6,
+              "wilson95": [
+                0.3126695474501864,
+                0.8318224187964902
+              ]
+            },
+            "treatment": {
+              "behavior": "B9-delegated",
+              "arm": "B",
+              "pass": 6,
+              "applicable": 10,
+              "unresolved": 0,
+              "fraction": 0.6,
+              "wilson95": [
+                0.3126695474501864,
+                0.8318224187964902
+              ]
+            },
+            "verdict": "ok"
+          }
+        ]
+      }
+    ]
+  },
+  "calibration": {
+    "J1": {
+      "mutants": 11,
+      "detect": 1,
+      "pairs": 41,
+      "falseFlag": 0.024390243902439025
+    },
+    "J3": {
+      "mutants": 11,
+      "detect": 1,
+      "pairs": 44,
+      "falseFlag": 0.06818181818181818
+    },
+    "J2": {
+      "mutants": 0,
+      "detect": 0,
+      "pairs": 0,
+      "falseFlag": 0
+    }
+  },
+  "observations": [
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.1",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.1",
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.1",
+      "behavior": "B2-mode-off",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.1",
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.1",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.1",
+      "behavior": "B5-step-list",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.1",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.1",
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.1",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "fail",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.1",
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.1",
+      "behavior": "B2-mode-off",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.1",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.1",
+      "behavior": "B5-step-list",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.1",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.1",
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.2",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.2",
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.2",
+      "behavior": "B2-mode-off",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.2",
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.2",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.2",
+      "behavior": "B5-step-list",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.2",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.2",
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t01-long-session.A.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.2",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "fail",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.2",
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.2",
+      "behavior": "B2-mode-off",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.2",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.2",
+      "behavior": "B5-step-list",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.2",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.2",
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t01-long-session.C.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.1",
+      "behavior": "B8-readonly-delegates",
+      "unit": "run",
+      "verdict": "n/a",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.1",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "fail",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.1",
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.1",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.1",
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.1",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.1",
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "unresolved",
+      "source": "none",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "unresolved",
+      "source": "none",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.1",
+      "behavior": "B8-readonly-delegates",
+      "unit": "run",
+      "verdict": "n/a",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.1",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "fail",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.1",
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.1",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.1",
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.1",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.1",
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.2",
+      "behavior": "B8-readonly-delegates",
+      "unit": "run",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.2",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.2",
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.2",
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.2",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.2",
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.2",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.2",
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t03-how-why.A.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.2",
+      "behavior": "B8-readonly-delegates",
+      "unit": "run",
+      "verdict": "n/a",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.2",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "fail",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.2",
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.2",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.2",
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.2",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.2",
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t03-how-why.C.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t04-bug-fix.A.1",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "fail",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t04-bug-fix.A.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t04-bug-fix.A.1",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t04-bug-fix.A.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t04-bug-fix.A.1",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t04-bug-fix.A.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "unresolved",
+      "source": "none",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t04-bug-fix.A.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t04-bug-fix.C.1",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "fail",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t04-bug-fix.C.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t04-bug-fix.C.1",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t04-bug-fix.C.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t04-bug-fix.C.1",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t04-bug-fix.C.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t04-bug-fix.C.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t04-bug-fix.A.2",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t04-bug-fix.A.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t04-bug-fix.A.2",
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t04-bug-fix.A.2",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t04-bug-fix.A.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t04-bug-fix.A.2",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t04-bug-fix.A.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t04-bug-fix.A.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t04-bug-fix.C.2",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "fail",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t04-bug-fix.C.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t04-bug-fix.C.2",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t04-bug-fix.C.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t04-bug-fix.C.2",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t04-bug-fix.C.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t04-bug-fix.C.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.1",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.1",
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.1",
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.1",
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.1",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.1",
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.1",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.1",
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.1",
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.1",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "fail",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.1",
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.1",
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.1",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.1",
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.1",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.1",
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.1",
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.2",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.2",
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.2",
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.2",
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.2",
+      "behavior": "B3-delegate-mode",
+      "unit": "d2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.2",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "unresolved",
+      "source": "none",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.2",
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.2",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.2",
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.2",
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t02-delegated-feature.A.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.2",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "fail",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.2",
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.2",
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.2",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.2",
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.2",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.2",
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.2",
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t02-delegated-feature.C.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.1",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "fail",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.1",
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.1",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.1",
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.1",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.1",
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.2",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "fail",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.2",
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.2",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.2",
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.2",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.2",
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.2",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "fail",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.2",
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.2",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.2",
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.2",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.2",
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "C",
+      "run": "t05-tax-receipt.C.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.1",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.1",
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.1",
+      "behavior": "B2-mode-off",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.1",
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.1",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "unresolved",
+      "source": "none",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.1",
+      "behavior": "B5-step-list",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.1",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.1",
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.2",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.2",
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.2",
+      "behavior": "B2-mode-off",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.2",
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.2",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.2",
+      "behavior": "B5-step-list",
+      "unit": "t2",
+      "verdict": "unresolved",
+      "source": "none",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.2",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.2",
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "unresolved",
+      "source": "none",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t01-long-session.B.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B3-delegate-mode",
+      "unit": "d2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B3-delegate-mode",
+      "unit": "d3",
+      "verdict": "n/a",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B3-delegate-mode",
+      "unit": "d4",
+      "verdict": "n/a",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.2",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.2",
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.2",
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.2",
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.2",
+      "behavior": "B3-delegate-mode",
+      "unit": "d2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.2",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.2",
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "unresolved",
+      "source": "none",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.2",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.2",
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.2",
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t02-delegated-feature.B.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.1",
+      "behavior": "B8-readonly-delegates",
+      "unit": "run",
+      "verdict": "n/a",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.1",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "fail",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.1",
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.1",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.1",
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "unresolved",
+      "source": "none",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "unresolved",
+      "source": "none",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.1",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.1",
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.2",
+      "behavior": "B8-readonly-delegates",
+      "unit": "run",
+      "verdict": "n/a",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.2",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "fail",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.2",
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.2",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.2",
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.2",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.2",
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "unresolved",
+      "source": "none",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t03-how-why.B.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t04-bug-fix.B.1",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "fail",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t04-bug-fix.B.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t04-bug-fix.B.1",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t04-bug-fix.B.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t04-bug-fix.B.1",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t04-bug-fix.B.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t04-bug-fix.B.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t04-bug-fix.B.2",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "fail",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t04-bug-fix.B.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t04-bug-fix.B.2",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t04-bug-fix.B.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t04-bug-fix.B.2",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t04-bug-fix.B.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t04-bug-fix.B.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.1",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "fail",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.1",
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.1",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.1",
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.1",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.1",
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "A",
+      "run": "t05-tax-receipt.A.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.1",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.1",
+      "behavior": "B13a-long-dash",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.1",
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.1",
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.1",
+      "behavior": "B3-delegate-mode",
+      "unit": "d2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.1",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.1",
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.1",
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.1",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.1",
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.1",
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.1",
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.2",
+      "behavior": "B9-delegated",
+      "unit": "run",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.2",
+      "behavior": "B13a-long-dash",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "fact",
+      "graders": [
+        "fact"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.2",
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.2",
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.2",
+      "behavior": "B3-delegate-mode",
+      "unit": "d2",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.2",
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.2",
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.2",
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.2",
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.2",
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.2",
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    },
+    {
+      "arm": "B",
+      "run": "t05-tax-receipt.B.2",
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "pass",
+      "source": "J1+J3",
+      "graders": [
+        "J1",
+        "J3"
+      ]
+    }
+  ]
+}

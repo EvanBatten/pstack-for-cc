@@ -1,0 +1,63 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  port:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+
+      - name: check-port finds no Cursor affordance
+        run: node skills/poteto-mode/scripts/check-port.mjs skills agents
+
+      - name: node --test
+        shell: bash
+        run: node --test $(git ls-files '*.test.js')
+
+  drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: lts/*
+
+      - name: every changed file has a drift class and DRIFT.md is current
+        run: node scripts/drift.mjs --check
+
+  scripts:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: skills/poteto-mode/scripts
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: oven-sh/setup-bun@v2
+
+      - run: bun install --frozen-lockfile
+
+      - name: orch and watch-pr tests
+        run: bun test orch watch-pr

@@ -14,10 +14,10 @@ Remaining triggers:
 
 - Nontrivial change, architecture decision, or "are we sure?" → the **how** skill.
 - About to `AskUserQuestion` on a "which approach", "how should I", or "what should this do" fork → classify it before you ask. If the answer is a fact you could observe by running something (behavior, timing, layout, output, perf, even whether an eval separates), it is not the human's to answer. Sketch it via the Prototype playbook (`playbooks/prototype.md`) and let the result decide. If the task is a read-only Investigation whose deliverable is a cited answer, stay in it and answer from the evidence rather than building a sketch. Reserve the question for a genuine product or preference call no experiment can settle.
-- Any code → name the data shape first, and choose its organizing structure per **principle-model-the-domain**.
+- Any code → name the data shape first, as a `**Shape.** <shape>` line in the reply, or `skip design: <reason>`, and choose its organizing structure per **principle-model-the-domain**.
 - Code crossing a function boundary → the **architect** skill, parallel design exploration before implementing.
 - Parallel fan-out → the **swarm** skill for coverage matrices, races, gauntlets, and exploration partitions. Use **arena** for design or code bakeoffs with base selection and grafting.
-- Contested design → the **interrogate** skill (multi-model adversarial) before shipping.
+- Contested design → the **interrogate** skill (independent adversarial reviewers) before shipping.
 - Nontrivial multi-step → write the throughput checkpoint (Feature step 3).
 - Any prose surface → the **unslop** skill. Your reply is a prose surface. Write it per **Writing the reply**. Agent-facing prose also follows the **anthropic-skills:skill-creator** skill (Anthropic's skill for authoring SKILL.md files).
 - Docs, RFCs, readmes, PR descriptions, or commit messages → the **technical-writing** skill (`/technical-writing`).
@@ -88,11 +88,11 @@ Read the principle's file in full for any principle you apply. Each entry names 
 
 ## Subagents
 
-**Use `subagent_type: "poteto-agent"` for any subagent you spawn inside a playbook step** (code-writing delegates, ad-hoc helpers). `/poteto-mode` and `poteto-agent` route through the same wrapper. Routed workflow skills (`how`, `why`, `interrogate`, `reflect`, `swarm`) set their own `subagent_type` for diverse-model review. Respect what the skill prescribes, don't override to `poteto-agent`.
+**Use `subagent_type: "poteto-agent"` for any subagent you spawn inside a playbook step** (code-writing delegates, ad-hoc helpers). `/poteto-mode` and `poteto-agent` route through the same wrapper. Routed workflow skills (`how`, `why`, `interrogate`, `reflect`, `swarm`) set their own `subagent_type` for independent review. Respect what the skill prescribes, don't override to `poteto-agent`.
 
-**Defaults for every `Agent` call.** Background, which the tool implies, file pointers not inlined context, explicit model per role (configurable via `/setup-pstack`. Defaults `sonnet` for code, `fable` for prose and judgment). Code delegates tier by difficulty. The hardest changes (cross-cutting design, gnarly concurrency, subtle algorithms) go to your strongest judgment model (`fable`), whether the task needs judgment on vague intent or is a precisely specified sequence of steps to execute to the letter. Trivial mechanical edits go to your fast code model. Per-role lines in the `/setup-pstack` rule override these defaults and the model choices in the routed skills (`how`, `why`, `arena`, `swarm`, `architect`, `interrogate`, `reflect`). A role with no line keeps its default, and a role line of `inherit-parent` or `auto` runs that role on the parent chat model (omit Agent `model`).
+**Defaults for every `Agent` call.** Background, which the tool implies, file pointers not inlined context, explicit model per role (configurable via `/setup-pstack`. Defaults `sonnet` for code, `opus` for prose and judgment). Code delegates tier by difficulty. The hardest changes (cross-cutting design, gnarly concurrency, subtle algorithms) go to your strongest judgment model (`opus`), whether the task needs judgment on vague intent or is a precisely specified sequence of steps to execute to the letter. Trivial mechanical edits go to your fast code model. Per-role lines in the `/setup-pstack` rule override these defaults and the model choices in the routed skills (`how`, `why`, `arena`, `swarm`, `architect`, `interrogate`, `reflect`). A role with no line keeps its default, and a role line of `inherit-parent` or `auto` runs that role on the parent chat model (omit Agent `model`). A judge, reviewer or verifier never runs below the parent model.
 
-You own every subagent's work. Review the diff and write your own summary, don't pass through what it said. Interrupt-chained resumes silently drop directives, so fire a fresh subagent with consolidated scope rather than trusting a "done" summary. A second opinion is the same prompt against a different model. Agreement is high-signal.
+You own every subagent's work. Review the diff and write your own summary, don't pass through what it said. Interrupt-chained resumes silently drop directives, so fire a fresh subagent with consolidated scope rather than trusting a "done" summary. A second opinion is the same prompt in a fresh context on a model at least as strong. Agreement between Claude models is weaker evidence than agreement across vendors, so weigh the cited evidence.
 
 ## Writing the reply
 
@@ -114,7 +114,7 @@ Comments follow the same rule as the reply. Write them clean as you go. Keep a c
 
 ## Playbooks
 
-Carry the matched playbook's steps as a list in your reply, copied in verbatim with each step's state, before any task-specific items. A step you choose not to do stays in the list with a one-line `skip: <reason>`. Match the task to a playbook below, open its file, and copy its steps in verbatim.
+Open a task list with TaskCreate (a deferred tool, loaded through ToolSearch) whose first items are the matched playbook's steps, copied in verbatim, before any task-specific items. Where no task tool exists, carry them as a list in your reply, each with its state. A step you choose not to do stays in the list with a one-line `skip: <reason>`. Match the task to a playbook below, open its file, and copy its steps in verbatim. A task you choose not to route writes `skip route: <reason>`.
 
 A large or cross-cutting effort (a migration across many call sites, an ambitious multi-part change), or work the user steps away from to trust later, routes to the **figure-it-out** skill even when a narrower playbook like Feature fits. Use **figure-it-out** whenever no bundled playbook fits. It designs a bespoke, rigorous playbook for the task. A standing project-scale program (multi-day, many stacked PRs, a fleet of subagents under one coordinator) routes to **Orchestrate** instead. figure-it-out designs one bespoke run, orchestrate runs the program.
 

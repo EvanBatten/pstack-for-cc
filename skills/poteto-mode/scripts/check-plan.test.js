@@ -3,8 +3,6 @@
 // re-read, both Cursor affordances, so every plan failed here. This runs the
 // real gate on a plan in the ported form and on the same plan in the old
 // form, and asserts on what it prints.
-//
-// Run with: node --test home/.agents/skills/poteto-mode/scripts/check-plan.test.js
 import { test } from "node:test";
 import assert from "node:assert";
 import { spawnSync } from "node:child_process";

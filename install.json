@@ -1,0 +1,173 @@
+{
+  "skills": {
+    "into": [
+      "~/.claude/skills"
+    ],
+    "optIn": {
+      "~/.agents/skills": "Codex and other agents that read ~/.agents/skills"
+    },
+    "paths": [
+      "skills/architect",
+      "skills/arena",
+      "skills/automate-me",
+      "skills/blast-radius",
+      "skills/bro",
+      "skills/control-cli",
+      "skills/control-ui",
+      "skills/create-verification-skill",
+      "skills/deslop",
+      "skills/figure-it-out",
+      "skills/how",
+      "skills/interrogate",
+      "skills/maintain-verification-skill",
+      "skills/make-bot-ui",
+      "skills/no-comments",
+      "skills/poteto-mode",
+      "skills/recall",
+      "skills/reflect",
+      "skills/setup-pstack",
+      "skills/show-me-your-work",
+      "skills/swarm",
+      "skills/tdd",
+      "skills/teach",
+      "skills/technical-writing",
+      "skills/typescript-best-practices",
+      "skills/unslop",
+      "skills/verify-pstack",
+      "skills/verify-this",
+      "skills/why"
+    ]
+  },
+  "agents": {
+    "into": [
+      "~/.claude/agents"
+    ],
+    "paths": [
+      "agents/comment-sicko.md",
+      "agents/poteto-agent.md",
+      "agents/pstack-reader.md"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd ~/.claude/skills/poteto-mode/hooks && node pstack-hook.mjs",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd ~/.claude/skills/poteto-mode/hooks && node pstack-hook.mjs",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd ~/.claude/skills/poteto-mode/hooks && node pstack-hook.mjs",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd ~/.claude/skills/poteto-mode/hooks && node pstack-hook.mjs",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|PowerShell|Edit|Write|MultiEdit|NotebookEdit|TaskCreate|TaskUpdate|TodoWrite|mcp__.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd ~/.claude/skills/poteto-mode/hooks && . ./in-mode.sh && printf '%s' \"$input\" | node pstack-hook.mjs",
+            "timeout": 30
+          }
+        ]
+      },
+      {
+        "matcher": "Agent|Task",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd ~/.claude/skills/poteto-mode/hooks && node pstack-hook.mjs",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd ~/.claude/skills/poteto-mode/hooks && node pstack-hook.mjs",
+            "timeout": 30
+          }
+        ]
+      },
+      {
+        "matcher": "Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd ~/.claude/skills/poteto-mode/hooks && . ./in-mode.sh && printf '%s' \"$input\" | node pstack-hook.mjs",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd ~/.claude/skills/poteto-mode/hooks && node pstack-hook.mjs",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd ~/.claude/skills/poteto-mode/hooks && node pstack-hook.mjs",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  },
+  "env": {
+    "CLAUDE_CODE_ENABLE_TODO_TOOLS": "1",
+    "CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS": "0"
+  }
+}

@@ -78,9 +78,9 @@ Aim for a complete **coverage map**, not a minimal one. Document the null, don't
 Launch all matching investigators in a single message so they run concurrently. Don't ask one agent to cover multiple MCPs.
 
 Subagent config (each):
-- `subagent_type`: `general-purpose`
+- `subagent_type`: `pstack-reader`
 - `model`: your configured why-investigators model (default `sonnet`)
-- Not read-only. The investigators need MCP access for their sources, so do not mark them read-only in the prompt. They still write nothing.
+- `pstack-reader` keeps the session's MCP tools, which the investigators need for their sources, and cannot edit files.
 
 Each investigator gets:
 1. The base prompt from `references/investigator-prompt.md`
@@ -122,9 +122,9 @@ If your scope assessment suggests a single-commit trivial target where the PR de
 
 Spawn one synthesizer subagent:
 
-- `subagent_type`: `general-purpose`
-- `model`: your configured why-synthesizer model (default `fable`)
-- Not read-only. The synthesizer's quality check spot-verifies citations, which can need MCP access.
+- `subagent_type`: `pstack-reader`
+- `model`: your configured why-synthesizer model (default `opus`)
+- `pstack-reader` keeps the MCP tools the synthesizer's quality check needs to spot-verify citations.
 
 The synthesizer gets:
 1. The investigator findings, including any null results and any categories skipped with justification

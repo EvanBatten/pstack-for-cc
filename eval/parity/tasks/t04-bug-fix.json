@@ -1,0 +1,9 @@
+{
+  "id": "t04-bug-fix",
+  "seed": "cart",
+  "expect": { "delegates": true, "readonlyDelegates": false },
+  "turns": [
+    { "index": 0, "prompt": "/poteto-mode A customer removed every item from their order by setting each quantity to 0, and checkout still charged them 5 for shipping. Fix it.",
+      "expect": { "mode": "on", "playbook": "bug-fix", "triggers": ["how", "why"] } }
+  ]
+}

@@ -17,4 +17,4 @@ Apply the following discipline. The orchestrator compares candidates on these ax
 - Idempotent state transitions where applicable, per **principle-make-operations-idempotent**. Ask what happens if the operation runs twice or crashes halfway.
 - Short call chains. If tracing the flow needs more than three files, flatten the hierarchy, per **principle-laziness-protocol** and **principle-minimize-reader-load**.
 
-You are one of several runners, each on a different model. Produce the best design your model can make. Don't hedge against the others. Differences between candidates are the signal used to pick a base and graft. Converging on a safe-looking middle defeats the exploration.
+You are one of several runners working alone. Produce the best design you can make. Don't hedge against the others. Differences between candidates are the signal used to pick a base and graft. Converging on a safe-looking middle defeats the exploration.

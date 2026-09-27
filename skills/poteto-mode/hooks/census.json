@@ -1,0 +1,175 @@
+{
+  "triggers": {
+    "Nontrivial change, architecture decision": {
+      "watcher": "No call shows that a change is nontrivial or that a question asks \"are we sure?\", so nothing asks for how on this trigger; the playbook steps that name how are mapped under steps."
+    },
+    "About to `AskUserQuestion`": {
+      "watcher": "Whether a question is a fact an experiment could settle is judgment the hook cannot read from an AskUserQuestion call."
+    },
+    "Any code → name the data shape first": {
+      "ask": "design"
+    },
+    "Code crossing a function boundary": {
+      "ask": "design"
+    },
+    "Parallel fan-out": {
+      "watcher": "Nothing tells a fan-out that owes swarm or arena from one that does not; the playbook steps that name them are mapped under steps."
+    },
+    "Contested design": {
+      "watcher": "Whether a design is contested is judgment no call or reply line shows."
+    },
+    "Nontrivial multi-step": {
+      "watcher": "No call shows that a task is nontrivial and multi-step outside a playbook run; in a Feature run the ledger ask opens the task list that holds step 3."
+    },
+    "Any prose surface": {
+      "ask": "docs-prose"
+    },
+    "Docs, RFCs, readmes, PR descriptions, or commit messages": {
+      "ask": "docs-prose"
+    },
+    "Before commit": {
+      "ask": "deslop"
+    },
+    "Before review": {
+      "ask": "review"
+    },
+    "Shipping UI / IDE / CLI": {
+      "watcher": "No call shows that a change ships a surface, so no check asks for a control skill; the commit and PR-open denies carry a sentence asking to drive a UI, CLI or IDE change with it."
+    },
+    "Any PR-status request": {
+      "watcher": "No call shows which playbook a PR-status request matched, so nothing checks that it routed to Babysit."
+    },
+    "Asked to land or ship a green stack": {
+      "ask": "shipping"
+    },
+    "Bugbot or the agentic security review commented": {
+      "watcher": "How the agent weighs a review bot's comment is judgment the hook cannot read from a call."
+    },
+    "Broken skill mid-task": {
+      "watcher": "Nothing detects a broken skill or checks that its fix went to its own PR."
+    },
+    "Long, autonomous, or multi-phase work": {
+      "stop": "trail",
+      "cites": "Long, autonomous, or multi-phase work, or any task the user steps away from to review later (\"going to bed\", \"trust it when i'm back\", \"/loop until X\") → a decision trail via the **show-me-your-work** skill."
+    }
+  },
+  "steps": {
+    "autonomous-run#5:show-me-your-work": {
+      "ask": "step-done"
+    },
+    "autopilot-full#2:deslop": {
+      "ask": "deslop"
+    },
+    "autopilot-full#2:no-comments": {
+      "ask": "review"
+    },
+    "autopilot-full#2:show-me-your-work": {
+      "ask": "step-done"
+    },
+    "autopilot-full#4:swarm": {
+      "ask": "step-done"
+    },
+    "autopilot-full#4:control": {
+      "watcher": "A verifier lane drives a surface it did not change, and no call shows which surface a lane verifies."
+    },
+    "autopilot-stack#1:deslop": {
+      "ask": "deslop"
+    },
+    "autopilot-stack#1:no-comments": {
+      "ask": "review"
+    },
+    "autopilot-stack#1:show-me-your-work": {
+      "ask": "step-done"
+    },
+    "autopilot-stack#4:swarm": {
+      "ask": "step-done"
+    },
+    "bug-fix#1:control": {
+      "ask": "step-done"
+    },
+    "bug-fix#2:how": {
+      "ask": "step-done"
+    },
+    "bug-fix#2:why": {
+      "ask": "step-done"
+    },
+    "bug-fix#3:architect": {
+      "ask": "design"
+    },
+    "bug-fix#5:tdd": {
+      "watcher": "The step owes tdd only when the bug has a cheap local test path, which the hook cannot judge."
+    },
+    "eval#4:arena": {
+      "ask": "step-done"
+    },
+    "eval#5:arena": {
+      "ask": "step-done"
+    },
+    "feature#1:how": {
+      "ask": "step-done"
+    },
+    "feature#2:architect": {
+      "ask": "step-done"
+    },
+    "feature#4:arena": {
+      "watcher": "Whether an implementation admits several valid shapes is judgment no call shows."
+    },
+    "feature#7:interrogate": {
+      "watcher": "Whether a design is contested is judgment no call or reply line shows."
+    },
+    "hillclimb#1:how": {
+      "ask": "step-done"
+    },
+    "hillclimb#3:show-me-your-work": {
+      "ask": "step-done"
+    },
+    "investigation#1:how": {
+      "ask": "step-done"
+    },
+    "investigation#1:why": {
+      "watcher": "The step owes why only for a motivation question, which no call shows."
+    },
+    "investigation#4:unslop": {
+      "ask": "step-done"
+    },
+    "multi-phase-plan#5:technical-writing": {
+      "ask": "step-done"
+    },
+    "multi-phase-plan#5:unslop": {
+      "ask": "step-done"
+    },
+    "perf-issue#1:control": {
+      "ask": "step-done"
+    },
+    "perf-issue#2:how": {
+      "ask": "step-done"
+    },
+    "perf-issue#3:architect": {
+      "ask": "design"
+    },
+    "prototype#5:control": {
+      "watcher": "No call shows that a change ships a surface, so no check asks for a control skill; the commit and PR-open denies carry a sentence asking to drive a UI, CLI or IDE change with it."
+    },
+    "prototype#6:architect": {
+      "watcher": "The step offers architect as one hand-off for the chosen direction, a choice no call shows."
+    },
+    "refactoring#1:how": {
+      "ask": "step-done"
+    },
+    "refactoring#3:architect": {
+      "ask": "design"
+    },
+    "refactoring#6:control": {
+      "watcher": "No call shows that a change ships a surface, so no check asks for a control skill; the commit and PR-open denies carry a sentence asking to drive a UI, CLI or IDE change with it."
+    },
+    "runtime-forensics#1:control": {
+      "ask": "step-done"
+    },
+    "shipping#1:control": {
+      "watcher": "Each verifier drives a PR it did not write, and no call shows which surface a verifier drives."
+    },
+    "visual-parity#4:control": {
+      "ask": "step-done"
+    }
+  }
+}

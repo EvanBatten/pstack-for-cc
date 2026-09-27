@@ -1,22 +1,16 @@
 # Mode reminder
 
-Once a session has entered poteto mode, every later prompt carries a four-line reminder of the non-negotiables that decay otherwise: cite principles, run a named skill rather than skim it, carry the playbook's steps as a list. A session that never entered the mode gets nothing.
-
-## Sub-features
-
-- Entering the mode by the slash command `/poteto-mode`.
-- Entering the mode by reading `poteto-mode/SKILL.md`, which is how a delegate or a `-p` session gets there.
-- Silence in every other session.
+The `/poteto-mode` command turns the mode on, and every prompt from that one on carries the `# pstack reminders` block until `/poteto-mode off`. A task notification is not a prompt and gets none. When the entering prompt reads as work the user reviews after stepping away, its reminder also asks to route it through figure-it-out. Reading `poteto-mode/SKILL.md` does not turn it on. A session that never ran the command gets nothing.
 
 ## How to get to it (user POV)
 
-Invoke `/poteto-mode <task>`, then send any second prompt. The reminder is in context for that prompt and every one after.
+Type `/poteto-mode <task>`. The reminder is in context for that prompt and every later one.
 
 ## Driving it with drive.sh
 
-Turn one of the mode session reads the skill file, which plants the marker the hook matches on. Turn two is a second prompt on the same session. The drive asserts the mode transcript holds at least one `# pstack reminders` attachment and the control transcript holds none.
+The mode session (opus) pipes `/poteto-mode <task>` to `claude -p` on stdin. The judge asserts the transcript holds the `<command-name>/poteto-mode</command-name>` record, a `# pstack reminders` attachment before the first assistant record, and that the control session (haiku, no slash command) holds none.
 
 ## Gotchas
 
-- The prompt that enters the mode does not itself get the reminder; the marker is not in the transcript yet when the hook runs. The next prompt does.
-- The hook reads the whole transcript on each prompt. A very large transcript costs milliseconds, not seconds.
+- The command goes on stdin. Git Bash rewrites a leading `/` in an argument into a Windows path, so `claude -p "/poteto-mode ..."` sends a path, not the command.
+- No command record means the slash command never reached the session. The judge calls that INCONCLUSIVE, not a pass.

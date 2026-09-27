@@ -1,0 +1,13 @@
+{
+  "id": "t01-long-session",
+  "seed": "cart",
+  "expect": { "delegates": true, "readonlyDelegates": false },
+  "turns": [
+    { "index": 0, "prompt": "/poteto-mode npm test fails on the 10% discount case in the cart. Fix it.",
+      "expect": { "mode": "on", "playbook": "bug-fix", "triggers": ["how", "why"] } },
+    { "index": 1, "prompt": "thanks, looks good",
+      "expect": { "mode": "off", "playbook": null, "triggers": [] } },
+    { "index": 2, "prompt": "Add a free-shipping rule: orders over 50 after the discount ship free. Include it in the cart total.",
+      "expect": { "mode": "on", "playbook": "feature", "triggers": ["how", "architect"] } }
+  ]
+}
