@@ -1,0 +1,51 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<title>pstack for Claude Code</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=block" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+html,body{width:1280px;height:640px;overflow:hidden}
+body{background:#141413;color:#faf9f5;font-family:Inter,-apple-system, "Segoe UI", Inter, Helvetica, Arial, sans-serif;-webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 1}
+.card{position:relative;width:1280px;height:640px;padding:80px;display:flex;flex-direction:column}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(900px 420px at 100% 0%,#d977571f,transparent 70%)}
+.card>*{position:relative}
+.brand{display:flex;align-items:center;gap:20px}
+.brand svg{width:64px;height:64px;flex:none}
+.name{font-size:60px;font-weight:700;letter-spacing:-0.025em;line-height:1}
+.name span{color:#a3a199;font-weight:500}
+.pitch{margin-top:28px;font-size:30px;line-height:1.35;color:#a3a199;max-width:1120px;letter-spacing:-0.01em}
+.caption{margin-top:auto;font-size:17px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#a3a199}
+.tiles{margin-top:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.tile{background:#1f1e1d;border:1px solid #33322f;border-radius:16px;padding:28px}
+.nums{display:flex;align-items:baseline;gap:12px;white-space:nowrap}
+.port{font-size:60px;font-weight:700;letter-spacing:-0.03em;line-height:1;color:#d97757}
+.cursor{font-size:26px;font-weight:500;color:#a3a199;white-space:nowrap}
+.label{margin-top:14px;font-size:24px;font-weight:500}
+.foot{margin-top:28px;display:flex;justify-content:space-between;align-items:center;font-size:20px;color:#a3a199}
+.url{font-family:"JetBrains Mono",ui-monospace,Consolas,monospace;color:#faf9f5}
+</style></head>
+<body><div class="card">
+  <div class="brand">
+    <svg viewBox="0 0 48 48" aria-hidden="true"><g transform="translate(0 0) scale(1)"><rect x="16" y="6" width="28" height="10" rx="3" fill="#d97757"/><rect x="10" y="19" width="34" height="10" rx="3" fill="#d97757"/><rect x="4" y="32" width="40" height="10" rx="3" fill="#d97757"/></g></svg>
+    <div class="name">pstack <span>for Claude Code</span></div>
+  </div>
+  <p class="pitch">pstack&apos;s skills, playbooks and principles, with a hook that checks each step</p>
+  <div class="caption">this port vs pstack on Cursor, same model</div>
+  <div class="tiles">
+    <div class="tile">
+      <div class="nums"><span class="port">10/10</span><span class="cursor">vs 2/10</span></div>
+      <div class="label">stays in mode</div>
+    </div>
+    <div class="tile">
+      <div class="nums"><span class="port">20/20</span><span class="cursor">vs 7/20</span></div>
+      <div class="label">reads what it cites</div>
+    </div>
+    <div class="tile">
+      <div class="nums"><span class="port">18/18</span><span class="cursor">vs 11/18</span></div>
+      <div class="label">picks the right playbook</div>
+    </div>
+  </div>
+  <div class="foot"><span class="url">github.com/EvanBatten/pstack-for-cc</span><span>Parity round s4, passing units over graded units</span></div>
+</div></body></html>

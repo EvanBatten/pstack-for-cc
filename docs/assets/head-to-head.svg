@@ -6,14 +6,14 @@ text{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#0b0b0
 .sub,.tick{fill:#52514e}
 .value{font-variant-numeric:tabular-nums}
 .grid{stroke:#e4e3df}
-.port{fill:#2a78d6}
+.port{fill:#c15f3c}
 .cursor{fill:#9a9993}
 @media (prefers-color-scheme:dark){
 text{fill:#ffffff}
 .card{fill:#1a1a19;stroke:#33332f}
 .sub,.tick{fill:#c3c2b7}
 .grid{stroke:#33332f}
-.port{fill:#3987e5}
+.port{fill:#d97757}
 .cursor{fill:#7c7b76}
 }
 </style>

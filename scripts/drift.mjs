@@ -235,8 +235,8 @@ const LAYERS = [
       {
         title: "README chart and social preview",
         reason:
-          "Not from pstack. `scripts/chart.mjs` draws `docs/assets/head-to-head.svg` from the parity round's `report.json`, so the README's chart shows only counts the report holds, and `scripts/chart.test.js` checks its labels. `docs/assets/social-preview.png` is the image for the repository's link previews.",
-        match: /^(scripts\/chart(\.test)?\.(mjs|js)|docs\/assets\/)/,
+          "Not from pstack. `scripts/chart.mjs` draws `docs/assets/head-to-head.svg` from the parity round's `report.json`, so the README's chart shows only counts the report holds, and `scripts/chart.test.js` checks its labels. `scripts/brand.mjs` draws the social preview and the README banners from the same report and one palette, and `scripts/brand.test.js` checks their numbers and colors. `docs/assets/icons/` holds the README's feature icons.",
+        match: /^(scripts\/(chart|brand)(\.test)?\.(mjs|js)|docs\/assets\/)/,
       },
       {
         title: "Provenance note replaced",

@@ -43,7 +43,7 @@ function barPath(x, y, w, h) {
   return `M${num(x)} ${num(y)}h${num(w - r)}a${r} ${r} 0 0 1 ${r} ${r}v${num(h - 2 * r)}a${r} ${r} 0 0 1 ${-r} ${r}h${num(-(w - r))}z`;
 }
 
-function findCell(cells, behavior, arm) {
+export function findCell(cells, behavior, arm) {
   const cell = cells.find((c) => c.behavior === behavior && c.arm === arm);
   if (!cell || !Number.isInteger(cell.pass) || !Number.isInteger(cell.applicable) || cell.applicable <= 0) {
     throw new Error(`report has no graded cell for behavior ${behavior}, arm ${arm}`);
@@ -68,14 +68,14 @@ export function renderChart(report) {
     `.sub,.tick{fill:#52514e}`,
     `.value{font-variant-numeric:tabular-nums}`,
     `.grid{stroke:#e4e3df}`,
-    `.port{fill:#2a78d6}`,
+    `.port{fill:#c15f3c}`,
     `.cursor{fill:#9a9993}`,
     `@media (prefers-color-scheme:dark){`,
     `text{fill:#ffffff}`,
     `.card{fill:#1a1a19;stroke:#33332f}`,
     `.sub,.tick{fill:#c3c2b7}`,
     `.grid{stroke:#33332f}`,
-    `.port{fill:#3987e5}`,
+    `.port{fill:#d97757}`,
     `.cursor{fill:#7c7b76}`,
     `}`,
     `</style>`,

@@ -8,7 +8,7 @@ A class marked "Not recorded" is drift that no record at the time explained. The
 |---|---|---|---|---|---|---|---|---|
 | Upstream to the reference port | `upstream-v0.15.2` | `port-reference` | 55 | 6 | 40 | 9 | 0 | 7 |
 | Reference port to the live install | `port-reference` | `live-2026-09-23` | 119 | 13 | 51 | 29 | 26 | 0 |
-| Live install to this repo | `live-2026-09-23` | main | 226 | 189 | 32 | 3 | 2 | 0 |
+| Live install to this repo | `live-2026-09-23` | main | 237 | 200 | 32 | 3 | 2 | 0 |
 
 ## Upstream to the reference port
 
@@ -379,10 +379,21 @@ Not from pstack. `scripts/paths.test.js` fails on a tracked path longer than 100
 
 ### README chart and social preview
 
-Not from pstack. `scripts/chart.mjs` draws `docs/assets/head-to-head.svg` from the parity round's `report.json`, so the README's chart shows only counts the report holds, and `scripts/chart.test.js` checks its labels. `docs/assets/social-preview.png` is the image for the repository's link previews.
+Not from pstack. `scripts/chart.mjs` draws `docs/assets/head-to-head.svg` from the parity round's `report.json`, so the README's chart shows only counts the report holds, and `scripts/chart.test.js` checks its labels. `scripts/brand.mjs` draws the social preview and the README banners from the same report and one palette, and `scripts/brand.test.js` checks their numbers and colors. `docs/assets/icons/` holds the README's feature icons.
 
+- added `docs/assets/banner-dark.svg`
+- added `docs/assets/banner-light.svg`
 - added `docs/assets/head-to-head.svg`
+- added `docs/assets/icons/diff.svg`
+- added `docs/assets/icons/pull.svg`
+- added `docs/assets/icons/retry.svg`
+- added `docs/assets/icons/shield.svg`
+- added `docs/assets/icons/terminal.svg`
+- added `docs/assets/icons/transcript.svg`
+- added `docs/assets/social-preview.html`
 - added `docs/assets/social-preview.png`
+- added `scripts/brand.mjs`
+- added `scripts/brand.test.js`
 - added `scripts/chart.mjs`
 - added `scripts/chart.test.js`
 

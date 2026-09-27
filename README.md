@@ -1,16 +1,36 @@
-# pstack for Claude Code
+<div align="center">
 
-[![check](https://github.com/EvanBatten/pstack-for-cc/actions/workflows/check.yml/badge.svg)](https://github.com/EvanBatten/pstack-for-cc/actions/workflows/check.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![for Claude Code](https://img.shields.io/badge/for-Claude%20Code-d97757.svg)](https://docs.anthropic.com/en/docs/claude-code)
+<p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/banner-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="docs/assets/banner-light.svg">
+  <img alt="pstack for Claude Code. pstack's skills, playbooks and principles, with a hook that checks each step." src="docs/assets/banner-light.svg" width="100%">
+</picture>
+</p>
 
-pstack's skills, playbooks and principles for Claude Code, with a hook that checks each step as the agent works.
+<p>
+  <a href="https://github.com/EvanBatten/pstack-for-cc/actions/workflows/check.yml"><img alt="check" src="https://github.com/EvanBatten/pstack-for-cc/actions/workflows/check.yml/badge.svg"></a>
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue.svg"></a>
+  <a href="https://docs.anthropic.com/en/docs/claude-code"><img alt="for Claude Code" src="https://img.shields.io/badge/for-Claude%20Code-d97757.svg"></a>
+  <a href="https://github.com/EvanBatten/pstack-for-cc/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/EvanBatten/pstack-for-cc"></a>
+  <a href="https://github.com/EvanBatten/pstack-for-cc/commits"><img alt="Last commit" src="https://img.shields.io/github/last-commit/EvanBatten/pstack-for-cc"></a>
+</p>
 
-pstack is the work of [Lauren Tan (poteto)](https://x.com/poteto), published in [cursor/plugins](https://github.com/cursor/plugins/tree/032be146865d973682535de75f2287da438550bf/pstack) under the MIT license.
+<p>
+  <a href="#install">Install</a> ·
+  <a href="#results">Results</a> ·
+  <a href="#how-it-works">How it works</a> ·
+  <a href="docs/guide/README.md">Docs</a> ·
+  <a href="#credits">Credits</a>
+</p>
+
+<p>pstack is the work of <a href="https://x.com/poteto">Lauren Tan (poteto)</a>, published in <a href="https://github.com/cursor/plugins/tree/032be146865d973682535de75f2287da438550bf/pstack">cursor/plugins</a> under the MIT license.</p>
+
+</div>
 
 ## Install
 
-Run this in a macOS or Linux shell, or in Git Bash on Windows, with Claude Code, git and Node.js installed:
+With Claude Code, git and Node.js installed, run this in a macOS or Linux shell, or in Git Bash on Windows:
 
 ```sh
 git clone https://github.com/EvanBatten/pstack-for-cc.git ~/pstack-for-cc
@@ -20,71 +40,53 @@ node ~/pstack-for-cc/skills/verify-pstack/scripts/doctor.mjs
 
 Every doctor line starts with `ok`. Start a session and type `/poteto-mode <task>`.
 
-## Same model, same sealed tasks
+<details>
+<summary><b>What the installer does, and installing by hand</b></summary>
 
-![This port against pstack on Cursor, passing units over graded units for eight behaviors](docs/assets/head-to-head.svg)
+`scripts/install.mjs` reads [`install.json`](install.json). `skills` and `agents` list the repo paths to link and the directories to link them into. `hooks` and `env` have the same shape as the keys of the same name in `~/.claude/settings.json`.
+
+- It links each path on its own, named after its last segment, so skills and agents from other places stay beside them. It tries a symbolic link first. On Windows without the right to make one, it makes a directory junction for a skill and copies an item it cannot link. `--copy` copies every item.
+- It replaces a link that points somewhere else. It leaves a real file or directory it did not make, reports the conflict and exits 1.
+- It merges `hooks` and `env` into `~/.claude/settings.json`. It removes only the hook entries that run `pstack-hook.mjs` or the older `session-context.mjs`, appends the groups from `install.json` and sets each `env` variable. Before it writes, it copies the old file to `settings.json.bak-<time>`.
+- `--dry-run` prints each change prefixed with `would ` and writes nothing.
+- `--opt-in agents` also links the skills into `~/.agents/skills`, which Codex and other agents read.
+
+Run `/setup-pstack` once to choose the models each role uses. To update, run `git pull` in the clone. The links point into it, so a changed skill is live on its next read. Run the installer again when `install.json` changes. A second run changes nothing that is already in place.
+
+To install by hand on macOS, Linux or Git Bash:
+
+```sh
+repo=~/pstack-for-cc
+paths() { (cd "$repo" && node -p "require('./install.json').$1.paths.join(' ')"); }
+mkdir -p ~/.claude/skills ~/.claude/agents
+for p in $(paths skills); do ln -s "$repo/$p" ~/.claude/skills/; done
+for p in $(paths agents); do ln -s "$repo/$p" ~/.claude/agents/; done
+```
+
+In PowerShell, which needs Developer Mode or an administrator shell to make a symbolic link:
+
+```powershell
+$repo = "$HOME/pstack-for-cc"
+$manifest = Get-Content -Raw "$repo/install.json" | ConvertFrom-Json
+foreach ($group in $manifest.skills, $manifest.agents) {
+	foreach ($into in $group.into) {
+		foreach ($path in $group.paths) {
+			$link = Join-Path ($into -replace '^~', $HOME) (Split-Path $path -Leaf)
+			New-Item -ItemType SymbolicLink -Path $link -Target (Join-Path $repo $path)
+		}
+	}
+}
+```
+
+Then open `~/.claude/settings.json`, remove any hook entry that runs `pstack-hook.mjs`, and copy each event under `hooks` and each variable under `env` from `install.json` into it.
+
+</details>
+
+## Results
+
+<img alt="This port against pstack on Cursor, passing units over graded units for eight behaviors" src="docs/assets/head-to-head.svg" width="100%">
 
 The harness verdict is INCONCLUSIVE because its control check measured 0.26 and needs 0.30. This port trails on claim labels. [Full report](eval/parity/results/s4/report.md).
-
-## What you get
-
-- **Rules checked at each action.** Before an edit, a shell command, a task list, a spawn or a commit runs, the hook asks for the pstack step it owes.
-- **One ask per deny, and no stuck session.** The hook never judges the answer, so once an ask's tag is in the transcript, the retry goes through.
-- **Shell writes count as edits.** A `sed -i`, a redirect, `tee`, `cp` or `mv` into a source file meets the same asks as an Edit.
-- **Skills and principles tracked from the transcript.** The hook counts what the agent read, so a cited principle it never opened blocks the stop.
-- **Every upstream change kept as a diff.** [DRIFT.md](DRIFT.md) lists each file that differs from pstack v0.15.2 and why, and CI fails on a change with no reason.
-
-## What it looks like
-
-The agent edits code before it names the data shape. The hook denies the edit once, and the retry goes through:
-
-```text
-● Read(~/.claude/skills/poteto-mode/principles/model-the-domain.md)
-
-● Edit(src/cart.js)
-  ⎿ Before editing source, write a line `**Shape.** <the data this change touches and how it is organized>` in your reply, then retry this call unchanged. If you already wrote the Shape line this turn, retry unchanged. [pstack:design:c08ec9e0]
-    Do what applies, then retry the call. Where an ask does not apply, say why in a `skip <name>: <reason>` line for the user, then retry.
-
-● **Shape.** A cart is a list of line items, each a product and a quantity.
-
-● Edit(src/cart.js)
-  ⎿ Updated src/cart.js
-```
-
-## How it works
-
-Every hook event runs one script. A shell filter keeps Node from starting for tool calls outside poteto mode.
-
-```mermaid
-flowchart LR
-  T["PreToolUse on shell, edit, task, MCP<br/>PostToolUse on shell"] --> F{"in-mode.sh<br/>session in poteto mode?"}
-  F -- no --> X["exit 0, the call runs"]
-  F -- yes --> H["pstack-hook.mjs<br/>respond()"]
-  O["SessionStart, UserPromptSubmit,<br/>Read, Agent, Stop and the rest"] --> H
-```
-
-Before a call runs, `kinds.mjs` classifies it, and the first row of the `RULES` table that the call owes becomes one deny.
-
-```mermaid
-flowchart LR
-  C["Edit src/cart.js"] --> K["kinds.mjs<br/>fileKind(): code"]
-  K --> T["asks.mjs<br/>triggersOf(): code-edit"]
-  T --> R["RULES in order<br/>route, ledger, delegate, design, ..."]
-  R --> D["deny<br/>[pstack:design:c08ec9e0]"]
-  D -. "tag in the transcript" .-> P["retry runs"]
-```
-
-When the turn ends, `gate.mjs` blocks the stop once for each finding it can see for certain.
-
-```mermaid
-flowchart LR
-  S["Stop"] --> G["gate.mjs gate()<br/>STOP_RULES"]
-  G -- "no finding" --> E["turn ends"]
-  G -- "finding, tag not yet spent" --> B["block once<br/>cited-unread, long-dash, shape-unstated, ..."]
-  B -. "agent fixes it and replies again" .-> S
-```
-
-[docs/runtime.md](docs/runtime.md) lists every hook event, every ask and every stop finding.
 
 <details>
 <summary><b>The full comparison and its caveats</b></summary>
@@ -136,47 +138,96 @@ node eval/parity/parity.mjs --report --stamp s4
 
 </details>
 
-<details>
-<summary><b>What the installer does, and installing by hand</b></summary>
+## What you get
 
-`scripts/install.mjs` reads [`install.json`](install.json). `skills` and `agents` list the repo paths to link and the directories to link them into. `hooks` and `env` have the same shape as the keys of the same name in `~/.claude/settings.json`.
+<table>
+  <tr>
+    <td width="33%" valign="top">
+      <img src="docs/assets/icons/shield.svg" width="28" height="28" alt=""><br>
+      <b>Rules checked at each action</b><br>
+      Before each edit, shell command, task list, spawn or commit, the hook asks for the step it owes.
+    </td>
+    <td width="33%" valign="top">
+      <img src="docs/assets/icons/retry.svg" width="28" height="28" alt=""><br>
+      <b>One ask per deny</b><br>
+      The hook never judges the answer, so once an ask's tag is in the transcript, the retry goes through.
+    </td>
+    <td width="33%" valign="top">
+      <img src="docs/assets/icons/terminal.svg" width="28" height="28" alt=""><br>
+      <b>Shell writes count as edits</b><br>
+      A <code>sed -i</code>, a redirect, <code>tee</code>, <code>cp</code> or <code>mv</code> into a source file meets the same asks as an Edit.
+    </td>
+  </tr>
+  <tr>
+    <td width="33%" valign="top">
+      <img src="docs/assets/icons/transcript.svg" width="28" height="28" alt=""><br>
+      <b>Reads tracked from the transcript</b><br>
+      The hook counts what the agent read, so a cited principle it never opened blocks the stop.
+    </td>
+    <td width="33%" valign="top">
+      <img src="docs/assets/icons/diff.svg" width="28" height="28" alt=""><br>
+      <b>Every upstream change kept</b><br>
+      <a href="DRIFT.md">DRIFT.md</a> lists each file that differs from pstack v0.15.2 and why, and CI fails on a change with no reason.
+    </td>
+    <td width="33%" valign="top">
+      <img src="docs/assets/icons/pull.svg" width="28" height="28" alt=""><br>
+      <b>Updates with <code>git pull</code></b><br>
+      The installer links into the clone, so a pulled change to a skill is live on its next read.
+    </td>
+  </tr>
+</table>
 
-- It links each path on its own, named after its last segment, so skills and agents from other places stay beside them. It tries a symbolic link first. On Windows without the right to make one, it makes a directory junction for a skill and copies an item it cannot link. `--copy` copies every item.
-- It replaces a link that points somewhere else. It leaves a real file or directory it did not make, reports the conflict and exits 1.
-- It merges `hooks` and `env` into `~/.claude/settings.json`. It removes only the hook entries that run `pstack-hook.mjs` or the older `session-context.mjs`, appends the groups from `install.json` and sets each `env` variable. Before it writes, it copies the old file to `settings.json.bak-<time>`.
-- `--dry-run` prints each change prefixed with `would ` and writes nothing.
-- `--opt-in agents` also links the skills into `~/.agents/skills`, which Codex and other agents read.
+## What it looks like
 
-Run `/setup-pstack` once to choose the models each role uses. To update, run `git pull` in the clone. The links point into it, so a changed skill is live on its next read. Run the installer again when `install.json` changes. A second run changes nothing that is already in place.
+The agent edits code before it names the data shape. The hook denies the edit once, and the retry goes through:
 
-To install by hand on macOS, Linux or Git Bash:
+```text
+● Read(~/.claude/skills/poteto-mode/principles/model-the-domain.md)
 
-```sh
-repo=~/pstack-for-cc
-paths() { (cd "$repo" && node -p "require('./install.json').$1.paths.join(' ')"); }
-mkdir -p ~/.claude/skills ~/.claude/agents
-for p in $(paths skills); do ln -s "$repo/$p" ~/.claude/skills/; done
-for p in $(paths agents); do ln -s "$repo/$p" ~/.claude/agents/; done
+● Edit(src/cart.js)
+  ⎿ Before editing source, write a line `**Shape.** <the data this change touches and how it is organized>` in your reply, then retry this call unchanged. If you already wrote the Shape line this turn, retry unchanged. [pstack:design:c08ec9e0]
+    Do what applies, then retry the call. Where an ask does not apply, say why in a `skip <name>: <reason>` line for the user, then retry.
+
+● **Shape.** A cart is a list of line items, each a product and a quantity.
+
+● Edit(src/cart.js)
+  ⎿ Updated src/cart.js
 ```
 
-In PowerShell, which needs Developer Mode or an administrator shell to make a symbolic link:
+## How it works
 
-```powershell
-$repo = "$HOME/pstack-for-cc"
-$manifest = Get-Content -Raw "$repo/install.json" | ConvertFrom-Json
-foreach ($group in $manifest.skills, $manifest.agents) {
-	foreach ($into in $group.into) {
-		foreach ($path in $group.paths) {
-			$link = Join-Path ($into -replace '^~', $HOME) (Split-Path $path -Leaf)
-			New-Item -ItemType SymbolicLink -Path $link -Target (Join-Path $repo $path)
-		}
-	}
-}
+Every hook event runs one script. A shell filter keeps Node from starting for tool calls outside poteto mode.
+
+```mermaid
+flowchart TB
+  T["PreToolUse on shell,<br/>edit, task, MCP<br/>PostToolUse on shell"] --> F["in-mode.sh<br/>is the session<br/>in poteto mode?"]
+  O["SessionStart,<br/>UserPromptSubmit, Read,<br/>Agent, Stop and the rest"] --> H
+  F -- no --> X["exit 0, the call runs"]
+  F -- yes --> H["pstack-hook.mjs<br/>respond()"]
 ```
 
-Then open `~/.claude/settings.json`, remove any hook entry that runs `pstack-hook.mjs`, and copy each event under `hooks` and each variable under `env` from `install.json` into it.
+Before a call runs, `kinds.mjs` classifies it, and the first row of the `RULES` table that the call owes becomes one deny.
 
-</details>
+```mermaid
+flowchart TB
+  C["Edit src/cart.js"] --> K["kinds.mjs<br/>fileKind(): code"]
+  K --> T["asks.mjs<br/>triggersOf(): code-edit"]
+  T --> R["RULES in order<br/>route, ledger, delegate,<br/>design, ..."]
+  R --> D["deny<br/>[pstack:design:c08ec9e0]"]
+  D -. "tag in the transcript" .-> P["retry runs"]
+```
+
+When the turn ends, `gate.mjs` blocks the stop once for each finding it can see for certain.
+
+```mermaid
+flowchart LR
+  S["Stop"] --> G["gate.mjs gate()<br/>STOP_RULES"]
+  G -- "no finding" --> E["turn ends"]
+  G -- "finding, tag not yet spent" --> B["block once<br/>cited-unread, long-dash,<br/>shape-unstated, ..."]
+  B -. "agent fixes it<br/>and replies again" .-> S
+```
+
+[docs/runtime.md](docs/runtime.md) lists every hook event, every ask and every stop finding.
 
 <details>
 <summary><b>Layout</b></summary>
@@ -244,9 +295,6 @@ Diff `pstack/` in cursor/plugins from `032be14` to the new commit and apply the 
 
 </details>
 
-<details>
-<summary><b>Credits and license</b></summary>
+## Credits
 
 pstack's skills, playbooks, principles, guide and Benny automation are Lauren Tan's work, MIT licensed. Her README is in [docs/UPSTREAM-README.md](docs/UPSTREAM-README.md) and her guide is in [docs/guide/](docs/guide/README.md). The `cursor-team-kit` skills are Cursor's, MIT licensed. Their notices are in [LICENSE](LICENSE) and [LICENSES/cursor-team-kit.txt](LICENSES/cursor-team-kit.txt).
-
-</details>
