@@ -199,6 +199,7 @@ The agent edits code before it names the data shape. The hook denies the edit on
 Every hook event runs one script. A shell filter keeps Node from starting for tool calls outside poteto mode.
 
 ```mermaid
+%%{init: {'theme': 'neutral'}}%%
 flowchart TB
   T["PreToolUse on shell,<br/>edit, task, MCP<br/>PostToolUse on shell"] --> F["in-mode.sh<br/>is the session<br/>in poteto mode?"]
   O["SessionStart,<br/>UserPromptSubmit, Read,<br/>Agent, Stop and the rest"] --> H
@@ -209,6 +210,7 @@ flowchart TB
 Before a call runs, `kinds.mjs` classifies it, and the first row of the `RULES` table that the call owes becomes one deny.
 
 ```mermaid
+%%{init: {'theme': 'neutral'}}%%
 flowchart TB
   C["Edit src/cart.js"] --> K["kinds.mjs<br/>fileKind(): code"]
   K --> T["asks.mjs<br/>triggersOf(): code-edit"]
@@ -220,6 +222,7 @@ flowchart TB
 When the turn ends, `gate.mjs` blocks the stop once for each finding it can see for certain.
 
 ```mermaid
+%%{init: {'theme': 'neutral'}}%%
 flowchart LR
   S["Stop"] --> G["gate.mjs gate()<br/>STOP_RULES"]
   G -- "no finding" --> E["turn ends"]
