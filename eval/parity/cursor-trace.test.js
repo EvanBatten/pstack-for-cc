@@ -41,7 +41,7 @@ test("a task call links to its child chat, which keeps its own reads", () => {
   assert.equal(spawn.agentType, "poteto-agent");
   assert.equal(spawn.model, null);
   assert.equal(spawn.background, false);
-  assert.equal(spawn.childId, "848c77a7-a231-43b6-8cd3-388c24ef3be7");
+  assert.equal(spawn.childId, "848c77a7");
   assert.equal(trace.children.length, 1);
   const [child] = trace.children;
   assert.equal(child.actor, "poteto-agent");

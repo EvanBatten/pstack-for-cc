@@ -8,7 +8,7 @@ A class marked "Not recorded" is drift that no record at the time explained. The
 |---|---|---|---|---|---|---|---|---|
 | Upstream to the reference port | `upstream-v0.15.2` | `port-reference` | 55 | 6 | 40 | 9 | 0 | 7 |
 | Reference port to the live install | `port-reference` | `live-2026-09-23` | 119 | 13 | 51 | 29 | 26 | 0 |
-| Live install to this repo | `live-2026-09-23` | main | 221 | 184 | 32 | 3 | 2 | 0 |
+| Live install to this repo | `live-2026-09-23` | main | 226 | 189 | 32 | 3 | 2 | 0 |
 
 ## Upstream to the reference port
 
@@ -371,6 +371,21 @@ Not from pstack. `scripts/readme.test.js` fails when a README heading repeats or
 
 - added `scripts/readme.test.js`
 
+### Tracked path length check
+
+Not from pstack. `scripts/paths.test.js` fails on a tracked path longer than 100 characters, because Git for Windows leaves `core.longpaths` off and a clone into a deep directory failed on a 126-character fixture path. That fixture's child chat now goes by the first segment of its id.
+
+- added `scripts/paths.test.js`
+
+### README chart and social preview
+
+Not from pstack. `scripts/chart.mjs` draws `docs/assets/head-to-head.svg` from the parity round's `report.json`, so the README's chart shows only counts the report holds, and `scripts/chart.test.js` checks its labels. `docs/assets/social-preview.png` is the image for the repository's link previews.
+
+- added `docs/assets/head-to-head.svg`
+- added `docs/assets/social-preview.png`
+- added `scripts/chart.mjs`
+- added `scripts/chart.test.js`
+
 ### Provenance note replaced
 
 `README.md` and this file carry what `UPSTREAM.md` said, so the note is gone from the skill directory.
@@ -632,7 +647,7 @@ Not from pstack, and never installed. `eval/parity/` runs the same scripted sess
 - added `eval/parity/claude-trace.mjs`
 - added `eval/parity/cursor-trace.mjs`
 - added `eval/parity/cursor-trace.test.js`
-- added `eval/parity/fixtures/cursor-probe1-transcripts/848c77a7-a231-43b6-8cd3-388c24ef3be7/848c77a7-a231-43b6-8cd3-388c24ef3be7.jsonl`
+- added `eval/parity/fixtures/cursor-probe1-transcripts/848c77a7/848c77a7.jsonl`
 - added `eval/parity/fixtures/cursor-probe1.jsonl`
 - added `eval/parity/fixtures/cursor-probe2.jsonl`
 - added `eval/parity/fixtures/pstack-models.mdc`

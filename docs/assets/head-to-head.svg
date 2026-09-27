@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="588" viewBox="0 0 800 588" role="img" aria-labelledby="t">
+<title id="t">Same model, same sealed tasks. Passing units over graded units per behavior, this port against pstack on Cursor.</title>
+<style>
+text{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#0b0b0b}
+.card{fill:#fcfcfb;stroke:#e4e3df}
+.sub,.tick{fill:#52514e}
+.value{font-variant-numeric:tabular-nums}
+.grid{stroke:#e4e3df}
+.port{fill:#2a78d6}
+.cursor{fill:#9a9993}
+@media (prefers-color-scheme:dark){
+text{fill:#ffffff}
+.card{fill:#1a1a19;stroke:#33332f}
+.sub,.tick{fill:#c3c2b7}
+.grid{stroke:#33332f}
+.port{fill:#3987e5}
+.cursor{fill:#7c7b76}
+}
+</style>
+<rect class="card" x="0.5" y="0.5" width="799" height="587" rx="12"/>
+<text x="32" y="46" font-size="20" font-weight="600">Same model, same sealed tasks</text>
+<text class="sub" x="32" y="70" font-size="13">Passing units over graded units, parity round s4</text>
+<rect class="port" x="32" y="93" width="12" height="12" rx="3"/>
+<text x="50" y="104" font-size="13">This port (Claude Code)</text>
+<rect class="cursor" x="221" y="93" width="12" height="12" rx="3"/>
+<text x="239" y="104" font-size="13">pstack on Cursor</text>
+<line class="grid" x1="232" y1="124" x2="232" y2="532" stroke-width="1"/>
+<text class="tick" x="232" y="552" font-size="12" text-anchor="middle">0%</text>
+<line class="grid" x1="353" y1="124" x2="353" y2="532" stroke-width="1"/>
+<text class="tick" x="353" y="552" font-size="12" text-anchor="middle">25%</text>
+<line class="grid" x1="474" y1="124" x2="474" y2="532" stroke-width="1"/>
+<text class="tick" x="474" y="552" font-size="12" text-anchor="middle">50%</text>
+<line class="grid" x1="595" y1="124" x2="595" y2="532" stroke-width="1"/>
+<text class="tick" x="595" y="552" font-size="12" text-anchor="middle">75%</text>
+<line class="grid" x1="716" y1="124" x2="716" y2="532" stroke-width="1"/>
+<text class="tick" x="716" y="552" font-size="12" text-anchor="middle">100%</text>
+<text x="32" y="158" font-size="14">stays in mode</text>
+<path class="port" d="M232 141h481a3 3 0 0 1 3 3v4a3 3 0 0 1 -3 3h-481z"/>
+<text class="value" x="722" y="150" font-size="12">10/10</text>
+<path class="cursor" d="M232 155h93.8a3 3 0 0 1 3 3v4a3 3 0 0 1 -3 3h-93.8z"/>
+<text class="value" x="334.8" y="164" font-size="12">2/10</text>
+<text x="32" y="208" font-size="14">reads what it cites</text>
+<path class="port" d="M232 191h481a3 3 0 0 1 3 3v4a3 3 0 0 1 -3 3h-481z"/>
+<text class="value" x="722" y="200" font-size="12">20/20</text>
+<path class="cursor" d="M232 205h166.4a3 3 0 0 1 3 3v4a3 3 0 0 1 -3 3h-166.4z"/>
+<text class="value" x="407.4" y="214" font-size="12">7/20</text>
+<text x="32" y="258" font-size="14">picks the right playbook</text>
+<path class="port" d="M232 241h481a3 3 0 0 1 3 3v4a3 3 0 0 1 -3 3h-481z"/>
+<text class="value" x="722" y="250" font-size="12">18/18</text>
+<path class="cursor" d="M232 255h292.78a3 3 0 0 1 3 3v4a3 3 0 0 1 -3 3h-292.78z"/>
+<text class="value" x="533.78" y="264" font-size="12">11/18</text>
+<text x="32" y="308" font-size="14">runs named skills</text>
+<path class="port" d="M232 291h338.65a3 3 0 0 1 3 3v4a3 3 0 0 1 -3 3h-338.65z"/>
+<text class="value" x="579.65" y="300" font-size="12">12/17</text>
+<path class="cursor" d="M232 305h131.44a3 3 0 0 1 3 3v4a3 3 0 0 1 -3 3h-131.44z"/>
+<text class="value" x="372.44" y="314" font-size="12">5/18</text>
+<text x="32" y="358" font-size="14">carries the step list</text>
+<path class="port" d="M232 341h239a3 3 0 0 1 3 3v4a3 3 0 0 1 -3 3h-239z"/>
+<text class="value" x="480" y="350" font-size="12">7/14</text>
+<path class="cursor" d="M232 355h82.41a3 3 0 0 1 3 3v4a3 3 0 0 1 -3 3h-82.41z"/>
+<text class="value" x="323.41" y="364" font-size="12">3/17</text>
+<text x="32" y="408" font-size="14">delegates follow the mode</text>
+<path class="port" d="M232 391h142.2a3 3 0 0 1 3 3v4a3 3 0 0 1 -3 3h-142.2z"/>
+<text class="value" x="383.2" y="400" font-size="12">3/10</text>
+<text class="value" x="238" y="414" font-size="12">0/7</text>
+<text x="32" y="458" font-size="14">delegated</text>
+<path class="port" d="M232 441h287.4a3 3 0 0 1 3 3v4a3 3 0 0 1 -3 3h-287.4z"/>
+<text class="value" x="528.4" y="450" font-size="12">6/10</text>
+<path class="cursor" d="M232 455h287.4a3 3 0 0 1 3 3v4a3 3 0 0 1 -3 3h-287.4z"/>
+<text class="value" x="528.4" y="464" font-size="12">6/10</text>
+<text x="32" y="508" font-size="14">claim labels</text>
+<text class="value" x="238" y="500" font-size="12">0/18</text>
+<path class="cursor" d="M232 505h53.94a3 3 0 0 1 3 3v4a3 3 0 0 1 -3 3h-53.94z"/>
+<text class="value" x="294.94" y="514" font-size="12">2/17</text>
+</svg>

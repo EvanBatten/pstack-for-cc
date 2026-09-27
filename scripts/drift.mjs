@@ -227,6 +227,18 @@ const LAYERS = [
         match: /^scripts\/readme\.test\.js$/,
       },
       {
+        title: "Tracked path length check",
+        reason:
+          "Not from pstack. `scripts/paths.test.js` fails on a tracked path longer than 100 characters, because Git for Windows leaves `core.longpaths` off and a clone into a deep directory failed on a 126-character fixture path. That fixture's child chat now goes by the first segment of its id.",
+        match: /^scripts\/paths\.test\.js$/,
+      },
+      {
+        title: "README chart and social preview",
+        reason:
+          "Not from pstack. `scripts/chart.mjs` draws `docs/assets/head-to-head.svg` from the parity round's `report.json`, so the README's chart shows only counts the report holds, and `scripts/chart.test.js` checks its labels. `docs/assets/social-preview.png` is the image for the repository's link previews.",
+        match: /^(scripts\/chart(\.test)?\.(mjs|js)|docs\/assets\/)/,
+      },
+      {
         title: "Provenance note replaced",
         reason: "`README.md` and this file carry what `UPSTREAM.md` said, so the note is gone from the skill directory.",
         match: /^skills\/poteto-mode\/UPSTREAM\.md$/,
