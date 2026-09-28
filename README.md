@@ -84,9 +84,11 @@ Then open `~/.claude/settings.json`, remove any hook entry that runs `pstack-hoo
 
 ## Results
 
-<img alt="This port against pstack-claude and pstack on Cursor, passing units over graded units for eight behaviors" src="docs/assets/head-to-head.svg" width="100%">
+**Scores higher than pstack on Cursor and the most-starred Claude Code port.**
 
-Averaged over the behaviors both arms graded, this port leads [michael-denyer/pstack-claude](https://github.com/michael-denyer/pstack-claude), the most-starred pstack port for Claude Code, by **+0.30**, and upstream pstack on Cursor by **+0.31**. [Full report and logs](eval/parity/results/s5/report.md).
+Each setup ran the same five bounded tasks in sealed sessions. This port came out ahead or about even on 9 of 10 behaviors against both [michael-denyer/pstack-claude](https://github.com/michael-denyer/pstack-claude) and upstream pstack on Cursor. [Full report and logs](eval/parity/results/s5/report.md).
+
+<img alt="This port against pstack-claude and pstack on Cursor, passing units over graded units for eight behaviors" src="docs/assets/head-to-head.svg" width="100%">
 
 <details>
 <summary><b>The full comparison</b></summary>

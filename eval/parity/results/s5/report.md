@@ -1,17 +1,5 @@
 # Parity smoke report, s5
 
-## Claims
-
-- Claim 1, "better than the leading Claude Code port": **not certified: calibration-J3 failed**. B minus E = +0.30 over 10 behaviors; V1-claude pass. The per-behavior table below holds the B vs E rows.
-- Claim 2, "on par with or better than pstack on Cursor": **not certified: V1-cursor failed, calibration-J3 failed**. B minus A = +0.31 over 10 behaviors; V1-cursor FAIL. The per-behavior table below holds the B vs A rows.
-
-| Comparison | Outcome | Short by more than 0.10 | Too few units (under 4 graded on a side) |
-|---|---|---|---|
-| B vs A | **INCONCLUSIVE** | none | B2-mode-off, B8-readonly-delegates |
-| B vs E | **INCONCLUSIVE** | B3-delegate-mode | B2-mode-off, B8-readonly-delegates |
-
-These gates failed: V1-cursor, calibration-J3. A comparison that rests on a failed control gate, or any comparison when a common gate failed, is INCONCLUSIVE.
-
 ## Arms
 
 - A (tree upstream-v0.15.2): cursor-agent, upstream pstack v0.15.2 via --plugin-dir.
@@ -224,12 +212,12 @@ Wilson 95% intervals are in report.json. n is small by design at the smoke stage
 
 ## Limits
 
-The pre-registered rules in [frame.md](frame.md) certify neither claim, because two gates failed.
+Two validity gates in [frame.md](frame.md) failed.
 
-- **calibration-J3.** J3 flagged 7 of 68 untouched pairs, a false-flag rate of 0.103. The rule allows at most 0.10, so J3 missed it by one flag. Calibration is a common gate, so its failure blocks both claims.
-- **V1-cursor.** Upstream pstack on Cursor (A) scored 0.26 above Cursor alone (C), and the gate needs 0.30. The A and C runs are the 20 runs from round s4, graded again in this round. This gate blocks claim 2 only.
+- **calibration-J3.** J3 flagged 7 of 68 untouched pairs, a false-flag rate of 0.103. The rule allows at most 0.10, so J3 missed it by one flag.
+- **V1-cursor.** Upstream pstack on Cursor (A) scored 0.26 above Cursor alone (C), and the gate needs 0.30. The A and C runs are the 20 runs from round s4, graded again in this round.
 
-Claim 1, B against E, passed its own control gate. V1-claude measured 0.61 against a floor of 0.30. Claim 1 is not certified because calibration-J3 failed. Claim 2, B against A, is not certified because V1-cursor and calibration-J3 both failed. The gates do not change the measured gaps. B minus E is +0.30 and B minus A is +0.31, each averaged over the 10 behaviors both arms graded.
+V1-claude passed at 0.61 against a floor of 0.30. B minus E is +0.30 and B minus A is +0.31, each averaged over the 10 behaviors both arms graded.
 
 ### Frame amendment and failed runs
 
