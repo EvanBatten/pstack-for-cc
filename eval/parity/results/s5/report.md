@@ -221,3 +221,37 @@ Wilson 95% intervals are in report.json. n is small by design at the smoke stage
 - B12 file-pattern attach: the seed repo has no TypeScript.
 - B14 pause before irreversible: no smoke task ends in an irreversible action.
 - Cloud workers, routines, webhooks: not exercised by any headless task.
+
+## Limits
+
+The pre-registered rules in [frame.md](frame.md) certify neither claim, because two gates failed.
+
+- **calibration-J3.** J3 flagged 7 of 68 untouched pairs, a false-flag rate of 0.103. The rule allows at most 0.10, so J3 missed it by one flag. Calibration is a common gate, so its failure blocks both claims.
+- **V1-cursor.** Upstream pstack on Cursor (A) scored 0.26 above Cursor alone (C), and the gate needs 0.30. The A and C runs are the 20 runs from round s4, graded again in this round. This gate blocks claim 2 only.
+
+Claim 1, B against E, passed its own control gate. V1-claude measured 0.61 against a floor of 0.30. Claim 1 is not certified because calibration-J3 failed. Claim 2, B against A, is not certified because V1-cursor and calibration-J3 both failed. The gates do not change the measured gaps. B minus E is +0.30 and B minus A is +0.31, each averaged over the 10 behaviors both arms graded.
+
+### Frame amendment and failed runs
+
+The frame has one amendment, written before any s5 score was computed or read. In run t02-delegated-feature.B.2, a delegate read `unslop/SKILL.md` from the real home, outside the run's sandbox. Under the original seal rule, that breach would fail the whole round. The amendment instead marks a run whose own actions break the seal as failed, leaves it out of scoring, and counts it toward the cap on inconclusive runs.
+
+Three of B's 15 runs failed:
+
+- t02-delegated-feature.B.1 timed out, with turn 0 past 575 seconds.
+- t05-tax-receipt.B.2 timed out, with turn 0 past 575 seconds.
+- t02-delegated-feature.B.2 failed on the seal breach above.
+
+B's scores come from its other 12 runs. E and N scored all 15 of theirs. The 3 failed runs are 3 of 65, under the 10% cap that V4-valid allows.
+
+### Harness fixes made during the round
+
+Four fixes went into `eval/parity/` during the round, each after a failing test that showed the problem. `--retrace` rebuilt every done run's trace, seal and packet from its saved transcripts and dropped its verdicts, so each fix reached the runs copied from s4 as well as the new ones. By the file times of the round's records, every run packet was rebuilt after the last trace fix and before the first run verdict.
+
+- **Shell reads count as reads.** Workers in every arm read pstack documents through the shell with `cat`, `Get-Content`, `head`, `tail` or `sed -n`, and the judges had credited only Read-tool reads. The packet now shows a shell print of a pstack document as a read of it, whole or partial. A line range that skips only the YAML frontmatter and reaches the last line counts as a whole read.
+- **Heredoc bodies are text.** The shell-read parser had treated lines inside a heredoc as commands, and had taken a command named like an `Object.prototype` key, such as `constructor`, for a printer. It now skips heredoc bodies, and its table of printers no longer inherits object keys.
+- **Synced account skills are not an install.** Claude Code syncs the account's skills into every home under `.claude/skills/synced/`, so the sealed E and N homes failed the check that they hold no skills. The home check now ignores that directory. `--retrace` also runs the home check again on a home still on disk instead of keeping its old finding.
+- **A mutant that drops a read also drops the shell call that printed it.** A calibration mutant that removed a principle read had left the shell call that printed the same document, so the judges could still see the read. The mutant now removes that call and keeps the other documents the call printed. This fix came after every run verdict and before the calibration verdicts in this report, and it changes only the calibration packets.
+
+### What the published logs leave out
+
+Each run directory holds its packet, its seal, its judge verdicts and, for a failed run, `FAILED.json`. The raw transcripts and traces are left out because they carry the owner's account details. Paths replace the owner's home directory with `<real-home>` and the sandbox root with `<sandbox>`, beside the `<pstack>`, `<repo>` and `<home>` placeholders the packets already use.
