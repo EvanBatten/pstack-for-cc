@@ -1,0 +1,192 @@
+{
+  "exit": 0,
+  "ms": 19890,
+  "timedOut": false,
+  "pid": 31828,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e31",
+          "quote": "NY orders now pay tax on shipping as well as on the discounted subtotal"
+        },
+        {
+          "event": "e23",
+          "quote": "edit <repo>/src/tax.js"
+        }
+      ],
+      "why": "The turn goes straight to edits and a plain summary, with no playbook match, no step list with states and no principles read or named."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e21",
+          "quote": "`/poteto-mode` isn't installed in this session, so I did this as a normal request."
+        }
+      ],
+      "why": "The reply has no Feature playbook steps with states, only a free-form summary of changes."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e31",
+          "quote": "**What changed**"
+        }
+      ],
+      "why": "The reply gives a change summary with none of the Feature playbook's numbered steps or their states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e21",
+          "quote": "`/poteto-mode` isn't installed in this session, so I did this as a normal request."
+        }
+      ],
+      "why": "No event opened the how or architect SKILL.md, and the reply never mentions or skips either skill."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e31",
+          "quote": "each region now has a rule with its rate and whether it taxes shipping"
+        }
+      ],
+      "why": "The how and architect skills were neither opened nor explicitly skipped in this turn."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e21",
+          "quote": "Tax and the receipt use the same numbers instead of repeating the math."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e31",
+          "quote": "Callers don't need to know which regions tax shipping."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e21",
+          "quote": "If some caller somewhere passes a fraction like `0.1`, it will now get a 0.1% discount."
+        }
+      ],
+      "why": "This prediction about runtime behavior was never observed and carries no measured, inferred or guess label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e31",
+          "quote": "All 14 tests pass."
+        }
+      ],
+      "why": "The runtime claims rest on the test run in e30, and the other sentences report edits or restate the request."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e2",
+          "quote": "`/poteto-mode` isn't installed in this session, so I'm treating this as a plain request."
+        }
+      ],
+      "why": "The agent never matched the Feature playbook and never read playbooks/feature.md."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e31",
+          "quote": "NY orders now pay tax on shipping as well as on the discounted subtotal"
+        }
+      ],
+      "why": "No playbook was matched or read in this turn."
+    }
+  ],
+  "dropped": []
+}

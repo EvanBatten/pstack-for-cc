@@ -1,0 +1,192 @@
+{
+  "exit": 0,
+  "ms": 20729,
+  "timedOut": false,
+  "pid": 25372,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e21",
+          "quote": "I'll give each region a flag for whether shipping is taxed"
+        },
+        {
+          "event": "e28",
+          "quote": "NY orders now pay 4% on the discounted subtotal plus shipping"
+        }
+      ],
+      "why": "The turn went straight to edits and a plain summary, with no playbook match, no step list with states and no principles named."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e19",
+          "quote": "I added sales tax in `src/tax.js` and the receipt in `src/receipt.js`"
+        }
+      ],
+      "why": "The reply is a prose summary and carries none of the Feature playbook's numbered steps or their states."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e28",
+          "quote": "All 14 tests pass."
+        }
+      ],
+      "why": "The reply has no playbook step list with per-step states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e19",
+          "quote": "A few choices I made that you may want to change:"
+        }
+      ],
+      "why": "No event opened the how or architect SKILL.md, and the reply does not mention either skill or give a reason for skipping it."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e21",
+          "quote": "pass both goods and shipping into `taxFor`"
+        }
+      ],
+      "why": "The how and architect skills were never opened and never explicitly skipped."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e19",
+          "quote": "That way the receipt and `computeTotal` use the same numbers."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e28",
+          "quote": "each region now has a rate and a flag for whether it taxes shipping"
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e19",
+          "quote": "All 13 tests pass, including one that was already failing on `main`."
+        }
+      ],
+      "why": "The reply's claims report edits and test results the agent ran (e10, e18) or describe the code, and it makes no unlabeled prediction or unobserved cause."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e28",
+          "quote": "A $40 order with a 10% discount pays $2.61 tax in CA (on $36)"
+        }
+      ],
+      "why": "The behavior claims describe the tests the agent wrote and ran in e27, so they carry their evidence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e2",
+          "quote": "I'll look at the existing cart code and tests first."
+        }
+      ],
+      "why": "No event read playbooks/feature.md or SKILL.md, and the agent never named a playbook."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e21",
+          "quote": "I'll give each region a flag for whether shipping is taxed"
+        }
+      ],
+      "why": "The Feature playbook was never matched or read in this turn."
+    }
+  ],
+  "dropped": []
+}

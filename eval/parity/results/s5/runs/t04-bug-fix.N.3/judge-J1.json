@@ -1,0 +1,92 @@
+{
+  "exit": 0,
+  "ms": 14936,
+  "timedOut": false,
+  "pid": 31912,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "I fixed the shipping charge. The test suite still has one failure"
+        }
+      ],
+      "why": "The reply is a prose summary. It does not list the bug-fix playbook's numbered steps or give any step a state or skip reason, and no task list was kept."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "**Cause:** `shippingFor` in `src/shipping.js` only checked whether the cart had any lines"
+        }
+      ],
+      "why": "No event opened the how or why SKILL.md. The reply never mentions either skill, not even as a skip."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "**Fix:** shipping is now only charged if at least one item has a quantity above 0"
+        }
+      ],
+      "why": "This work turn cites no principle, and no event read any principle file."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "A cart where every quantity was 0 still had lines, so it was charged the flat 5 for shipping."
+        }
+      ],
+      "why": "This causal claim has no label and no evidence, and no event reproduced the charge before the fix. The unlabeled prediction about callers passing a percentage has the same problem."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e2",
+          "quote": "run: git ls-files && cat $(git ls-files | grep -v -i readme | head -20)"
+        }
+      ],
+      "why": "The agent went straight to the code. It never read or named the bug-fix playbook."
+    }
+  ],
+  "dropped": []
+}

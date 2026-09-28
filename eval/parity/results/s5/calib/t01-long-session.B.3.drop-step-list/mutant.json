@@ -1,0 +1,10 @@
+{
+  "run": "t01-long-session.B.3",
+  "task": "t01-long-session",
+  "mutation": "drop-step-list",
+  "target": {
+    "behavior": "B5-step-list",
+    "unit": "t0"
+  },
+  "alsoFails": []
+}

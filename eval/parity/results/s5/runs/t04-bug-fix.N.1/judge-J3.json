@@ -1,0 +1,92 @@
+{
+  "exit": 0,
+  "ms": 15249,
+  "timedOut": false,
+  "pid": 35980,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "**Fix:** shipping is now charged only if at least one item has a quantity above 0"
+        }
+      ],
+      "why": "The reply has only Cause and Fix sections. It never lists the bug-fix playbook's numbered steps with states, and it gives no skip reasons for reproduce, binary-search, commit staging or the PR step."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "**Cause:** `src/shipping.js` added the flat shipping charge whenever the cart had any items at all"
+        }
+      ],
+      "why": "No event opened the how or why SKILL.md, and the reply never mentions either skill or gives a reason for skipping them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "I didn't change it because the fix depends on which format callers are meant to use."
+        }
+      ],
+      "why": "This work turn cites no principle, and no event read any principle file."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "With the old code it would have come out at 5; it now expects 0 and passes."
+        }
+      ],
+      "why": "The claim that the old code would give 5 is a runtime prediction that nothing in the session measured, since the new test never ran against the old code, and it carries no label. The later negative-totals prediction is also unlabeled."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e2",
+          "quote": "run: git ls-files && cat $(git ls-files | grep -v -i readme | head -20)"
+        }
+      ],
+      "why": "The agent never read SKILL.md or playbooks/bug-fix.md, and it never named a matched playbook."
+    }
+  ],
+  "dropped": []
+}

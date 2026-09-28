@@ -1,0 +1,260 @@
+{
+  "exit": 0,
+  "ms": 41857,
+  "timedOut": false,
+  "pid": 15868,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d2"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e70",
+          "quote": "There's still no PR because the repo has no remote."
+        },
+        {
+          "event": "e67",
+          "quote": "Next I'm changing the tax table so each region says whether it taxes shipping"
+        }
+      ],
+      "why": "In t1 the agent did not match or read a playbook and kept no step list with states, so the turn reads like a plain assistant turn."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e16",
+          "quote": "invoke skill poteto-mode, which loads <pstack>/poteto-mode/SKILL.md in full"
+        },
+        {
+          "event": "e65",
+          "quote": "Each one passes the suite on its own: 4/4 after commit 1, 11/11 after commit 2, and 18/18 after commit 3."
+        }
+      ],
+      "why": "The delegate loaded the mode, cited no principle it had not read, and its final message reports each of the three commits it was given, with its state."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d2",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e72",
+          "quote": "invoke skill poteto-mode, which loads <pstack>/poteto-mode/SKILL.md in full"
+        },
+        {
+          "event": "e75",
+          "quote": "read <pstack>/poteto-mode/principles/redesign-from-first-principles.md (partial)"
+        },
+        {
+          "event": "e98",
+          "quote": "**Redesign from First Principles:** a region's rate and its shipping rule are now one entry in the rule table."
+        }
+      ],
+      "why": "The delegate loaded the mode, read each principle file (partially) before citing it, and its final message reports its one commit and the checks it ran."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "- [x] 2. `architect` for parallel design exploration. skip: one obvious shape"
+        },
+        {
+          "event": "e9",
+          "quote": "- [x] 1. `how` over the affected subsystem."
+        }
+      ],
+      "why": "The agent kept a task list in todo.md that follows the feature playbook's numbered steps, each with a state, and gives a concrete reason for each skip."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e70",
+          "quote": "**The change.** Each region now has one entry in a table in `src/tax.js`"
+        }
+      ],
+      "why": "The t1 reply has only a prose summary, with no playbook steps and no per-step states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "skip the skill: whole subsystem is 20 lines"
+        },
+        {
+          "event": "e9",
+          "quote": "no competing designs worth a panel"
+        }
+      ],
+      "why": "The agent explicitly skipped both how and architect, with concrete reasons tied to this task."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e70",
+          "quote": "I chose a table over an `if` for NY (Model the Domain)."
+        }
+      ],
+      "why": "Neither how nor architect was run or skipped in t1; the turn never mentions them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e14",
+          "quote": "(Model the Domain: adding a region is one table entry, not another `if` branch.)"
+        },
+        {
+          "event": "e6",
+          "quote": "read <pstack>/poteto-mode/principles/model-the-domain.md (full)"
+        },
+        {
+          "event": "e8",
+          "quote": "read <pstack>/poteto-mode/principles/fix-root-causes.md (full)"
+        }
+      ],
+      "why": "Each cited principle is tied to a concrete choice and was read in full by the main agent at e6 through e8."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e70",
+          "quote": "I chose a table over an `if` for NY (Model the Domain)."
+        }
+      ],
+      "why": "The reply cites Model the Domain with a concrete choice, and the main agent read that file in full earlier in the session."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e14",
+          "quote": "In rare half-cent cases, `computeTotal` may now differ by one cent from the old formula."
+        }
+      ],
+      "why": "This is a runtime prediction that nothing in the session measured, and it carries no label or evidence."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e70",
+          "quote": "I printed a receipt for each region and checked the figures by hand"
+        },
+        {
+          "event": "e69",
+          "quote": "npm test 2>&1 | grep -E \"^ℹ (tests|pass|fail)\""
+        }
+      ],
+      "why": "The runtime claims in the reply rest on the receipts and tests the agent ran at e69; the other sentences report changes or decisions."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e4",
+          "quote": "read <pstack>/poteto-mode/playbooks/feature.md (full)"
+        },
+        {
+          "event": "e9",
+          "quote": "# Feature playbook"
+        }
+      ],
+      "why": "Without being told its name, the agent matched and read the feature playbook."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e67",
+          "quote": "handing the edit to a subagent"
+        }
+      ],
+      "why": "The agent neither matched nor read a playbook in t1; it went straight to delegating the edit."
+    }
+  ],
+  "dropped": []
+}

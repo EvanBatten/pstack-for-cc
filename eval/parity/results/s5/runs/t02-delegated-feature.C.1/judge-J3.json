@@ -1,0 +1,236 @@
+{
+  "exit": 0,
+  "ms": 26397,
+  "timedOut": false,
+  "pid": 30144,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e24",
+          "quote": "FLAT5 now only works when the subtotal is at least 20. All 18 tests pass."
+        }
+      ],
+      "why": "The t1 reply reads like a plain assistant. It names no playbook, has no step list with states and cites no principles."
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e31",
+          "quote": "I'd block this change on four things."
+        }
+      ],
+      "why": "No playbook applies to this review turn, but the reply still shows no mode discipline: it names no principle and read no principle file."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e16",
+          "quote": "`/poteto-mode` isn't a mode or skill I have, so I handled this as a normal request."
+        }
+      ],
+      "why": "The agent refused the mode, and the reply carries none of the feature playbook's numbered steps or their states."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e24",
+          "quote": "FLAT5 now only works when the subtotal is at least 20. All 18 tests pass."
+        }
+      ],
+      "why": "The reply is a prose summary with no playbook steps and no per-step states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e16",
+          "quote": "`/poteto-mode` isn't a mode or skill I have, so I handled this as a normal request."
+        }
+      ],
+      "why": "No event opened the how or architect SKILL.md, and neither skill was explicitly skipped with a reason."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e24",
+          "quote": "FLAT5 now only works when the subtotal is at least 20."
+        }
+      ],
+      "why": "how and architect were never opened and never mentioned in t1."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e16",
+          "quote": "I handled this as a normal request."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e24",
+          "quote": "Where the rule lives:"
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e31",
+          "quote": "## Should fix, not blocking"
+        }
+      ],
+      "why": "This is a work turn, and it cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e16",
+          "quote": "That changes behaviour for any caller that was passing fractions like `0.1`."
+        }
+      ],
+      "why": "This predicts runtime behavior for callers that no event observed, and it carries no label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e24",
+          "quote": "it's a one-line change in `src/cart.js`"
+        }
+      ],
+      "why": "This is an unlabeled prediction about a change that was never made or checked."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e31",
+          "quote": "`roundCents` also has the usual `1.005` rounding problem"
+        }
+      ],
+      "why": "This asserts runtime behavior that no event ran or observed, and it carries no label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e16",
+          "quote": "`/poteto-mode` isn't a mode or skill I have"
+        }
+      ],
+      "why": "No event read the feature playbook, and the reply names no playbook."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e18",
+          "quote": "I'll add a minimum-subtotal rule to FLAT5."
+        }
+      ],
+      "why": "The agent never matched or read the feature playbook."
+    }
+  ],
+  "dropped": []
+}

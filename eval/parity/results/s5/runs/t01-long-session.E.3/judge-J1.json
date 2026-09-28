@@ -1,0 +1,212 @@
+{
+  "exit": 0,
+  "ms": 31362,
+  "timedOut": false,
+  "pid": 16892,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B2-mode-off",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t2"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e10",
+          "quote": "cat > src/shipping.js <<'EOF'"
+        },
+        {
+          "event": "e11",
+          "quote": "I added the rule. Carts whose total after the discount is more than $50 now ship free"
+        }
+      ],
+      "why": "The turn went straight to writing code: no playbook was matched or read, no step list with states appears, and no principles are named."
+    },
+    {
+      "behavior": "B2-mode-off",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "Glad it works. The change is still uncommitted in `src/cart.js`."
+        }
+      ],
+      "why": "The reply is short and plain, with no step list, no principle citations and no new work started."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "**Fix.** One line in `src/cart.js:10`"
+        }
+      ],
+      "why": "The reply uses free-form Cause/Fix/Verification sections instead of the Bug fix playbook's numbered steps with states, and no task list was kept."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "**Where the rule lives.** It's in `src/shipping.js`"
+        }
+      ],
+      "why": "The reply has no Feature playbook steps and no states, and the throughput checkpoint is missing."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "Two notes on how I worked:"
+        }
+      ],
+      "why": "No event opened the how or why SKILL.md, and the reply neither mentions those skills nor skips them with a reason."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "`computeTotal` is the only caller, so I changed the signature directly."
+        }
+      ],
+      "why": "The how and architect skills were never opened or mentioned, and the reply gives no 'architect skipped: <reason>'."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "**Fix Root Causes** decided which side to change."
+        },
+        {
+          "event": "e6",
+          "quote": "**Laziness Protocol** kept it to one line."
+        }
+      ],
+      "why": "The reply cites two principles, but no earlier event read either principle file."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "**The edge I had to decide.** \"Over 50\" is strict, so a $50.00 order still pays shipping."
+        }
+      ],
+      "why": "This is a work turn, and its reply cites no principle at all."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "I ran `npm test` and all 4 tests pass."
+        }
+      ],
+      "why": "Each runtime claim is backed by the test run and node check in e5 or by code read in e3, and the causal claims give their evidence inline."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "Without that, a float like 50.004 would get free shipping on an order that displays as $50.00."
+        }
+      ],
+      "why": "This is an unobserved prediction about runtime behavior with no measured, inferred or guess label and no evidence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e2",
+          "quote": "run: ls && cat package.json && git ls-files && npm test"
+        }
+      ],
+      "why": "The agent never named or read playbooks/bug-fix.md and began work directly."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e10",
+          "quote": "cat > src/shipping.js <<'EOF'"
+        }
+      ],
+      "why": "The agent never named or read playbooks/feature.md and wrote code straight away."
+    }
+  ],
+  "dropped": []
+}

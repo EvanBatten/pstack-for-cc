@@ -1,0 +1,236 @@
+{
+  "exit": 0,
+  "ms": 31822,
+  "timedOut": false,
+  "pid": 34732,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "FLAT5 now only works when the subtotal is at least 20."
+        }
+      ],
+      "why": "The turn reads like a plain assistant. It matches no Feature playbook, lists no steps with states and names no principles."
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "I'd block on three things."
+        }
+      ],
+      "why": "No playbook fits this turn, but the review still shows no mode discipline. It names no principles and the agent had already dropped the mode in e2."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "Coupon codes are in, and all 11 tests pass"
+        }
+      ],
+      "why": "The reply carries none of the Feature playbook's numbered steps or their states."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "All 13 tests pass. Still nothing committed."
+        }
+      ],
+      "why": "The reply has no Feature step list and no per-step states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e2",
+          "quote": "`/poteto-mode` isn't installed in this session, so I'll handle this as a normal request."
+        }
+      ],
+      "why": "No event opened the how or architect SKILL.md, and neither skill was skipped with a reason."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "FLAT5 now has a 20 minimum."
+        }
+      ],
+      "why": "The how and architect skills were neither opened nor mentioned as skipped."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "**Choices you may want to change:**"
+        }
+      ],
+      "why": "The reply cites no principle, and the agent read no principle files."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "**Decision for you:** the minimum is checked after the existing `discountPct` discount is applied."
+        }
+      ],
+      "why": "The reply cites no principle, and the agent read none."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "**Things I'd raise but not block on:**"
+        }
+      ],
+      "why": "This review is a work turn, and it cites no principle at all."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "If anything else calls `computeTotal` with a fraction like `0.1`, it will now get a much smaller discount than before"
+        }
+      ],
+      "why": "This predicts caller behavior with no label and no evidence."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "For example, a 21 cart with a 10% discount comes to 18.90, so FLAT5 is rejected."
+        }
+      ],
+      "why": "This asserts runtime behavior that no event observed, and it carries no label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "The tests missed this because every test cart is a round number."
+        }
+      ],
+      "why": "This states a cause with no label or evidence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e2",
+          "quote": "I'll handle this as a normal request."
+        }
+      ],
+      "why": "The agent matched no playbook and never read feature.md."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "FLAT5 now only works when the subtotal is at least 20."
+        }
+      ],
+      "why": "The agent neither matched nor read the Feature playbook."
+    }
+  ],
+  "dropped": []
+}

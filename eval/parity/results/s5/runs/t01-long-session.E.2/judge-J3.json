@@ -1,0 +1,228 @@
+{
+  "exit": 0,
+  "ms": 27429,
+  "timedOut": false,
+  "pid": 24780,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B2-mode-off",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t2"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "read <pstack>/poteto-mode/playbooks/feature.md (full)"
+        },
+        {
+          "event": "e17",
+          "quote": "I skipped the separate design and review steps. With one obvious approach, they weren't worth the time."
+        }
+      ],
+      "why": "The agent read the feature playbook, but the reply has no step list with states and cites no principle. It skips how and architect with a vague reason, so it reads like a plain assistant."
+    },
+    {
+      "behavior": "B2-mode-off",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e10",
+          "quote": "Thanks. The fix is still uncommitted in your working tree on `main`. I can commit it if you want. Nothing else is pending."
+        }
+      ],
+      "why": "The reply is short and plain, with no step list, no principle citations and no new work."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e23",
+          "quote": "loads <pstack>/poteto-mode/principles/test-behavior-not-implementation.md in full"
+        },
+        {
+          "event": "e31",
+          "quote": "**Final `git diff`.**"
+        }
+      ],
+      "why": "The delegate loaded the mode and the principle before citing it, but its final message carries no handed steps or playbook steps with states."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "**What I skipped from the bug-fix playbook, and why.**"
+        }
+      ],
+      "why": "The reply gives a prose summary of skipped items, not the bug-fix playbook's numbered steps each with a state."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e17",
+          "quote": "**How I split the work.**"
+        }
+      ],
+      "why": "The feature playbook's numbered steps with states are absent. There is only a loose summary of the split and the skipped steps."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "I didn't hand the fix to a subagent or run an architect pass."
+        }
+      ],
+      "why": "No event opened the how or why skill, and the reply never mentions either or gives a reason for skipping them."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e17",
+          "quote": "I skipped the separate design and review steps. With one obvious approach, they weren't worth the time."
+        }
+      ],
+      "why": "Neither how nor architect was opened. The skip does not name the skills and gives no concrete reason tied to this task."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "I didn't read that principle's full skill file this session."
+        }
+      ],
+      "why": "The reply cites Fix Root Causes, but no event read that principle's file, as the reply itself admits."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e17",
+          "quote": "**Decisions I made that you may want to change.**"
+        }
+      ],
+      "why": "This is a work turn, and the main agent's reply cites no principle at all."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "Before the fix, anyone applying a discount got a negative total."
+        }
+      ],
+      "why": "This is a general runtime claim beyond the single test case that was observed, and it carries no label or evidence."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e17",
+          "quote": "I checked this by running it: a $55.56 item at 10% off comes to $50.004, rounds to $50.00, and still pays shipping"
+        }
+      ],
+      "why": "Each runtime claim is backed by a test or run observed in the session (e16, e30, e31), and the reply states that evidence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e4",
+          "quote": "read <pstack>/poteto-mode/playbooks/bug-fix.md (full)"
+        }
+      ],
+      "why": "The agent matched and read the bug-fix playbook without being told its name."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t2",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "read <pstack>/poteto-mode/playbooks/feature.md (full)"
+        }
+      ],
+      "why": "The agent matched and read the feature playbook without being told its name."
+    }
+  ],
+  "dropped": []
+}

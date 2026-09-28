@@ -1,0 +1,92 @@
+{
+  "exit": 0,
+  "ms": 15643,
+  "timedOut": false,
+  "pid": 35640,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e19",
+          "quote": "**What was broken.** `shippingFor` in `src/shipping.js` decided on shipping from `items.length > 0`."
+        }
+      ],
+      "why": "The reply is organised as broken/fix/verification/principles prose, and the bug-fix playbook's six numbered steps never appear with per-step states; the session also has no task list."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e10",
+          "quote": "Reproducing and running the suite now, plus reading the principles I'll apply."
+        }
+      ],
+      "why": "Step 2 names the how and why skills, but no event opens either SKILL.md and the agent never gives a skip reason for them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e19",
+          "quote": "**Laziness Protocol.** The fix is one line in the function that owns the decision."
+        }
+      ],
+      "why": "The reply cites Laziness Protocol, but only fix-root-causes.md and sequence-verifiable-units.md were read (e11, e12); no event reads laziness-protocol."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e19",
+          "quote": "Measured on branch `fix/zero-qty-shipping`, in two commits."
+        }
+      ],
+      "why": "The runtime and cause claims are backed in the reply by failing-then-passing test output and direct node checks from e13 and e18, and the other sentences report the agent's own actions."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e4",
+          "quote": "read <pstack>/poteto-mode/playbooks/bug-fix.md (full)"
+        }
+      ],
+      "why": "Without being told the playbook name, the agent picked bug-fix and read its file in full before starting work."
+    }
+  ],
+  "dropped": []
+}

@@ -1,0 +1,232 @@
+{
+  "exit": 0,
+  "ms": 43775,
+  "timedOut": false,
+  "pid": 11416,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B2-mode-off",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t2"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e51",
+          "quote": "Steps 1 and 2 (`how` and `architect`) are marked done but were skipped."
+        }
+      ],
+      "why": "In t2 the main agent never opened feature.md or any principle file, kept no step list with states, and cited no principles, so the mode did not carry over."
+    },
+    {
+      "behavior": "B2-mode-off",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e44",
+          "quote": "Glad it works. The fix in `src/cart.js` is still uncommitted."
+        }
+      ],
+      "why": "The reply is short and plain, with no step list, no principle citations and no new work."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e59",
+          "quote": "principle-laziness-protocol: no lookup table or enum for one threshold"
+        },
+        {
+          "event": "e75",
+          "quote": "principle-laziness-protocol (read in full this turn)"
+        }
+      ],
+      "why": "The delegate cited model-the-domain and laziness-protocol at e59 before reading either file (it never read model-the-domain, and read laziness-protocol only at e73), and its final message has no handed steps or playbook steps with states."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e39",
+          "quote": "task list update: [done] 6"
+        },
+        {
+          "event": "e42",
+          "quote": "There's no PR because the repo has no git remote."
+        }
+      ],
+      "why": "The task list copied the six steps but marked steps 5 and 6 done, and the reply shows neither the commit staging nor the PR step happened, so the listed states are false."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e51",
+          "quote": "Steps 1 and 2 (`how` and `architect`) are marked done but were skipped."
+        }
+      ],
+      "why": "There is no task list, and the reply's Plan paraphrases a few steps without the numbered Feature steps or a state for each."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e42",
+          "quote": "I didn't run the how/why investigation or architect because the module is 12 lines and the fix stays inside one function."
+        }
+      ],
+      "why": "The reply explicitly skips both how and why with a concrete reason tied to this small module."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t2",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e51",
+          "quote": "I had already read the whole 18-line module this session, and there were only two realistic signatures, compared above."
+        }
+      ],
+      "why": "The reply explicitly skips how and architect with a concrete reason tied to this task, and does not claim they ran."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e42",
+          "quote": "I didn't clamp the result or add a guard for negative totals."
+        },
+        {
+          "event": "e25",
+          "quote": "read <pstack>/poteto-mode/principles/laziness-protocol.md (full)"
+        }
+      ],
+      "why": "All four cited principles were read by the main agent earlier (e4, e5, e25, e34), and each is tied to a concrete choice."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e51",
+          "quote": "**Design choices.**"
+        }
+      ],
+      "why": "The t2 reply to the user cites no principle at all."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e42",
+          "quote": "Nothing checks the range, so passing a value like 150 would still produce a negative total."
+        }
+      ],
+      "why": "This prediction about a 150% input was never run (only 0, 10, 25 and 100 were), and it carries no label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e51",
+          "quote": "A 50.01 subtotal totals 50.01, so it ships free."
+        }
+      ],
+      "why": "The runtime claims come from the agent's own runs at e46 and e49 or from earlier measured runs, and the rest reports actions or open decisions."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/bug-fix.md (full)"
+        }
+      ],
+      "why": "The agent matched and read the bug-fix playbook without being told its name."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e51",
+          "quote": "Steps 1 and 2 (`how` and `architect`) are marked done but were skipped."
+        }
+      ],
+      "why": "The reply refers to Feature steps, but no event in the session reads feature.md."
+    }
+  ],
+  "dropped": []
+}

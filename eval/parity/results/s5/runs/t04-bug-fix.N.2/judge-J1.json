@@ -1,0 +1,92 @@
+{
+  "exit": 0,
+  "ms": 13647,
+  "timedOut": false,
+  "pid": 36096,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "I fixed the shipping bug: a cart where every quantity is 0 now totals 0 instead of 5."
+        }
+      ],
+      "why": "The reply summarizes the work in prose and never lists the bug-fix playbook's numbered steps with a state for each."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "so I handled your message as a plain request"
+        }
+      ],
+      "why": "No event opened the how or why SKILL.md files, and the reply never mentions either skill or gives a reason for skipping them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "It now charges shipping only if at least one item has a quantity above 0."
+        }
+      ],
+      "why": "The reply cites no principle at all, and no principle file was read during the session."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "If checkout sends whole-number percentages like the test does, discounted orders are charged negative amounts right now."
+        }
+      ],
+      "why": "This sentence asserts production runtime behavior that no event observed, and it carries no measured, inferred or guess label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "the `/poteto-mode` command isn't installed in this session, so I handled your message as a plain request"
+        }
+      ],
+      "why": "The agent never matched or read playbooks/bug-fix.md and handled the request without any playbook."
+    }
+  ],
+  "dropped": []
+}

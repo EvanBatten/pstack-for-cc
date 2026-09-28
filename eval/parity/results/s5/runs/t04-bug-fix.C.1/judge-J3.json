@@ -1,0 +1,92 @@
+{
+  "exit": 0,
+  "ms": 13407,
+  "timedOut": false,
+  "pid": 32856,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e14",
+          "quote": "I fixed it: an order where every quantity is 0 now totals 0, with no shipping charge."
+        }
+      ],
+      "why": "The reply does not list the bug-fix playbook's numbered steps with states, and no task list appears in the events."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e14",
+          "quote": "**Cause:** `shippingFor` in `src/shipping.js` checked `items.length > 0`."
+        }
+      ],
+      "why": "No event opens the how or why SKILL.md, and the reply never mentions either skill or gives a reason to skip it."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e14",
+          "quote": "It now charges shipping only if at least one line has a quantity above 0"
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read in the session."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e14",
+          "quote": "which would charge a customer a negative amount"
+        }
+      ],
+      "why": "The reply predicts real customer impact that no event observed, and the sentence carries no measured, inferred or guess label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "rg -n -i \"shipping\" --glob '!node_modules'"
+        }
+      ],
+      "why": "No event reads playbooks/bug-fix.md, and the agent never names a matched playbook before it starts on the code."
+    }
+  ],
+  "dropped": []
+}

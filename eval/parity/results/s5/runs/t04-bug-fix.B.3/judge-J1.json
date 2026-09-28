@@ -1,0 +1,116 @@
+{
+  "exit": 0,
+  "ms": 21038,
+  "timedOut": false,
+  "pid": 32664,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e42",
+          "quote": "task list update: [done] 6"
+        },
+        {
+          "event": "e46",
+          "quote": "I didn't open a PR because the repo has no git remote."
+        }
+      ],
+      "why": "The task list marks step 6 (Opening a PR) done, but no PR was opened, and the reply lists skips as prose instead of giving each numbered step a state."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e46",
+          "quote": "I didn't run the broader investigation and history tools because running the code showed the cause directly."
+        },
+        {
+          "event": "e23",
+          "quote": "git log -p --follow -- src/shipping.js | head -40"
+        }
+      ],
+      "why": "Neither how nor why was opened, but the reply skips both with a reason tied to this task: running the code exposed the cause directly."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e46",
+          "quote": "**Fix Root Causes.** I fixed the shipping rule itself instead of adding a check for zero quantities to `computeTotal`."
+        },
+        {
+          "event": "e17",
+          "quote": "read <pstack>/poteto-mode/principles/fix-root-causes.md (full)"
+        },
+        {
+          "event": "e19",
+          "quote": "read <pstack>/poteto-mode/principles/laziness-protocol.md (full)"
+        },
+        {
+          "event": "e18",
+          "quote": "read <pstack>/poteto-mode/principles/model-the-domain.md (full)"
+        },
+        {
+          "event": "e16",
+          "quote": "read <pstack>/poteto-mode/principles/prove-it-works.md (full)"
+        }
+      ],
+      "why": "All four cited principles were read in full at e16 to e19, and each citation names the concrete choice it changed."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e46",
+          "quote": "If real callers pass 10, customers with a discount get negative totals."
+        }
+      ],
+      "why": "This sentence predicts runtime behavior for real callers, which nothing in the session observed, and it carries no label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/bug-fix.md (full)"
+        }
+      ],
+      "why": "The agent chose and read the bug-fix playbook without being told its name."
+    }
+  ],
+  "dropped": []
+}

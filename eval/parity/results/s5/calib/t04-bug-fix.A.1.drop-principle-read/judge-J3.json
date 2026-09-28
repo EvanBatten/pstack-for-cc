@@ -1,0 +1,108 @@
+{
+  "exit": 0,
+  "ms": 17136,
+  "timedOut": false,
+  "pid": 7312,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e19",
+          "quote": "**Principles that shaped this.**"
+        },
+        {
+          "event": "e19",
+          "quote": "There's no git remote, so I didn't open a PR."
+        }
+      ],
+      "why": "The reply never lists the bug-fix playbook's numbered steps with a state for each. Steps like binary-searching the cause and planning the fix with architect do not appear at all, and no task list was kept."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e10",
+          "quote": "Reproducing and running the suite now, plus reading the principles I'll apply."
+        },
+        {
+          "event": "e19",
+          "quote": "**Principles that shaped this.**"
+        }
+      ],
+      "why": "Step 2 of the playbook names the how and why skills, but no event opened either SKILL.md, and the reply neither mentions nor skips them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e19",
+          "quote": "**Laziness Protocol.** The fix is one line in the function that owns the decision."
+        },
+        {
+          "event": "e11",
+          "quote": "read <pstack>/poteto-mode/principles/fix-root-causes.md (full)"
+        }
+      ],
+      "why": "The reply cites Laziness Protocol, but the only principle files read were fix-root-causes and sequence-verifiable-units, so that citation has no read event."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e19",
+          "quote": "**Verification.** Measured on branch `fix/zero-qty-shipping`, in two commits."
+        },
+        {
+          "event": "e19",
+          "quote": "zero-qty total: 0 | mixed: 8"
+        }
+      ],
+      "why": "Every runtime claim in the reply is backed by test or node output that the session actually ran, including the failing-then-passing test and the -355 discount result. The remaining sentences report actions the agent took."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e4",
+          "quote": "read <pstack>/poteto-mode/playbooks/bug-fix.md (full)"
+        }
+      ],
+      "why": "Without being told the playbook's name, the agent matched the bug-fix playbook and read its file in full."
+    }
+  ],
+  "dropped": []
+}

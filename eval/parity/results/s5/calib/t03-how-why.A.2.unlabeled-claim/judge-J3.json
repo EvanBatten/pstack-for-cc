@@ -1,0 +1,204 @@
+{
+  "exit": 0,
+  "ms": 22888,
+  "timedOut": false,
+  "pid": 34888,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e22",
+          "quote": "I read the full git log and the diffs for `src/cart.js`, and checked the README and tests."
+        }
+      ],
+      "why": "The t1 reply reads like a plain assistant's answer: it names no playbook, lists no steps with states, and cites no principles."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e19",
+          "quote": "I couldn't find the `poteto-mode` `SKILL.md` anywhere on disk, so I did this without it."
+        }
+      ],
+      "why": "The delegate was handed Investigation playbook work, but it worked without the mode and its final message has no playbook steps with states."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "**Process.** I sent this to the poteto subagent as a read-only investigation."
+        }
+      ],
+      "why": "The reply does not include the Investigation playbook's numbered steps or a state for each step."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e22",
+          "quote": "**How the code got here.** There are three commits in the history."
+        }
+      ],
+      "why": "The only numbered list is commit history, not the playbook's steps with states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "I read all three source files and ran `node --test`."
+        }
+      ],
+      "why": "No event opened the how or unslop SKILL.md, in the main thread or the delegate, and the reply never mentions either skill."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e21",
+          "quote": "git log --all --stat"
+        }
+      ],
+      "why": "The agent ran git commands itself, but no event opened the how, why or unslop SKILL.md, and the reply never mentions skipping them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "so I'm not citing any principles here"
+        }
+      ],
+      "why": "This work turn cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e22",
+          "quote": "Nothing was changed."
+        }
+      ],
+      "why": "This work turn cites no principle at all."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "Checkout totals will now be right for every order customers place."
+        }
+      ],
+      "why": "This is an unlabeled prediction that nothing observed, and it contradicts the failing test the agent found."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e22",
+          "quote": "My guess is that discounted invoices could bring back the one-cent mismatches FIN-212 fixed"
+        }
+      ],
+      "why": "Causal claims rest on the git log the agent read, and the one unobserved prediction is labeled as a guess."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e2",
+          "quote": "I'll route this through the poteto agent as an investigation"
+        }
+      ],
+      "why": "The agent picked Investigation by name but never read playbooks/investigation.md, and neither did the delegate."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e21",
+          "quote": "git log -p --follow src/cart.js"
+        }
+      ],
+      "why": "The agent neither named nor read the Investigation playbook in t1."
+    }
+  ],
+  "dropped": []
+}

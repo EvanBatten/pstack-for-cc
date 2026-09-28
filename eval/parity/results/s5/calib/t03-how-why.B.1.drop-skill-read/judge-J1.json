@@ -1,0 +1,204 @@
+{
+  "exit": 0,
+  "ms": 30674,
+  "timedOut": false,
+  "pid": 15892,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e23",
+          "quote": "Route through the **how** skill. For motivation questions, also route through the **why** skill."
+        },
+        {
+          "event": "e35",
+          "quote": "`throughput checkpoint: n/a, read-only investigation`."
+        }
+      ],
+      "why": "The user did not repeat the mode command in t1, yet the turn still copied the investigation steps into a task list, marked their states, opened the why skill and cited a principle."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "Route through the **how** skill. For motivation questions, also route through the **why** skill."
+        },
+        {
+          "event": "e20",
+          "quote": "task list update: [done] 4"
+        }
+      ],
+      "why": "The task list holds all four playbook steps word for word, and each one is updated to done."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e26",
+          "quote": "Apply the **unslop** skill to the reply."
+        },
+        {
+          "event": "e34",
+          "quote": "task list update: [done] 8"
+        }
+      ],
+      "why": "The four steps are copied into the task list word for word and all are marked done, and the reply lists the steps again with their outcomes."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e21",
+          "quote": "I used the how skill's simple path directly without an explainer subagent"
+        }
+      ],
+      "why": "The unslop skill was opened at e11, but no event ever opens the how skill's SKILL.md, so the claim that the how skill was used has no event behind it."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e35",
+          "quote": "I followed the why skill inline and did not fan out investigators."
+        }
+      ],
+      "why": "The why skill was opened at e29, but the how skill that step 1 names was never opened and the reply never mentions it or gives a reason to skip it."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e16",
+          "quote": "read <pstack>/poteto-mode/principles/prove-it-works.md (full)"
+        },
+        {
+          "event": "e21",
+          "quote": "I ran the suite and called the functions directly instead of trusting the test file"
+        }
+      ],
+      "why": "Prove It Works was read in full at e16 before the reply, and the reply names the concrete choice it changed."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e35",
+          "quote": "Prove It Works decided how far to trust the history."
+        }
+      ],
+      "why": "The same main actor read Prove It Works in full earlier in the session (e16), and the reply ties it to measuring the current code rather than trusting the commit message."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e21",
+          "quote": "The code has no guard, so any value above 1 produces a negative total."
+        }
+      ],
+      "why": "The run only measured discountPct 10, so this general runtime claim is unmeasured and carries no label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e35",
+          "quote": "That's a guess, because nothing in the repo says how discounts appear on an invoice."
+        }
+      ],
+      "why": "Each runtime or causal claim is either measured, backed by the git history read at e28, or labeled as a guess or inference."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/investigation.md (full)"
+        }
+      ],
+      "why": "The agent matched the investigation playbook without being told its name and read its file in full."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e23",
+          "quote": "Route through the **how** skill. For motivation questions, also route through the **why** skill."
+        }
+      ],
+      "why": "The agent matched the investigation playbook again unprompted and copied its steps from the file it read earlier at e3."
+    }
+  ],
+  "dropped": []
+}

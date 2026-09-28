@@ -1,0 +1,112 @@
+{
+  "exit": 0,
+  "ms": 22859,
+  "timedOut": false,
+  "pid": 16064,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e42",
+          "quote": "task list update: [done] 6"
+        },
+        {
+          "event": "e46",
+          "quote": "I didn't open a PR because the repo has no git remote."
+        },
+        {
+          "event": "e41",
+          "quote": "task list update: [done] 5"
+        }
+      ],
+      "why": "The task list marks every step done, including step 6 (Opening a PR), which never ran, and step 3, whose delegation was skipped. The reply has no numbered steps with states, only a loose list of skipped steps."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e46",
+          "quote": "I didn't run the broader investigation and history tools because running the code showed the cause directly."
+        },
+        {
+          "event": "e23",
+          "quote": "git log -p --follow -- src/shipping.js | head -40"
+        }
+      ],
+      "why": "No event opened the how or why skills, but the reply explicitly skips the investigation and history tools with a reason tied to this task, and the agent checked history itself with git log."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e46",
+          "quote": "**Fix Root Causes.** I fixed the shipping rule itself instead of adding a check for zero quantities to `computeTotal`."
+        },
+        {
+          "event": "e17",
+          "quote": "read <pstack>/poteto-mode/principles/fix-root-causes.md (full)"
+        },
+        {
+          "event": "e19",
+          "quote": "read <pstack>/poteto-mode/principles/laziness-protocol.md (full)"
+        }
+      ],
+      "why": "Each of the four cited principles was read in full at e16 to e19 and is tied to a concrete choice."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e46",
+          "quote": "I called `computeTotal` directly, which is the function checkout calls."
+        }
+      ],
+      "why": "No event observed that checkout calls computeTotal, and the sentence carries no label. The unlabeled prediction about negative totals for real callers has the same problem."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/bug-fix.md (full)"
+        }
+      ],
+      "why": "The agent chose the bug-fix playbook without being told its name and read its file in full."
+    }
+  ],
+  "dropped": []
+}

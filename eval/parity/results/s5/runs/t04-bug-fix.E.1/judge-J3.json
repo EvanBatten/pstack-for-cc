@@ -1,0 +1,96 @@
+{
+  "exit": 0,
+  "ms": 18218,
+  "timedOut": false,
+  "pid": 36876,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "**Fix.** Shipping is now charged only when at least one line has a positive quantity"
+        }
+      ],
+      "why": "The reply is organized as Root cause, Fix, Verification and Remaining failure, with no bug-fix steps listed or given a state. Steps 2 (binary-search with how/why) and 3 (delegate and review) are never shown as done or skipped."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "**Root cause.** `shippingFor` in `src/shipping.js` checked `items.length > 0`."
+        }
+      ],
+      "why": "Step 2 names the how and why skills, but no event opens either SKILL.md. The reply never mentions them or gives a reason for skipping them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "The **Fix Root Causes** principle meant fixing that rule in `shippingFor`."
+        },
+        {
+          "event": "e5",
+          "quote": "principles/fix-root-causes.md (partial)"
+        }
+      ],
+      "why": "Both cited principles were read only partially (e5 and e6, cut off by head -80), not in full as required."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "That's a real pricing bug from `ff910e0`, and it's separate from this one"
+        }
+      ],
+      "why": "The reply blames the discount bug on commit ff910e0, but no event looked at that commit's history for the discount code, and the claim carries no label or evidence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/bug-fix.md (full)"
+        }
+      ],
+      "why": "The agent picked the bug-fix playbook without being told its name and read the whole file."
+    }
+  ],
+  "dropped": []
+}

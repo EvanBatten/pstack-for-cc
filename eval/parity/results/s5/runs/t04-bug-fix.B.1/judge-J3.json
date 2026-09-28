@@ -1,0 +1,108 @@
+{
+  "exit": 0,
+  "ms": 25332,
+  "timedOut": false,
+  "pid": 32416,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "1. Reproduce it yourself on the matching surface via the control skill (Non-negotiables)."
+        },
+        {
+          "event": "e58",
+          "quote": "6. I skipped opening a PR because the repo has no remote."
+        },
+        {
+          "event": "e58",
+          "quote": "I skipped the control skill because this is a library with no CLI or UI, so I called `computeTotal` directly."
+        }
+      ],
+      "why": "The task list copies all six bug-fix steps nearly word for word. The reply gives each step a state, and every skip has a reason tied to this task."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e58",
+          "quote": "I skipped the separate investigation agents because the pricing code is three files and about 20 lines"
+        }
+      ],
+      "why": "No event opened the SKILL.md of the how or why skill. The reply never names either skill, and a vague mention of 'investigation agents' does not count as an explicit skip of how and why."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e17",
+          "quote": "read <pstack>/poteto-mode/principles/fix-root-causes.md (full)"
+        },
+        {
+          "event": "e33",
+          "quote": "read <pstack>/poteto-mode/principles/model-the-domain.md (full)"
+        },
+        {
+          "event": "e58",
+          "quote": "I did not add a special case in `computeTotal` or drop zero-quantity lines before pricing."
+        }
+      ],
+      "why": "The reply cites five principles, each with the concrete choice it changed. The main agent read every one of those files in full earlier (e17 to e20 and e33)."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e58",
+          "quote": "Setting a quantity to 0 leaves the line in the cart."
+        }
+      ],
+      "why": "This sentence states how checkout behaves at runtime when a quantity changes. No event observed that behavior, because the repro built the zero-quantity array by hand, and the sentence has no label or evidence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/bug-fix.md (full)"
+        }
+      ],
+      "why": "The agent matched the bug-fix playbook without being told its name and read the file in full."
+    }
+  ],
+  "dropped": []
+}

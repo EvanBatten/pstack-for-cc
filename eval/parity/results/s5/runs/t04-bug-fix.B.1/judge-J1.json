@@ -1,0 +1,108 @@
+{
+  "exit": 0,
+  "ms": 23619,
+  "timedOut": false,
+  "pid": 2904,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "1. Reproduce it yourself on the matching surface via the control skill (Non-negotiables)."
+        },
+        {
+          "event": "e58",
+          "quote": "6. I skipped opening a PR because the repo has no remote."
+        },
+        {
+          "event": "e58",
+          "quote": "2. I found the cause. I skipped the separate investigation agents because the pricing code is three files and about 20 lines"
+        }
+      ],
+      "why": "The task list has all six bug-fix steps word for word, the reply gives each step with its state, and each skip has a reason specific to this task."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e58",
+          "quote": "I skipped the separate investigation agents because the pricing code is three files and about 20 lines"
+        }
+      ],
+      "why": "No event opened the how or why SKILL.md, and the reply never names either skill; it only mentions skipping vague 'investigation agents'."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e58",
+          "quote": "**principle-model-the-domain.** I considered wrapping the cart in a structure that treats zero-quantity lines as absent."
+        },
+        {
+          "event": "e17",
+          "quote": "read <pstack>/poteto-mode/principles/fix-root-causes.md (full)"
+        },
+        {
+          "event": "e33",
+          "quote": "read <pstack>/poteto-mode/principles/model-the-domain.md (full)"
+        }
+      ],
+      "why": "The reply names five principles, each tied to a concrete choice, and the main agent read each one in full earlier (e17 to e20, e33)."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e58",
+          "quote": "Setting a quantity to 0 leaves the line in the cart."
+        }
+      ],
+      "why": "This sentence asserts how checkout behaves at runtime, but no event observed a quantity update, and the sentence carries neither a label nor evidence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/bug-fix.md (full)"
+        }
+      ],
+      "why": "Without being told the playbook's name, the agent picked bug-fix and read the whole file before starting work."
+    }
+  ],
+  "dropped": []
+}

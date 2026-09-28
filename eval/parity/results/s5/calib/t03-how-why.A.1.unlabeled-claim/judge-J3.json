@@ -1,0 +1,192 @@
+{
+  "exit": 0,
+  "ms": 20799,
+  "timedOut": false,
+  "pid": 16484,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "Line rounding was a deliberate fix for a finance reconciliation problem."
+        }
+      ],
+      "why": "The t1 reply reads like a plain assistant answer: it names no playbook, lists no steps with states and cites no principles."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "`computeTotal` gets there in four steps."
+        }
+      ],
+      "why": "The reply never lists the Investigation playbook's numbered steps with states, and no task list was kept."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "Line rounding was a deliberate fix for a finance reconciliation problem."
+        }
+      ],
+      "why": "The reply carries no playbook step list and no per-step states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "The playbook says to route through a `how` skill, but it isn't in the skill tree"
+        }
+      ],
+      "why": "No event opened the how SKILL.md; the claim that it is missing was never checked by any event, and unslop is never mentioned or run."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "Line rounding was a deliberate fix for a finance reconciliation problem."
+        }
+      ],
+      "why": "The how, why and unslop skills were never opened and never explicitly skipped in t1."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "I haven't read that principle's own file this session, so this is a loose citation."
+        }
+      ],
+      "why": "The reply cites Prove It Works, but no event read that principle's file."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "Line rounding was a deliberate fix for a finance reconciliation problem."
+        }
+      ],
+      "why": "The t1 reply cites no principle at all."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "Checkout totals will now be right for every order customers place."
+        }
+      ],
+      "why": "This is an unlabeled prediction that nothing observed, and nothing was even changed."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "Without a discount, the final round does nothing, and the total still equals the rounded lines plus shipping."
+        }
+      ],
+      "why": "This runtime-behavior claim was never observed and has neither a label nor evidence in the same sentence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e2",
+          "quote": "I'll follow the Investigation playbook and read the cart code."
+        },
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/investigation.md (full)"
+        }
+      ],
+      "why": "The agent matched Investigation without being told its name and read the playbook file."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "Line rounding was a deliberate fix for a finance reconciliation problem."
+        }
+      ],
+      "why": "The t1 turn never matched or named the Investigation playbook (a history/why question) and did not apply it."
+    }
+  ],
+  "dropped": []
+}

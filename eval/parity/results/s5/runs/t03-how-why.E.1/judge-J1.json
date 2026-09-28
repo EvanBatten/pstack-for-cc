@@ -1,0 +1,188 @@
+{
+  "exit": 0,
+  "ms": 23449,
+  "timedOut": false,
+  "pid": 22788,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e10",
+          "quote": "It rounds each line because of how Finance reconciles invoices."
+        }
+      ],
+      "why": "The t1 reply reads like a plain assistant. It opens no playbook, lists no Investigation steps with states, does not run how or why, and names no principle."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "The total comes out of one function, `computeTotal` in `src/cart.js:8`."
+        }
+      ],
+      "why": "The agent read the playbook in e3, but the reply never lists its four numbered steps with states, and it has no throughput checkpoint line."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e10",
+          "quote": "It rounds each line because of how Finance reconciles invoices."
+        }
+      ],
+      "why": "The reply has no Investigation step list and gives no per-step states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "I read them directly and loaded none of the principle skills"
+        }
+      ],
+      "why": "No event opens the how or unslop SKILL.md, and the reply never skips either skill with a reason."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e10",
+          "quote": "It rounds each line because of how Finance reconciles invoices."
+        }
+      ],
+      "why": "The turn has no event opening the how, why or unslop SKILL.md, and the reply never mentions skipping any of them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "No principle shaped a decision here."
+        }
+      ],
+      "why": "This is a work turn and it cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e10",
+          "quote": "That's a question for Finance, not something the code can decide."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "That's a guess, and I didn't find a case that shows it."
+        }
+      ],
+      "why": "Runtime claims either cite the test and probe output from e5 or carry a label, like the half-cent case labeled a guess. The rest describes code the agent read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e10",
+          "quote": "Without a discount this makes no difference."
+        }
+      ],
+      "why": "This sentence predicts runtime behavior that no event observed, and it carries neither a label nor evidence in the same sentence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/investigation.md (full)"
+        }
+      ],
+      "why": "The agent matched the Investigation playbook without being told its name and read the playbook file in full."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "git log --format='--- %h %an %ad%n%B' --date=short"
+        }
+      ],
+      "why": "The turn goes straight to git history and never matches or names a playbook. It also never routes the motivation question through why as the Investigation playbook directs."
+    }
+  ],
+  "dropped": []
+}

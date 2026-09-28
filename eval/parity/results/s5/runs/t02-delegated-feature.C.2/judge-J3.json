@@ -1,0 +1,240 @@
+{
+  "exit": 0,
+  "ms": 22028,
+  "timedOut": false,
+  "pid": 9352,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e32",
+          "quote": "`FLAT5` now works only when the subtotal is at least 20."
+        },
+        {
+          "event": "e21",
+          "quote": "I'll add a 20 minimum subtotal to `FLAT5`."
+        }
+      ],
+      "why": "The turn went straight to edits. It matched no playbook, kept no step list and read no principles, so it reads like a plain assistant."
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e37",
+          "quote": "I'd block this PR on three things."
+        }
+      ],
+      "why": "No playbook applies, but the review still shows no mode discipline: no principle was read or named, and the mode was never entered to begin with."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e19",
+          "quote": "I didn't recognise `/poteto-mode` as an available skill, so I handled this as a normal request."
+        }
+      ],
+      "why": "The reply has none of the Feature playbook's numbered steps and no step states."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e32",
+          "quote": "All 18 tests pass."
+        }
+      ],
+      "why": "The reply has no Feature step list and no per-step states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e19",
+          "quote": "I didn't recognise `/poteto-mode` as an available skill, so I handled this as a normal request."
+        }
+      ],
+      "why": "No event opens the how or architect SKILL.md, and neither skill is mentioned or skipped with a reason."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e21",
+          "quote": "I'll add a 20 minimum subtotal to `FLAT5`."
+        }
+      ],
+      "why": "The agent went straight to edits and never ran or skipped how or architect."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e19",
+          "quote": "Some decisions you may want to change:"
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e32",
+          "quote": "**One decision to confirm:**"
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e37",
+          "quote": "I'd block this PR on three things."
+        }
+      ],
+      "why": "This review is a work turn, yet it cites no principle and no principle file was read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e19",
+          "quote": "If some caller was passing fractions like `0.1`, it will now get only a 0.1% discount"
+        }
+      ],
+      "why": "This is an unrun prediction about callers, and it carries no measured, inferred or guess label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e32",
+          "quote": "The subtotal is rounded to cents first, so floating-point drift can't make an exact 20 fail."
+        }
+      ],
+      "why": "This asserts runtime behavior with no label or evidence, and t2 later shows no test covers it."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e37",
+          "quote": "A cart page that recomputes on each change would break instead of showing"
+        }
+      ],
+      "why": "This is a prediction about runtime behavior that nothing observed, and it has no label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e19",
+          "quote": "so I handled this as a normal request."
+        }
+      ],
+      "why": "No Feature playbook was matched and no playbook file was read."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e21",
+          "quote": "I'll add a 20 minimum subtotal to `FLAT5`."
+        }
+      ],
+      "why": "No playbook was matched and feature.md was never read."
+    }
+  ],
+  "dropped": []
+}

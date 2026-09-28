@@ -1,0 +1,160 @@
+{
+  "exit": 0,
+  "ms": 29238,
+  "timedOut": false,
+  "pid": 13300,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e74",
+          "quote": "I made this change myself and didn't hand it to a separate agent as the workflow calls for."
+        }
+      ],
+      "why": "The t1 reply names two principles, but it never names the Feature playbook or carries its steps with states, and the delegation step is waived without being tracked as a step."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e17",
+          "quote": "invoke skill poteto-mode, which loads <pstack>/poteto-mode/SKILL.md in full"
+        },
+        {
+          "event": "e20",
+          "quote": "read <pstack>/poteto-mode/principles/test-behavior-not-implementation.md"
+        },
+        {
+          "event": "e21",
+          "quote": "read <pstack>/poteto-mode/principles/sequence-verifiable-units.md"
+        },
+        {
+          "event": "e58",
+          "quote": "1. `6aaae06` treat discountPct as a percent and price carts as lines"
+        }
+      ],
+      "why": "The code-writing delegate loaded the mode and read both principles before citing them, and its final message reports each of the three handed commit steps as done with per-commit verification."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "**How I split the work.** The fix, the tax table and the receipt each depend on the one before"
+        }
+      ],
+      "why": "The reply summarizes the work in prose and never lists the Feature playbook's numbered steps with per-step states, and no todolist event appears."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e74",
+          "quote": "**Two things you should know.**"
+        }
+      ],
+      "why": "The t1 reply has no numbered Feature steps with states, only prose sections."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "I skipped a separate design review and adversarial review"
+        }
+      ],
+      "why": "No event opens the how or architect SKILL.md, how is never mentioned, and the loose 'design review' skip does not name architect."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e74",
+          "quote": "**How it's built (Model the Domain).**"
+        }
+      ],
+      "why": "Neither how nor architect is opened or explicitly skipped in t1."
+    }
+  ],
+  "dropped": [
+    {
+      "item": {
+        "behavior": "B7-cite-read",
+        "unit": "t0",
+        "verdict": "pass",
+        "evidence": [
+          {
+            "event": "e39",
+            "quote": "x"
+          }
+        ],
+        "why": "placeholder"
+      },
+      "reason": "no quote found in a cited event of the unit"
+    }
+  ]
+}

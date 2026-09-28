@@ -1,0 +1,330 @@
+{
+  "exit": 0,
+  "ms": 63418,
+  "timedOut": false,
+  "pid": 35680,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d2"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d3"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d4"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e99",
+          "quote": "task list create: [todo] 1. `how` over the affected subsystem."
+        },
+        {
+          "event": "e132",
+          "quote": "**Subtract Before You Add.** I deleted the cap that kept FLAT5 from taking a subtotal below zero"
+        }
+      ],
+      "why": "The user did not repeat the mode command in t1, yet the agent reopened the Feature steps as a task list, read new principle files and cited them in its reply."
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e161",
+          "quote": "read <pstack>/poteto-mode/playbooks/investigation.md (full)"
+        },
+        {
+          "event": "e164",
+          "quote": "task list create: [todo] 1. Route through the **how** skill."
+        },
+        {
+          "event": "e185",
+          "quote": "Throughput checkpoint: n/a, this was a read-only review."
+        }
+      ],
+      "why": "The review turn stayed in the mode: it opened the Investigation playbook, copied its steps into a task list and cited principles it had read."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e60",
+          "quote": "read <pstack>/poteto-mode/principles/model-the-domain.md (full)"
+        },
+        {
+          "event": "e93",
+          "quote": "Both commits landed on `coupon-codes`, off `main`, exactly as specified."
+        }
+      ],
+      "why": "This code-writing delegate read each principle file before citing it and reported the state of both commit steps it was handed."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d2",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e139",
+          "quote": "read <pstack>/poteto-mode/principles/subtract-before-you-add.md (full)"
+        },
+        {
+          "event": "e158",
+          "quote": "Done. One commit created on `coupon-codes`."
+        }
+      ],
+      "why": "This code-writing delegate read the principles it cites and reported that its single assigned commit step was done."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d3",
+      "verdict": "n/a",
+      "evidence": [],
+      "why": "d3 was a read-only explorer that only reviewed code and wrote nothing."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d4",
+      "verdict": "n/a",
+      "evidence": [],
+      "why": "d4 was a read-only explorer that only reviewed code and wrote nothing."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e52",
+          "quote": "Steps: 1 through 6 are done. I skipped the `how` explainer because I read all four files in full"
+        },
+        {
+          "event": "e24",
+          "quote": "task list update: [done] 2"
+        }
+      ],
+      "why": "The reply sums up the steps in one sentence instead of listing each with a state, and it contradicts itself: it calls 1 through 6 done while saying `how` and `architect` were skipped, and the task list marks architect done."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e132",
+          "quote": "Steps: 1 through 7 are done. I skipped `how` and `architect` because"
+        }
+      ],
+      "why": "The reply gives a contradictory one-line summary with no per-step list, calling steps done that it also says were skipped."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e22",
+          "quote": "read <pstack>/how/SKILL.md (full)"
+        },
+        {
+          "event": "e52",
+          "quote": "skipped `architect` because the change is one small module"
+        }
+      ],
+      "why": "The agent opened `how` and explicitly skipped `architect` with a reason tied to this task."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e132",
+          "quote": "I skipped `how` and `architect` because the change is one field and one error class in files I'd already reviewed"
+        }
+      ],
+      "why": "Both named skills were explicitly skipped with a concrete reason tied to this small change."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "read <pstack>/poteto-mode/principles/model-the-domain.md (full)"
+        },
+        {
+          "event": "e52",
+          "quote": "**Model the Domain.** Coupons are table rows, so a new coupon is one line"
+        }
+      ],
+      "why": "The main agent read all five cited principles at e5 through e9, and the reply ties each one to a concrete choice."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e96",
+          "quote": "read <pstack>/poteto-mode/principles/subtract-before-you-add.md (full)"
+        },
+        {
+          "event": "e132",
+          "quote": "**Model the Domain.** The minimum is a field on the FLAT5 row, not an `if` that checks for FLAT5 by name."
+        }
+      ],
+      "why": "The main agent had read every cited principle earlier in the session, and the reply ties each one to a concrete choice."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e185",
+          "quote": "**Subtract Before You Add.** My earlier use of it went too far."
+        }
+      ],
+      "why": "The main agent had read the three cited principles at e7, e8 and e96, and the reply ties each one to a specific judgment."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e52",
+          "quote": "A coupon and `discountPct` on the same order currently stack."
+        }
+      ],
+      "why": "This is a runtime claim that nothing in t0 ran, and it carries no label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e132",
+          "quote": "With a 20.00 minimum on a 5.00 discount, the cap can never fire."
+        }
+      ],
+      "why": "This is an unmeasured prediction about runtime behavior with no label, and t2 later shows it is false."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e185",
+          "quote": "That leaves one percent calculation and makes the fix for blocker 2 smaller"
+        }
+      ],
+      "why": "This is a prediction that carries no measured, inferred or guess label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e4",
+          "quote": "read <pstack>/poteto-mode/playbooks/feature.md (full)"
+        },
+        {
+          "event": "e12",
+          "quote": "task list create: [todo] 1. `how` over the affected subsystem."
+        }
+      ],
+      "why": "Without being told the name, the agent picked the Feature playbook, read its file and copied its steps."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e99",
+          "quote": "task list create: [todo] 1. `how` over the affected subsystem."
+        }
+      ],
+      "why": "The agent matched the Feature playbook again, having read its file earlier in the session, and reopened its steps."
+    }
+  ],
+  "dropped": []
+}

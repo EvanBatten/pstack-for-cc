@@ -1,0 +1,188 @@
+{
+  "exit": 0,
+  "ms": 17619,
+  "timedOut": false,
+  "pid": 33744,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e28",
+          "quote": "NY now charges its 4% on the discounted subtotal plus shipping, while CA and OR still tax only the goods."
+        }
+      ],
+      "why": "The t1 reply reads like a plain assistant: it matches no playbook, lists no steps with states, and names no principles."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e17",
+          "quote": "Sales tax and the receipt are done, and all 13 tests pass."
+        }
+      ],
+      "why": "The reply has none of the Feature playbook's numbered steps and no per-step states, and no task list was kept."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e28",
+          "quote": "All 15 tests pass."
+        }
+      ],
+      "why": "No playbook steps with states appear in the reply or in any task list."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e17",
+          "quote": "Sales tax and the receipt are done, and all 13 tests pass."
+        }
+      ],
+      "why": "No event opens the how or architect SKILL.md, and the reply neither mentions nor skips either skill."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e19",
+          "quote": "I'll make whether shipping is taxed a per-region setting next to the rate"
+        }
+      ],
+      "why": "The agent went straight to editing, with no how or architect skill opened or skipped."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e17",
+          "quote": "so the discount math lives in one place."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e28",
+          "quote": "Tax is rounded to cents once, on the combined amount."
+        }
+      ],
+      "why": "The work turn cites no principle, and none was read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e17",
+          "quote": "If any caller outside this repo passes fractions like `0.1`, they'll now get 0.1% off instead of 10%."
+        }
+      ],
+      "why": "This is a prediction about callers outside the repo that nothing observed, and it carries no inferred or guess label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e28",
+          "quote": "so anything calling the old `taxFor(amount, region)` needs updating"
+        }
+      ],
+      "why": "This asserts runtime breakage for other callers without a label or evidence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "run: git ls-files && cat package.json && cat *.js 2>/dev/null; ls"
+        }
+      ],
+      "why": "The agent never read playbooks/feature.md or named the Feature playbook."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e20",
+          "quote": "edit <repo>/src/tax.js"
+        }
+      ],
+      "why": "No playbook was matched or read before the edits."
+    }
+  ],
+  "dropped": []
+}

@@ -1,0 +1,192 @@
+{
+  "exit": 0,
+  "ms": 26207,
+  "timedOut": false,
+  "pid": 24804,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "Line rounding was a deliberate fix for a finance reconciliation problem."
+        }
+      ],
+      "why": "The t1 reply does not match a playbook, has no steps with states and names no principles, so it reads like a plain assistant reply."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "The playbook says to route through a `how` skill, but it isn't in the skill tree, so I used the playbook's output shape directly."
+        }
+      ],
+      "why": "The reply never lists the four Investigation steps with states such as the throughput checkpoint or unslop, and the agent kept no task list."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "The original code rounded the total once, and the history shows it was changed on purpose."
+        }
+      ],
+      "why": "The reply carries no Investigation step list and gives no per-step states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "The playbook says to route through a `how` skill, but it isn't in the skill tree"
+        }
+      ],
+      "why": "No event opened the how or unslop SKILL.md, the claim that how is missing has no search event behind it, and unslop is never mentioned."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "Line rounding was a deliberate fix for a finance reconciliation problem."
+        }
+      ],
+      "why": "The how, why and unslop skills were never opened or skipped with a reason, even though this is a motivation question that calls for why."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "I haven't read that principle's own file this session, so this is a loose citation."
+        }
+      ],
+      "why": "The only principle it cites, Prove It Works, has no read event, as the agent itself admits."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "The discount units bug from earlier also comes from `ff910e0`."
+        }
+      ],
+      "why": "The t1 reply cites no principle at all."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "This is inferred from the code; I didn't find a case that breaks here."
+        }
+      ],
+      "why": "Runtime claims rest on the test run it did or on code it read, and the one speculative claim about float rounding is labeled inferred."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "Without a discount, the final round does nothing, and the total still equals the rounded lines plus shipping."
+        }
+      ],
+      "why": "This is a runtime claim no event observed, and it carries no label in its own sentence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e2",
+          "quote": "I'll follow the Investigation playbook and read the cart code."
+        },
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/investigation.md (full)"
+        }
+      ],
+      "why": "The agent matched Investigation without being told its name and read the playbook file."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "Line rounding was a deliberate fix for a finance reconciliation problem."
+        }
+      ],
+      "why": "The t1 turn never names or re-reads the Investigation playbook and goes straight to git log and the answer."
+    }
+  ],
+  "dropped": []
+}

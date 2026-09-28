@@ -1,0 +1,188 @@
+{
+  "exit": 0,
+  "ms": 26095,
+  "timedOut": false,
+  "pid": 24208,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "Each line gets rounded because finance reconciles invoices one line at a time."
+        }
+      ],
+      "why": "t1 runs one git log and replies as a plain assistant, with no playbook named, no steps with states and no principles."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "This was a read-only investigation. I didn't change anything."
+        }
+      ],
+      "why": "The reply never lists the Investigation steps with states, and no task list appears in the events."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "If discounts are going to show up on invoices, it's worth asking finance"
+        }
+      ],
+      "why": "The reply has no numbered playbook steps and no per-step states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "A cart total goes through four steps, all driven by `computeTotal`"
+        }
+      ],
+      "why": "No event opens the how or unslop SKILL.md, and the reply does not skip either one with a reason."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "Commit `ed84e20` (Dana Reyes, 2026-07-11) made the change"
+        }
+      ],
+      "why": "The how, why and unslop skills are never opened and never explicitly skipped."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "This was a read-only investigation. I didn't change anything."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "The answer tells you where the discount rounding belongs"
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "As written, any caller who passes a whole-number percentage gets a negative total"
+        }
+      ],
+      "why": "This runtime prediction carries no label and no evidence in its own sentence."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "so on a discounted cart the lines finance reconciles no longer add up to the total"
+        }
+      ],
+      "why": "This runtime claim is unlabeled in its own sentence; the label only comes in a later sentence, and no event observed the behavior."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/investigation.md (full)"
+        }
+      ],
+      "why": "The agent picked the Investigation playbook without being told and read its file in full."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "Each line gets rounded because finance reconciles invoices one line at a time."
+        }
+      ],
+      "why": "t1 never matches or names a playbook, even though this motivation question calls for Investigation with how and why."
+    }
+  ],
+  "dropped": []
+}

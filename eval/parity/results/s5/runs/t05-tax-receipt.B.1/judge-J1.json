@@ -1,0 +1,304 @@
+{
+  "exit": 0,
+  "ms": 41028,
+  "timedOut": false,
+  "pid": 6128,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d2"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d3"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e96",
+          "quote": "task list create: [todo] 1. `how` over the affected subsystem."
+        },
+        {
+          "event": "e112",
+          "quote": "read <pstack>/poteto-mode/principles/minimize-reader-load.md (full)"
+        },
+        {
+          "event": "e129",
+          "quote": "Minimize Reader Load. This is why the rule is looked up once."
+        }
+      ],
+      "why": "The follow-up turn had no mode command, yet it reopened the Feature steps as todos, reported a state for each, and cited principles it had read."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e42",
+          "quote": "read <pstack>/poteto-mode/SKILL.md (full)"
+        },
+        {
+          "event": "e46",
+          "quote": "read <pstack>/poteto-mode/principles/model-the-domain.md (full)"
+        },
+        {
+          "event": "e94",
+          "quote": "All four commits landed on `checkout-tax-receipt`, 15 tests green."
+        }
+      ],
+      "why": "d1 wrote code, read the mode file and both principle files before citing them, and its final message reports the four handed commits as landed."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d2",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e140",
+          "quote": "read <pstack>/poteto-mode/principles/model-the-domain.md (full)"
+        },
+        {
+          "event": "e142",
+          "quote": "Applying **principle-model-the-domain**"
+        },
+        {
+          "event": "e178",
+          "quote": "All 17 tests pass. Both commits landed."
+        }
+      ],
+      "why": "d2 read the mode file and the principles before citing them, and its final message reports both handed commits as done."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d3",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e192",
+          "quote": "Principle applied: prove-it-works (read `<pstack>/poteto-mode/principles/prove-it-works.md` in full)"
+        },
+        {
+          "event": "e193",
+          "quote": "read <pstack>/poteto-mode/principles/prove-it-works.md (full)"
+        }
+      ],
+      "why": "d3 cited prove-it-works and claimed to have read it before the read event happened, and it never loaded the poteto-mode SKILL.md."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e40",
+          "quote": "1. `how`. Skipped because the code is three files and about 20 lines, and I read all of it plus the git history."
+        },
+        {
+          "event": "e40",
+          "quote": "8. Open a PR. Skipped because the repo has no git remote."
+        }
+      ],
+      "why": "The reply lists all eight Feature steps, each with a state, and every skip gives a reason specific to this task."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e129",
+          "quote": "2. `architect`. Skipped because this is one new field in an existing table."
+        },
+        {
+          "event": "e129",
+          "quote": "4. Delegate the code. Done. Subagents made all three commits, and I reviewed each one."
+        }
+      ],
+      "why": "The reply lists all eight Feature steps with states, and each skip has a concrete reason."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e16",
+          "quote": "read <pstack>/how/SKILL.md (full)"
+        },
+        {
+          "event": "e24",
+          "quote": "skip: the subsystem is 3 files and 20 lines, all read directly plus full git history."
+        },
+        {
+          "event": "e25",
+          "quote": "architect skipped: the shape is fixed by the ask (rate table, breakdown record, pure formatter)."
+        }
+      ],
+      "why": "Both how and architect were explicitly skipped with reasons tied to this task."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e104",
+          "quote": "skip: I wrote and reviewed tax.js, checkout.js and receipt.js last turn, and they total about 30 lines."
+        },
+        {
+          "event": "e105",
+          "quote": "architect skipped: the change is one new column in the existing rate table"
+        }
+      ],
+      "why": "Both how and architect were explicitly skipped with concrete reasons."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e18",
+          "quote": "read <pstack>/poteto-mode/principles/model-the-domain.md (full)"
+        },
+        {
+          "event": "e23",
+          "quote": "read <pstack>/poteto-mode/principles/prove-it-works.md (full)"
+        },
+        {
+          "event": "e40",
+          "quote": "Model the Domain. Tax rates are a lookup table rather than an if/else chain."
+        }
+      ],
+      "why": "All six principles the reply cites were read by main at e18 to e23, and each is tied to a concrete choice."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e112",
+          "quote": "read <pstack>/poteto-mode/principles/minimize-reader-load.md (full)"
+        },
+        {
+          "event": "e129",
+          "quote": "Model the Domain. Whether a region taxes shipping is a field in the table, so no code checks for NY by name."
+        }
+      ],
+      "why": "Main read all three cited principles, two in t0 and minimize-reader-load at e112, and ties each to a choice."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e40",
+          "quote": "Tax is charged on the discounted subtotal, so it would have been wrong too."
+        },
+        {
+          "event": "e40",
+          "quote": "An item without one prints as `undefined x2`."
+        }
+      ],
+      "why": "The reply makes runtime claims that no event observed, a counterfactual and a prediction, with neither a label nor evidence."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e129",
+          "quote": "Any code outside this repo that called `taxFor(amount, \"CA\")` will break."
+        }
+      ],
+      "why": "This prediction was never observed and carries no label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/feature.md (full)"
+        },
+        {
+          "event": "e6",
+          "quote": "task list create: [todo] 1. `how` over the affected subsystem."
+        }
+      ],
+      "why": "The agent picked Feature on its own and read its file."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e97",
+          "quote": "2. `architect` for parallel design exploration. Skipping stays as `architect skipped: <reason>`."
+        }
+      ],
+      "why": "The agent matched Feature again and copied its steps from the file it had already read this session."
+    }
+  ],
+  "dropped": []
+}

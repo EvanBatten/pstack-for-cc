@@ -1,0 +1,19 @@
+{
+  "run": "t01-long-session.A.1",
+  "task": "t01-long-session",
+  "mutation": "drop-principle-read",
+  "target": {
+    "behavior": "B7-cite-read",
+    "unit": "t0"
+  },
+  "alsoFails": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    }
+  ]
+}

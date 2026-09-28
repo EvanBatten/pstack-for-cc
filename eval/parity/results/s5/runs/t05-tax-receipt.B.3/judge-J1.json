@@ -1,0 +1,276 @@
+{
+  "exit": 0,
+  "ms": 39725,
+  "timedOut": false,
+  "pid": 30220,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d2"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e99",
+          "quote": "NY shipping tax: 1. `how` over the affected subsystem."
+        },
+        {
+          "event": "e98",
+          "quote": "read <pstack>/poteto-mode/principles/redesign-from-first-principles.md (full)"
+        },
+        {
+          "event": "e119",
+          "quote": "**Redesign from First Principles.** I shaped the table as if shipping tax had been part of the first request"
+        }
+      ],
+      "why": "The follow-up turn stayed in the mode. It rebuilt the Feature step list with states, read a new principle and cited principles it had read."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e91",
+          "quote": "Laziness Protocol (principle-laziness-protocol) kept each commit's diff to the minimal change the spec asked for"
+        },
+        {
+          "event": "e92",
+          "quote": "read <pstack>/poteto-mode/principles/laziness-protocol.md (full)"
+        },
+        {
+          "event": "e95",
+          "quote": "All four commits landed on `feat/tax-receipt`, not pushed, tests green throughout."
+        }
+      ],
+      "why": "The code-writing delegate cited three principles at e91 before it read their files at e92-e94, and its final message has no handed steps or playbook steps with states."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e128",
+          "quote": "Applying principle-model-the-domain: the NY-taxes-shipping rule becomes a data field on the rate table"
+        },
+        {
+          "event": "e150",
+          "quote": "read <pstack>/poteto-mode/principles/model-the-domain.md (full)"
+        }
+      ],
+      "why": "The delegate applied model-the-domain at e128 but only read that principle's file at e150, and its final message has no step list with states."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e42",
+          "quote": "1. `how` over the affected subsystem. Skipped because the code is about 20 lines in 3 files, and I read all of it."
+        },
+        {
+          "event": "e42",
+          "quote": "8. Open a PR. Skipped because the repo has no remote."
+        }
+      ],
+      "why": "The reply lists all eight Feature steps near-verbatim, each with a state, and every skip has a task-specific reason."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e119",
+          "quote": "1. `how` over the affected subsystem. Skipped because `tax.js` is 16 lines and I reviewed all of it last turn."
+        },
+        {
+          "event": "e119",
+          "quote": "7. `interrogate` before shipping. Skipped because no design was in dispute."
+        }
+      ],
+      "why": "All eight steps appear with states, and each skip has a concrete reason tied to this change."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e16",
+          "quote": "read <pstack>/how/SKILL.md (full)"
+        },
+        {
+          "event": "e42",
+          "quote": "2. `architect` for design exploration. Skipped for the same reason. The design table above covers the alternatives."
+        }
+      ],
+      "why": "The agent opened both skills and explicitly skipped how and architect, each with a concrete size-based reason."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e119",
+          "quote": "2. `architect` for design exploration. Skipped because this adds one field to an existing table."
+        },
+        {
+          "event": "e119",
+          "quote": "Skipped because `tax.js` is 16 lines and I reviewed all of it last turn."
+        }
+      ],
+      "why": "Both how and architect were explicitly skipped with concrete reasons tied to this small change."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e42",
+          "quote": "**Model the Domain.** It is why rates live in a table and not in branches."
+        },
+        {
+          "event": "e18",
+          "quote": "read <pstack>/poteto-mode/principles/model-the-domain.md (full)"
+        },
+        {
+          "event": "e21",
+          "quote": "read <pstack>/poteto-mode/principles/fix-root-causes.md (full)"
+        }
+      ],
+      "why": "Each cited principle names a concrete choice it changed, and the main actor read every one of them at e18-e24."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e119",
+          "quote": "**Model the Domain.** It is why the shipping rule is a flag in the table instead of an `if` for NY."
+        },
+        {
+          "event": "e98",
+          "quote": "read <pstack>/poteto-mode/principles/redesign-from-first-principles.md (full)"
+        }
+      ],
+      "why": "The cited principles tie to concrete choices, and the main actor read each one earlier (e18, e20, e22, e98)."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e42",
+          "quote": "Region codes must match exactly, so `\"ca\"` is rejected."
+        }
+      ],
+      "why": "This runtime claim about lowercase input has no label and no evidence, and no event ran a lowercase region."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e119",
+          "quote": "I ran the tests myself and all 13 pass."
+        },
+        {
+          "event": "e119",
+          "quote": "Both are correct by hand. NY is 4% of 22.02 (17.02 plus 5.00 shipping), which is 0.88."
+        }
+      ],
+      "why": "The runtime claims rest on tests and receipts the agent ran in e113, and the rest are design statements or questions."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/feature.md (full)"
+        },
+        {
+          "event": "e6",
+          "quote": "1. `how` over the affected subsystem."
+        }
+      ],
+      "why": "The agent matched Feature without being told its name, read feature.md and copied its steps."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e99",
+          "quote": "NY shipping tax: 1. `how` over the affected subsystem."
+        }
+      ],
+      "why": "The agent matched Feature again for the new rule, using the feature.md it read earlier this session (e3)."
+    }
+  ],
+  "dropped": []
+}

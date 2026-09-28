@@ -1,0 +1,236 @@
+{
+  "exit": 0,
+  "ms": 27296,
+  "timedOut": false,
+  "pid": 32932,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "FLAT5 now only works when the subtotal is at least 20."
+        }
+      ],
+      "why": "The turn goes straight from the user message to a code edit and reply, with no playbook matched, no step list with states, and no principles named."
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e14",
+          "quote": "I'd block this. I probed the working tree with inputs the tests don't cover, and three problems showed up."
+        }
+      ],
+      "why": "The review reads like a plain assistant reply: it names no principle and was shaped by no read of any pstack file."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "Coupon codes are in and covered by tests. All 11 tests pass"
+        }
+      ],
+      "why": "The reply has none of the Feature playbook's numbered steps and no per-step states or skip reasons."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "FLAT5 now only works when the subtotal is at least 20."
+        }
+      ],
+      "why": "The reply has no Feature playbook step list and no states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e4",
+          "quote": "const COUPONS = {"
+        }
+      ],
+      "why": "No event opened the how or architect SKILL.md, and the reply neither runs nor explicitly skips either skill."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "FLAT5: { minSubtotal: 20, apply: () => 5 },"
+        }
+      ],
+      "why": "The agent went straight to implementation without opening the how or architect skills or skipping them with a reason."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "**Choices I made that you may want to change:**"
+        }
+      ],
+      "why": "This is a work turn that cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "The rule lives in the coupon table in `src/coupons.js`"
+        }
+      ],
+      "why": "The reply explains a design choice without citing any principle, and no principle was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e14",
+          "quote": "Keeping the codes in a table, with the minimum as data, is the right shape."
+        }
+      ],
+      "why": "The review makes judgments that no principle grounds, and no principle file was read in the session."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "All 11 tests pass: the 4 existing ones plus 7 new ones."
+        }
+      ],
+      "why": "The reply's sentences report what the agent changed and what the test runs showed, and there are no unlabeled predictions or causes."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "If you'd rather check the subtotal before any discount, it's a one-line change."
+        }
+      ],
+      "why": "This is a prediction about the size of a change that no event observed, and it carries no guess or inferred label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e14",
+          "quote": "A quick search found thousands of two- and three-item carts that total 20.00 in cents and still come up short."
+        }
+      ],
+      "why": "The runtime claims are backed by the probes run in e10 through e13, and each is stated with its evidence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e4",
+          "quote": "cat > src/coupons.js <<'EOF'"
+        }
+      ],
+      "why": "No event read feature.md, and the agent never named or matched a playbook."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "cat > src/coupons.js <<'EOF'"
+        }
+      ],
+      "why": "No playbook was matched and no playbook file was read before editing."
+    }
+  ],
+  "dropped": []
+}

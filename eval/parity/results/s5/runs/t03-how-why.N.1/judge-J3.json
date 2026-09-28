@@ -1,0 +1,188 @@
+{
+  "exit": 0,
+  "ms": 20116,
+  "timedOut": false,
+  "pid": 30972,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "Finance reconciles invoices line by line, and rounding only the total made the cents disagree."
+        }
+      ],
+      "why": "The t1 reply reads like a plain assistant answer: no playbook matched, no step list with states, and no principles named."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "The `/poteto-mode` command isn't installed in this session, so I answered your question directly."
+        }
+      ],
+      "why": "The reply has none of the Investigation playbook's numbered steps and gives no per-step states."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "Commit `ed84e20` (\"round each line to cents before summing\", Dana Reyes, 2026-07-11) made the change"
+        }
+      ],
+      "why": "The reply has no Investigation step list and no step states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "so I answered your question directly"
+        }
+      ],
+      "why": "No event opened the how or unslop SKILL.md, and the reply never mentions either skill or gives a reason to skip it."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "Commit `ed84e20` (\"round each line to cents before summing\", Dana Reyes, 2026-07-11) made the change"
+        }
+      ],
+      "why": "The how, why and unslop skills were never opened and the reply mentions none of them. It ran only git log."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "The whole pipeline is in `src/cart.js:8-12`, which calls two small helpers."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "This last commit may undercut the FIN-212 fix; this is my own reading, not something the history says."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "I ran `npm test`: 3 pass and 1 fails."
+        }
+      ],
+      "why": "Each claim comes from code the agent read in e3 or from the test run in e4, and it cites file lines or the test output."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "The likely reason is that multiplying by `(1 - discountPct)` can create fractional cents."
+        }
+      ],
+      "why": "The sentence asserts a cause the history does not state, and it carries a hedge but no measured, inferred or guess label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "The `/poteto-mode` command isn't installed in this session"
+        }
+      ],
+      "why": "No playbook was matched and investigation.md was never read."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "git log -p --format="
+        }
+      ],
+      "why": "The agent went straight to git log and never matched or read the Investigation playbook."
+    }
+  ],
+  "dropped": []
+}

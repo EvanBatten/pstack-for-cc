@@ -1,0 +1,92 @@
+{
+  "exit": 0,
+  "ms": 14174,
+  "timedOut": false,
+  "pid": 22708,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "I fixed the shipping bug: a cart where every quantity is 0 now totals 0 instead of 5."
+        }
+      ],
+      "why": "The reply never lists the bug-fix playbook's numbered steps or gives any of them a state or skip reason, and no task list appears in the events."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "so I handled your message as a plain request"
+        }
+      ],
+      "why": "No event opened the how or why SKILL.md, and the reply neither runs them nor skips them with a reason."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "I added a test for the all-zero-quantity cart, and it passes."
+        }
+      ],
+      "why": "This work turn cites no principle, and no principle file was read in the session."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "discounted orders are charged negative amounts right now"
+        }
+      ],
+      "why": "This sentence predicts production behavior at checkout, which no event observed, and it carries no measured, inferred or guess label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "the `/poteto-mode` command isn't installed in this session, so I handled your message as a plain request"
+        }
+      ],
+      "why": "The agent never matched or read playbooks/bug-fix.md and handled the task as a plain request."
+    }
+  ],
+  "dropped": []
+}

@@ -1,0 +1,188 @@
+{
+  "exit": 0,
+  "ms": 23470,
+  "timedOut": false,
+  "pid": 4660,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "Each line gets rounded because finance reconciles invoices one line at a time."
+        }
+      ],
+      "why": "The t1 reply reads like a plain assistant answer: it names no playbook, lists no steps with states and cites no principles."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "A cart total goes through four steps, all driven by `computeTotal` in `src/cart.js:8`."
+        }
+      ],
+      "why": "The reply lists the cart's computation steps, not the Investigation playbook's four steps with states, and no task list was kept."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "**What changed.** When the module was created in `56aa9c0` (2026-06-10)"
+        }
+      ],
+      "why": "The reply carries none of the Investigation playbook steps and no per-step states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "This was a read-only investigation. I didn't change anything."
+        }
+      ],
+      "why": "No event opens the how or unslop SKILL.md, and the reply never mentions skipping either one."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "git log --format='=== %h %an %ad%n%B' --date=short -p --stat"
+        }
+      ],
+      "why": "The agent ran git log itself but never opened the how, why or unslop SKILL.md, and did not say it was skipping them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "This was a read-only investigation. I didn't change anything."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "**Where the evidence stops.** The 2% figure and the FIN-212 reference come from the commit message only."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "As written, any caller who passes a whole-number percentage gets a negative total"
+        }
+      ],
+      "why": "This is a runtime prediction about callers that nothing observed, and the sentence carries no label or evidence."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "so on a discounted cart the lines finance reconciles no longer add up to the total"
+        }
+      ],
+      "why": "This runtime claim has no label in its own sentence; the 'inference' label comes two sentences later."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/investigation.md (full)"
+        }
+      ],
+      "why": "The agent picked the Investigation playbook without being told its name and read the file in full."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "Each line gets rounded because finance reconciles invoices one line at a time."
+        }
+      ],
+      "why": "Nothing in t1 shows the agent matching a playbook: it neither names Investigation nor reopens the file."
+    }
+  ],
+  "dropped": []
+}

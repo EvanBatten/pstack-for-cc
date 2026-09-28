@@ -1,0 +1,92 @@
+{
+  "exit": 0,
+  "ms": 13653,
+  "timedOut": false,
+  "pid": 33048,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "I fixed the shipping charge."
+        }
+      ],
+      "why": "The agent never opened a todo list, and the reply does not list the bug-fix playbook's numbered steps with states. It gives only Cause, Fix and a separate-bug section."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "**Cause:** `shippingFor` in `src/shipping.js` only checked whether the cart had any lines"
+        }
+      ],
+      "why": "No event opens the how or why SKILL.md, and the reply never mentions either skill or gives a reason for skipping it."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "**Fix:** shipping is now only charged if at least one item has a quantity above 0"
+        }
+      ],
+      "why": "This work turn's reply cites no principle, and no principle file was read in the session."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "Any caller passing a percentage the way the test does would produce a negative total at checkout."
+        }
+      ],
+      "why": "This sentence predicts runtime behavior at checkout that no event observed, and it carries no measured, inferred or guess label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e2",
+          "quote": "run: git ls-files && cat $(git ls-files | grep -v -i readme | head -20)"
+        }
+      ],
+      "why": "The agent never read pstack/poteto-mode/playbooks/bug-fix.md and never named a matched playbook. It went straight to reading the repo."
+    }
+  ],
+  "dropped": []
+}

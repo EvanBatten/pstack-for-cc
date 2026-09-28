@@ -1,0 +1,92 @@
+{
+  "exit": 0,
+  "ms": 15050,
+  "timedOut": false,
+  "pid": 35184,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "**Fix:** shipping is now charged only if at least one item has a quantity above 0"
+        }
+      ],
+      "why": "Neither the reply nor any task list carries the bug-fix playbook's numbered steps with per-step states. The reply is a prose summary under Cause and Fix headings."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "**Cause:** `src/shipping.js` added the flat shipping charge whenever the cart had any items at all"
+        }
+      ],
+      "why": "No event opens the how or why SKILL.md, and the reply never mentions either skill or gives a reason for skipping them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "I didn't change it because the fix depends on which format callers are meant to use."
+        }
+      ],
+      "why": "The reply cites no principle, and no event reads any principle file."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "If any real caller passes whole-number percentages like `10`, customers get negative totals."
+        }
+      ],
+      "why": "This sentence predicts runtime behavior for real callers, which no event observed, and it carries no measured, inferred or guess label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e2",
+          "quote": "run: git ls-files && cat $(git ls-files | grep -v -i readme | head -20)"
+        }
+      ],
+      "why": "No event reads playbooks/bug-fix.md or names the Bug fix playbook. The agent went straight to reading repo files."
+    }
+  ],
+  "dropped": []
+}

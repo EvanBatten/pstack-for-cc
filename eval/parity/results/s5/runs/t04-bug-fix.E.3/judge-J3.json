@@ -1,0 +1,96 @@
+{
+  "exit": 0,
+  "ms": 16894,
+  "timedOut": false,
+  "pid": 34564,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "There are two commits on `main`: the failing test (`971bb0e`), then the fix (`556d2ac`)."
+        }
+      ],
+      "why": "The reply summarises the work in its own words and never lists the bug-fix playbook's six numbered steps with a state for each, and no task list was kept."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "`shippingFor` decides on `items.length`, so zero-quantity lines still count as a shipment. Failing test first."
+        }
+      ],
+      "why": "Step 2 of the bug-fix playbook names the how and why skills, but no event opens either SKILL.md and the reply never mentions them or gives a reason for skipping them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "read <pstack>/poteto-mode/principles/fix-root-causes.md (partial)"
+        },
+        {
+          "event": "e12",
+          "quote": "Following Fix Root Causes, I changed that check in `shippingFor` itself"
+        }
+      ],
+      "why": "The reply cites Fix Root Causes and Laziness Protocol, but both files were read only partially, through a head -150 across three files, not in full."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "That way anything else that calls `shippingFor` gets the correct answer too."
+        }
+      ],
+      "why": "This sentence predicts behavior for other callers that nothing in the session observed, and it carries no label or evidence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/bug-fix.md (full)"
+        }
+      ],
+      "why": "The agent picked the bug-fix playbook without being told its name and read the file in full."
+    }
+  ],
+  "dropped": []
+}

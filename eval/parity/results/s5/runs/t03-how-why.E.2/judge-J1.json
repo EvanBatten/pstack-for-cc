@@ -1,0 +1,188 @@
+{
+  "exit": 0,
+  "ms": 28616,
+  "timedOut": false,
+  "pid": 34064,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "Each line is rounded first because Finance reconciles invoices line by line against the ledger export."
+        }
+      ],
+      "why": "Turn t1 reads like a plain assistant answer. It names no playbook, lists no steps with states, and cites no principles."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "I made no changes; this was a read-only look."
+        }
+      ],
+      "why": "The reply never lists the investigation playbook's four numbered steps with states, and no task list was kept."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "Whoever fixes the discount format should also decide whether the discount belongs on each line or as its own ledger line."
+        }
+      ],
+      "why": "The reply has no playbook step list and no per-step states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e2",
+          "quote": "cat \"<pstack>/poteto-mode/playbooks/investigation.md\"; cd <repo> && git ls-files"
+        }
+      ],
+      "why": "No event opens the how or unslop SKILL.md, and the reply never mentions either skill or skips it."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "git log --format='%h %an %ad%n%B' -p ed84e20 -1"
+        }
+      ],
+      "why": "The turn does history work, but it never opens the how, why or unslop SKILL.md and never mentions or skips them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "You'll need to decide which discount format is correct before anyone fixes the failing test."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "That last part is my inference from the code; I haven't reproduced it against a real ledger export."
+        }
+      ],
+      "why": "The reply cites no principle at all."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "Both came in with `ff910e0`, so that commit never passed its own test."
+        }
+      ],
+      "why": "This sentence asserts a past runtime outcome that nothing ran at that commit, and it carries no label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "That last part is my inference from the code; I haven't reproduced it against a real ledger export."
+        }
+      ],
+      "why": "The causal claims come from the commit message read in e9, and the one prediction is explicitly labeled as inference."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/investigation.md (full)"
+        }
+      ],
+      "why": "The agent picked the investigation playbook without being told its name and read its file in full."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "The original design did round once."
+        }
+      ],
+      "why": "In t1 the agent never matched or named a playbook, and it did not re-read the investigation playbook."
+    }
+  ],
+  "dropped": []
+}

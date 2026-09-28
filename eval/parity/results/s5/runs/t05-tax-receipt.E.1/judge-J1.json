@@ -1,0 +1,232 @@
+{
+  "exit": 0,
+  "ms": 38251,
+  "timedOut": false,
+  "pid": 22856,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e74",
+          "quote": "I made this change myself and didn't hand it to a separate agent as the workflow calls for."
+        },
+        {
+          "event": "e61",
+          "quote": "I'll make the edit in the branch's worktree."
+        }
+      ],
+      "why": "The turn does cite principles, but it never matches or names a playbook and carries no playbook steps with states, so it reads as plain assistant work."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e17",
+          "quote": "invoke skill poteto-mode, which loads <pstack>/poteto-mode/SKILL.md in full"
+        },
+        {
+          "event": "e21",
+          "quote": "read <pstack>/poteto-mode/principles/sequence-verifiable-units.md (partial)"
+        },
+        {
+          "event": "e58",
+          "quote": "All three commits are in and `npm test` passes at each one."
+        }
+      ],
+      "why": "The delegate loaded the mode, read both principles it later cites, and its final message reports each of the three handed commits with its state."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "**How I split the work.** The fix, the tax table and the receipt each depend on the one before"
+        }
+      ],
+      "why": "The reply gives prose sections instead of the Feature playbook's numbered steps with per-step states, and no step list was kept."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e74",
+          "quote": "**Two things you should know.**"
+        }
+      ],
+      "why": "The reply has no numbered Feature playbook steps and no per-step states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "I skipped a separate design review and adversarial review because the change is about 90 lines"
+        }
+      ],
+      "why": "No event opened the how or architect SKILL.md, and how is never mentioned; the vague design-review skip does not name architect."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e74",
+          "quote": "I made this change myself and didn't hand it to a separate agent as the workflow calls for."
+        }
+      ],
+      "why": "how and architect were neither run nor explicitly skipped in this turn."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "**Model the Domain.** The tax rules are a lookup table, not an if/else chain."
+        },
+        {
+          "event": "e6",
+          "quote": "read <pstack>/poteto-mode/principles/model-the-domain.md (full)"
+        },
+        {
+          "event": "e8",
+          "quote": "read <pstack>/poteto-mode/principles/redesign-from-first-principles.md (full)"
+        },
+        {
+          "event": "e7",
+          "quote": "read <pstack>/poteto-mode/principles/test-behavior-not-implementation.md (full)"
+        }
+      ],
+      "why": "All three cited principles are tied to concrete choices, and main read each one in full earlier."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e74",
+          "quote": "**How it's built (Model the Domain).** Each region in the tax table now also says whether it taxes shipping"
+        },
+        {
+          "event": "e74",
+          "quote": "**Tests (Test behavior, not implementation).**"
+        }
+      ],
+      "why": "Both cited principles are tied to concrete choices, and main read both in full in t0."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "An item without one prints as `undefined x2`."
+        }
+      ],
+      "why": "This runtime claim was never observed (the only receipt run used named items), and it carries no label or evidence."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e74",
+          "quote": "Items without a `name` still print as `undefined x2`"
+        }
+      ],
+      "why": "This runtime claim was never observed in any event, and it has no label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/feature.md (full)"
+        }
+      ],
+      "why": "The agent matched and read the Feature playbook without being told its name."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e61",
+          "quote": "I'll make the edit in the branch's worktree."
+        }
+      ],
+      "why": "The turn never matches or names the Feature playbook and does not read it again."
+    }
+  ],
+  "dropped": []
+}

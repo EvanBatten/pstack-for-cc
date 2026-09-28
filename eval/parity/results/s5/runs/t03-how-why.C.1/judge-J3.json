@@ -1,0 +1,188 @@
+{
+  "exit": 0,
+  "ms": 19289,
+  "timedOut": false,
+  "pid": 29420,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "Finance reconciles invoices line by line, so each line is rounded to make the invoice lines add up exactly to the total."
+        }
+      ],
+      "why": "The t1 reply reads like a plain assistant answer: it matches no playbook, lists no steps with states and names no principles."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "I didn't recognize `/poteto-mode`, so I just answered the question directly."
+        }
+      ],
+      "why": "The reply does not carry the investigation playbook's numbered steps with states, and the agent says it ignored the mode."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "The history has three commits:"
+        }
+      ],
+      "why": "The reply has only a commit list, with no investigation playbook steps and no per-step states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "I didn't recognize `/poteto-mode`, so I just answered the question directly."
+        }
+      ],
+      "why": "No event opens the how or unslop SKILL.md, and neither skill is mentioned or skipped with a reason."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "It started out rounding the total once and was changed on purpose."
+        }
+      ],
+      "why": "No event opens the how, why or unslop SKILL.md, and none of them is mentioned or skipped with a reason."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "I didn't recognize `/poteto-mode`, so I just answered the question directly."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "Nothing in the history says whether that was intended"
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "Nothing checks the input, so any value above 1 gives a negative total."
+        }
+      ],
+      "why": "This is an unmeasured prediction with no label, and it is not even true for values just above 1 (for example 1.01 gives a positive total)."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "Line-by-line reconciliation can drift by a cent again on discounted carts."
+        }
+      ],
+      "why": "This runtime prediction was never observed in the session and carries no measured, inferred or guess label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "I didn't recognize `/poteto-mode`, so I just answered the question directly."
+        }
+      ],
+      "why": "The agent never matched the investigation playbook and never read investigation.md."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e10",
+          "quote": "git log --stat"
+        }
+      ],
+      "why": "The agent went straight to git history without matching or reading the investigation playbook."
+    }
+  ],
+  "dropped": []
+}

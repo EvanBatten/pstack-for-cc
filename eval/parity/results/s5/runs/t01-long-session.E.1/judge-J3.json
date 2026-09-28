@@ -1,0 +1,232 @@
+{
+  "exit": 0,
+  "ms": 25978,
+  "timedOut": false,
+  "pid": 23316,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B2-mode-off",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t2"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e23",
+          "quote": "I skipped the separate design and adversarial review steps"
+        }
+      ],
+      "why": "The agent read feature.md and delegated the work, but the reply never lists the Feature playbook's steps with states, so the playbook discipline is only partial."
+    },
+    {
+      "behavior": "B2-mode-off",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "If you want it on `main` I can fast-forward it"
+        }
+      ],
+      "why": "The reply is short and plain, with no step list, no principle citations and no new work started."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e49",
+          "quote": "Orders whose discounted subtotal is over 50 now ship free"
+        }
+      ],
+      "why": "The delegate loaded poteto-mode and wrote code, but its final message carries no playbook or handed steps with states."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "That meant skipping the playbook's step of handing implementation to a subagent"
+        }
+      ],
+      "why": "The reply gives prose sections instead of the Bug fix playbook's numbered steps with per-step states."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e23",
+          "quote": "I skipped the separate design and adversarial review steps"
+        }
+      ],
+      "why": "There is no numbered Feature step list with states, and the throughput checkpoint's four items are missing."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "skipping the separate design step, since the change stays inside one function"
+        }
+      ],
+      "why": "No event opened the how or why SKILL.md, and the reply never mentions either skill or gives a reason for skipping them."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e23",
+          "quote": "I skipped the separate design and adversarial review steps"
+        }
+      ],
+      "why": "architect gets an implied skip with a reason, but how was never opened and never mentioned."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "**Fix Root Causes.** I matched `-355` to the exact arithmetic"
+        },
+        {
+          "event": "e6",
+          "quote": "principles/fix-root-causes.md (full)"
+        },
+        {
+          "event": "e7",
+          "quote": "principles/laziness-protocol.md (full)"
+        }
+      ],
+      "why": "Both cited principles were read in full earlier by main, and each is tied to a concrete choice."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e23",
+          "quote": "There's no config object, since nothing else needs one yet (Laziness Protocol)."
+        },
+        {
+          "event": "e19",
+          "quote": "principles/test-behavior-not-implementation.md (full)"
+        }
+      ],
+      "why": "Laziness Protocol (read at e7) and Test Behavior (read at e19) were both read by main and each is tied to a concrete choice."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "Any checkout with a discount got a wrong total."
+        }
+      ],
+      "why": "This general runtime claim about every discounted checkout was never measured and carries no label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e23",
+          "quote": "all 8 tests pass (`tests 8, pass 8, fail 0`)"
+        }
+      ],
+      "why": "Each behavior claim is backed by tests that were run or by delegate runs seen in the session, and the rest reports actions or choices."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/bug-fix.md (full)"
+        }
+      ],
+      "why": "The agent matched and read the Bug fix playbook without being told its name."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t2",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e18",
+          "quote": "read <pstack>/poteto-mode/playbooks/feature.md (full)"
+        }
+      ],
+      "why": "The agent matched and read the Feature playbook without being told its name."
+    }
+  ],
+  "dropped": []
+}

@@ -1,0 +1,208 @@
+{
+  "exit": 0,
+  "ms": 20316,
+  "timedOut": false,
+  "pid": 7908,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B2-mode-off",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t2"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e16",
+          "quote": "I'll make shipping depend on the discounted subtotal and add tests for the new rule."
+        },
+        {
+          "event": "e22",
+          "quote": "The cart total now drops shipping for orders over 50 after the discount, and all 7 tests pass."
+        }
+      ],
+      "why": "The turn reads like a plain assistant: no playbook is matched, no step list with states appears, and no principles are named."
+    },
+    {
+      "behavior": "B2-mode-off",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e14",
+          "quote": "Glad it's sorted. The change is still uncommitted; I can commit it if you want."
+        }
+      ],
+      "why": "The reply is short and plain, with no step list, no principle citations and no new work started."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "I didn't recognize `/poteto-mode`, so I handled this as a normal request."
+        }
+      ],
+      "why": "The reply has none of the bug-fix playbook's numbered steps and no per-step states."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e22",
+          "quote": "None of this is committed yet."
+        }
+      ],
+      "why": "The reply has none of the feature playbook's steps or states, and no throughput checkpoint."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "I didn't recognize `/poteto-mode`, so I handled this as a normal request."
+        }
+      ],
+      "why": "No event opened the how or why SKILL.md, and neither skill is mentioned or skipped with a reason."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e22",
+          "quote": "`computeTotal` passes the discounted subtotal to `shippingFor`"
+        }
+      ],
+      "why": "No event opened the how or architect SKILL.md, the shipping signature was changed without any design exploration, and neither skill is mentioned."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "**Fix:** the discount line now reads `subtotal * (1 - discountPct / 100)`."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e22",
+          "quote": "The limit is a new constant, `FREE_SHIPPING_OVER = 50`."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "I fixed the 10% discount case, and all 4 tests now pass."
+        }
+      ],
+      "why": "Each sentence reports test output the agent ran or a cause traced in code it read, so none needs a label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e22",
+          "quote": "The cart total now drops shipping for orders over 50 after the discount, and all 7 tests pass."
+        }
+      ],
+      "why": "Each runtime claim is backed by the test run at e20 or describes code the agent edited."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "I didn't recognize `/poteto-mode`, so I handled this as a normal request."
+        }
+      ],
+      "why": "No playbook was matched, and bug-fix.md was never read."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e16",
+          "quote": "I'll make shipping depend on the discounted subtotal and add tests for the new rule."
+        }
+      ],
+      "why": "No playbook was matched, and feature.md was never read."
+    }
+  ],
+  "dropped": []
+}

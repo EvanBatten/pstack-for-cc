@@ -1,0 +1,188 @@
+{
+  "exit": 0,
+  "ms": 19411,
+  "timedOut": false,
+  "pid": 33580,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "Each line is rounded so the cart matches Finance's records."
+        }
+      ],
+      "why": "The t1 reply reads like a plain assistant answer. It matches no playbook, lists no steps with states and names no principles."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "The total is built in `computeTotal` in `src/cart.js` in four steps"
+        }
+      ],
+      "why": "The reply has none of the Investigation playbook's numbered steps and no states. Its numbered list covers the code's steps, not the playbook's."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "The history goes like this:"
+        }
+      ],
+      "why": "No playbook steps with states appear. The only numbered list is the commit history."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e2",
+          "quote": "`/poteto-mode` isn't a skill I have available, so I'll just answer the question"
+        }
+      ],
+      "why": "No event opens the how or unslop SKILL.md, and neither skill is skipped with a reason."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "Commit `ed84e20` (Dana Reyes, 2026-07-11) made that change on purpose"
+        }
+      ],
+      "why": "The how, why and unslop skills were never opened or explicitly skipped. The agent read git history directly instead."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "A few behaviours that follow from this code:"
+        }
+      ],
+      "why": "The reply cites no principle, and the session has no read of any principle file."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "So you shouldn't switch to rounding the total once."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "For example, `1.005` becomes `1` instead of `1.01`, because `1.005 * 100` is actually slightly less than 100.5."
+        }
+      ],
+      "why": "This asserts floating-point runtime behavior that nothing ran, and it has no measured, inferred or guess label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "That would bring back the FIN-212 mismatches."
+        }
+      ],
+      "why": "This prediction carries no label and no evidence in the same sentence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e2",
+          "quote": "I'll just answer the question by reading the cart code."
+        }
+      ],
+      "why": "The agent never matched the Investigation playbook and never read its file."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "git log --stat"
+        }
+      ],
+      "why": "The investigation playbook file was never read, and no playbook was matched."
+    }
+  ],
+  "dropped": []
+}

@@ -1,0 +1,188 @@
+{
+  "exit": 0,
+  "ms": 19701,
+  "timedOut": false,
+  "pid": 3496,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "The code rounds each line because of a finance requirement."
+        }
+      ],
+      "why": "The t1 reply is a plain answer. It matches no playbook, lists no steps with states and names no principles."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "`/poteto-mode` isn't installed in this session, so I answered your question directly from the code."
+        }
+      ],
+      "why": "The reply does not carry the Investigation playbook's numbered steps with states. Its only list walks through the code, not the playbook."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "The code rounds each line because of a finance requirement."
+        }
+      ],
+      "why": "The reply has no playbook step list and no per-step states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "`/poteto-mode` isn't installed in this session, so I answered your question directly from the code."
+        }
+      ],
+      "why": "No event opens the how or unslop SKILL.md, and the reply neither runs nor explicitly skips either skill."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "Commit `ed84e20` (\"round each line to cents before summing\", Jul 11 2026, Dana Reyes) made the change"
+        }
+      ],
+      "why": "The agent read git history but never opened the how, why or unslop SKILL.md, and it does not mention them as skipped."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "I haven't changed anything."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "That's my inference from the code; the history doesn't say how discounted invoices are meant to reconcile."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "As written, any caller that passes a whole-number percentage gets a negative total."
+        }
+      ],
+      "why": "This generalizes about runtime behavior beyond the one failing test that was observed, and it carries no label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "With no discount, that's harmless: it only cleans up floating-point noise in a sum of amounts that are already in cents."
+        }
+      ],
+      "why": "This is a runtime claim that no event observed, and it has no label. Only the last sentence of the paragraph is marked as inference."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "`/poteto-mode` isn't installed in this session, so I answered your question directly from the code."
+        }
+      ],
+      "why": "The agent never matched or read the investigation playbook."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "The code rounds each line because of a finance requirement."
+        }
+      ],
+      "why": "No event reads playbooks/investigation.md, and the reply shows no playbook match."
+    }
+  ],
+  "dropped": []
+}

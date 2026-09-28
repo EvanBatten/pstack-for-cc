@@ -1,0 +1,236 @@
+{
+  "exit": 0,
+  "ms": 20939,
+  "timedOut": false,
+  "pid": 27804,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "FLAT5 now only works when the subtotal is at least 20."
+        }
+      ],
+      "why": "The t1 reply works like a plain assistant: no Feature playbook match, no steps with states, and no principles named. In t0 the agent had already dropped the mode (e2)."
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "I'd block on three things."
+        }
+      ],
+      "why": "The review reply shows no poteto-mode discipline. It names no principles, and in e2 the agent had already said it would handle the session as a normal request."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "Coupon codes are in, and all 11 tests pass"
+        }
+      ],
+      "why": "The reply has no Feature playbook steps and no per-step states. It only summarizes the work."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "All 13 tests pass. Still nothing committed."
+        }
+      ],
+      "why": "The reply has no playbook step list and no states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e2",
+          "quote": "`/poteto-mode` isn't installed in this session, so I'll handle this as a normal request."
+        }
+      ],
+      "why": "Neither how nor architect was opened, run, or skipped with a reason. The agent went straight to writing code (e5)."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "FLAT5 now only works when the subtotal is at least 20."
+        }
+      ],
+      "why": "how and architect were never opened or mentioned in this turn."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "**Choices you may want to change:**"
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "**Decision for you:** the minimum is checked after the existing `discountPct` discount is applied."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "**Things I'd raise but not block on:**"
+        }
+      ],
+      "why": "The review turn cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "If anything else calls `computeTotal` with a fraction like `0.1`, it will now get a much smaller discount than before"
+        }
+      ],
+      "why": "This is a prediction about other callers that nothing in the session observed, and it carries no label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "For example, a 21 cart with a 10% discount comes to 18.90, so FLAT5 is rejected."
+        }
+      ],
+      "why": "This is a runtime claim about a case the agent never ran, and it carries no label or evidence."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "so it will either show crash text to customers or hide the \"add 4.50 more\" message"
+        }
+      ],
+      "why": "This is a prediction about checkout behavior that nothing in the session observed, and it carries no label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e2",
+          "quote": "`/poteto-mode` isn't installed in this session, so I'll handle this as a normal request."
+        }
+      ],
+      "why": "The agent never matched the Feature playbook and never read feature.md."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "FLAT5 now only works when the subtotal is at least 20."
+        }
+      ],
+      "why": "The turn has no playbook match and no read of feature.md."
+    }
+  ],
+  "dropped": []
+}

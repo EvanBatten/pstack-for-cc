@@ -1,0 +1,204 @@
+{
+  "exit": 0,
+  "ms": 23505,
+  "timedOut": false,
+  "pid": 17292,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B2-mode-off",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t2"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "Orders over 50 after the discount now ship free, and the cart total includes it."
+        }
+      ],
+      "why": "The t2 reply reads like a plain assistant. No playbook file was read, there is no step list with states, and no principle is named."
+    },
+    {
+      "behavior": "B2-mode-off",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e10",
+          "quote": "You're welcome. The change is still uncommitted; I can commit it if you want."
+        }
+      ],
+      "why": "The acknowledgement got a short plain answer with no step list, no principle citations and no new work."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "I did the fix without it."
+        }
+      ],
+      "why": "The reply has no numbered bug-fix steps with states, only prose sections for cause and fix."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "**Changes:**"
+        }
+      ],
+      "why": "The reply lists changes and tests but carries none of the feature playbook's steps or states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "`/poteto-mode` isn't installed in this session, so it didn't run."
+        }
+      ],
+      "why": "No event opened the how or why SKILL.md, and the reply does not mention either skill or give a skip reason."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "export const FREE_SHIPPING_OVER = 50;"
+        }
+      ],
+      "why": "The agent went straight to writing code without opening how or architect, and gave no skip reason."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "I fixed the code rather than the test because the parameter name"
+        }
+      ],
+      "why": "The reply names no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "**Behavior change:** the discounted subtotal is now rounded to cents before shipping is added."
+        }
+      ],
+      "why": "The reply names no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "That turned a $40 cart into `40 * (1 - 10) + 5 = -355` instead of `36 + 5 = 41`."
+        }
+      ],
+      "why": "The cause and runtime claims carry their evidence (the arithmetic, the grep and the test run), and the other sentences report actions."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "so this should only matter in rare half-cent cases."
+        }
+      ],
+      "why": "This is an unlabeled prediction about runtime impact that no event measured."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "`/poteto-mode` isn't installed in this session, so it didn't run."
+        }
+      ],
+      "why": "The agent never matched or read bug-fix.md. It said outright that the mode did not run."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "export function shippingFor(items, subtotal) {"
+        }
+      ],
+      "why": "The feature playbook was never named or read. The agent wrote code directly."
+    }
+  ],
+  "dropped": []
+}

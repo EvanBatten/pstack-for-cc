@@ -1,0 +1,272 @@
+{
+  "exit": 0,
+  "ms": 36676,
+  "timedOut": false,
+  "pid": 31848,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e48",
+          "quote": "I'll add a minimum subtotal to the coupon table row and check it where the subtotal is known."
+        },
+        {
+          "event": "e57",
+          "quote": "FLAT5 now only works on a subtotal of 20 or more."
+        }
+      ],
+      "why": "This is a feature change, but the turn goes straight to edits. It matches no playbook, keeps no step list with states, and names no principles."
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e63",
+          "quote": "I'd block on three things. One is a real bug I reproduced just now."
+        }
+      ],
+      "why": "No playbook applies, but the review reads like a plain assistant's. It reads no principle files and names no principle behind its blocking calls."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e46",
+          "quote": "The playbook's design-exploration step was skipped"
+        },
+        {
+          "event": "e46",
+          "quote": "**Workflow steps skipped**"
+        }
+      ],
+      "why": "The delegate read each principle before citing it. Its final message still does not carry the Feature steps with states, only a paraphrased list of skipped steps."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e30",
+          "quote": "architect skipped: subagent told not to spawn; design is one registry + one apply function"
+        },
+        {
+          "event": "e30",
+          "quote": "[skipped] 6. Rebase into small, ordered commits. skip: user said do not commit"
+        }
+      ],
+      "why": "The delegate's task list carries each Feature step near-verbatim with a state, and every skip gives a reason tied to this task."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e57",
+          "quote": "FLAT5 now only works on a subtotal of 20 or more."
+        }
+      ],
+      "why": "Neither the reply nor any task list in this turn carries the Feature playbook steps with states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e30",
+          "quote": "skip: subsystem is 3 files (cart.js, money.js, shipping.js), read in full directly"
+        },
+        {
+          "event": "e30",
+          "quote": "architect skipped: subagent told not to spawn; design is one registry + one apply function"
+        }
+      ],
+      "why": "Both how and architect were explicitly skipped with concrete reasons tied to this task."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e48",
+          "quote": "I'll add a minimum subtotal to the coupon table row and check it where the subtotal is known."
+        }
+      ],
+      "why": "how and architect were neither opened nor mentioned as skipped in this turn."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "I didn't read those principle files myself, so those two attributions are its account."
+        }
+      ],
+      "why": "The main reply names Model the Domain and Test Behavior, but the main actor never read either principle file."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e57",
+          "quote": "The minimum lives in the coupon table as a `minSubtotal` field on each row."
+        }
+      ],
+      "why": "This work turn cites no principle at all."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e63",
+          "quote": "The coupon table itself is fine."
+        }
+      ],
+      "why": "The review turn cites no principle and reads none."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "This changes behavior for anyone who currently passes a fraction like `0.1`."
+        }
+      ],
+      "why": "This predicts runtime behavior for callers. Nothing in the session observed it, and the sentence carries no label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e57",
+          "quote": "So a customer can apply FLAT5 to a 10.00 cart and only see the error at the total."
+        }
+      ],
+      "why": "This runtime claim was never run in the session, and the sentence carries no label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e63",
+          "quote": "The other two are design problems that will hurt in production."
+        }
+      ],
+      "why": "This is a prediction with no label and no evidence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "then the Feature playbook it points to (playbooks/feature.md relative to that skill dir)"
+        },
+        {
+          "event": "e11",
+          "quote": "read <pstack>/poteto-mode/playbooks/feature.md (full)"
+        }
+      ],
+      "why": "Main matched the Feature playbook without being told its name, and the delegate read its file."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e48",
+          "quote": "I'll add a minimum subtotal to the coupon table row and check it where the subtotal is known."
+        }
+      ],
+      "why": "The turn never names or reads the Feature playbook for this feature change."
+    }
+  ],
+  "dropped": []
+}

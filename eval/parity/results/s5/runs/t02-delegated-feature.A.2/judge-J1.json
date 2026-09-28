@@ -1,0 +1,300 @@
+{
+  "exit": 0,
+  "ms": 48777,
+  "timedOut": false,
+  "pid": 21404,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d2"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e71",
+          "quote": "Stay in poteto-mode (re-read any principle leaf you cite)"
+        },
+        {
+          "event": "e73",
+          "quote": "The change is one commit on `main` (`5642422`), not pushed."
+        }
+      ],
+      "why": "The main turn passed the work to a delegate. Its reply has no Feature step list with states, and it cites principles that the main actor never read."
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e141",
+          "quote": "I'd block on two things."
+        }
+      ],
+      "why": "The review reply names no principle, and the main actor read no principle or mode file in this turn, so it reads like a plain assistant review."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e68",
+          "quote": "**Choices, and the principle behind each.**"
+        },
+        {
+          "event": "e49",
+          "quote": "[done] 4. Delegate code-writing (owned directly)"
+        }
+      ],
+      "why": "The delegate read the principles before citing them, but its final message to the parent has no Feature steps with states. Those states appear only in an interim task list."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e134",
+          "quote": "**Choices, and the principle behind each.**"
+        },
+        {
+          "event": "e115",
+          "quote": "[done] 6. Two ordered commits on main"
+        }
+      ],
+      "why": "The final message has no playbook steps with states. The only task list it kept describes the earlier coupon task, not the FLAT5 minimum."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e34",
+          "quote": "[done] 1. `how` over the affected subsystem. (skip: three files under 15 lines each, read in full directly)"
+        },
+        {
+          "event": "e49",
+          "quote": "[skipped] 8. Opening a PR (skip: user said do not push)"
+        }
+      ],
+      "why": "The delegate's task list carries all eight Feature steps with states, and each skip gives a reason tied to this task."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e73",
+          "quote": "**Principles.**"
+        },
+        {
+          "event": "e100",
+          "quote": "[todo] 6. Small ordered commits: discount fix, then coupons"
+        }
+      ],
+      "why": "The reply has no step list, and the delegate's task list covers the earlier coupon work rather than the FLAT5 minimum."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e28",
+          "quote": "read <pstack>/how/SKILL.md (full)"
+        },
+        {
+          "event": "e29",
+          "quote": "read <pstack>/architect/SKILL.md (full)"
+        },
+        {
+          "event": "e34",
+          "quote": "architect skipped: one new pure function behind an existing option"
+        }
+      ],
+      "why": "The delegate opened both skills and skipped each with a concrete reason tied to this task."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e100",
+          "quote": "architect skipped: one new pure function behind an existing option"
+        }
+      ],
+      "why": "The only skip reasons describe the earlier coupon-module design. No how or architect decision for the FLAT5 minimum change is recorded."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "These came from the poteto agent, which read the principle files."
+        }
+      ],
+      "why": "The main actor cites principles but never read any principle file itself. Only the delegate did."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e73",
+          "quote": "**Model the Domain** is why the minimum is stored with each coupon's entry"
+        }
+      ],
+      "why": "The main reply cites principles with no main-actor read event for any of them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e141",
+          "quote": "**What's good.** The coupon list lives in one place"
+        }
+      ],
+      "why": "The review turn cites no principle at all."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "Doing it in that order means the total can't go negative."
+        }
+      ],
+      "why": "This is an unmeasured runtime claim with no label and no evidence."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e73",
+          "quote": "so a 20.00 cart with a 10% discount still qualifies for `FLAT5`"
+        }
+      ],
+      "why": "This runtime claim was never tested or measured, and it carries no label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e141",
+          "quote": "Passing a single string is the most likely caller mistake"
+        }
+      ],
+      "why": "This is an unlabeled guess about caller behavior that no event observed."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e4",
+          "quote": "follow the Feature playbook"
+        },
+        {
+          "event": "e14",
+          "quote": "read <pstack>/poteto-mode/playbooks/feature.md (full)"
+        }
+      ],
+      "why": "The agent chose Feature without being told and read the playbook file."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e80",
+          "quote": "read <pstack>/poteto-mode/playbooks/feature.md (full)"
+        }
+      ],
+      "why": "The delegate doing the t1 work followed Feature and read its file."
+    }
+  ],
+  "dropped": []
+}

@@ -1,0 +1,292 @@
+{
+  "exit": 0,
+  "ms": 52870,
+  "timedOut": false,
+  "pid": 21964,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d2"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e52",
+          "quote": "**What changed in the code.** Each coupon in the lookup table now carries its own minimum subtotal next to its discount."
+        }
+      ],
+      "why": "The t1 feature work never reopens the Feature playbook and never lists its steps with states. The reply names no principle, so the turn reads like a plain assistant."
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e67",
+          "quote": "I'd block this branch on two bugs and one decision."
+        }
+      ],
+      "why": "The review measures its claims and labels its guesses, but it names no principle the agent read and shows no mode structure beyond that."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e19",
+          "quote": "invoke skill poteto-mode, which loads <pstack>/poteto-mode/SKILL.md in full"
+        },
+        {
+          "event": "e46",
+          "quote": "Coupon codes are in. `computeTotal(items, { coupon })` now accepts SAVE10 and FLAT5"
+        }
+      ],
+      "why": "d1 loaded the mode and read its principles before citing them. Its final message has no step list or playbook steps with states."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e54",
+          "quote": "invoke skill poteto-mode, which loads <pstack>/poteto-mode/SKILL.md in full"
+        },
+        {
+          "event": "e63",
+          "quote": "Customers can no longer use FLAT5 on orders under 20.00."
+        }
+      ],
+      "why": "d2 read its principles before citing them. Its final message has no handed steps or playbook steps with states."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "- [x] 1. `how` over the affected subsystem. skip: the subsystem is 3 source files and 1 test file, read in full directly."
+        },
+        {
+          "event": "e16",
+          "quote": "skip: one commit is already the smallest landable unit."
+        }
+      ],
+      "why": "The kept todo.md copies the Feature steps with states, and each skip gives a reason tied to this task."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e52",
+          "quote": "FLAT5 now only works when the subtotal is at least 20.00."
+        }
+      ],
+      "why": "Neither the t1 reply nor any t1 task list carries the Feature playbook steps with states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "- [x] 2. `architect` for parallel design exploration. skip: one new module plus one call site"
+        },
+        {
+          "event": "e17",
+          "quote": "I skipped the `how` and `architect` steps because I had already read the whole repo (4 files)"
+        }
+      ],
+      "why": "Both how and architect are skipped explicitly, each with a concrete reason tied to this task."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e52",
+          "quote": "Each coupon in the lookup table now carries its own minimum subtotal next to its discount."
+        }
+      ],
+      "why": "In t1, how and architect are neither run nor skipped with a reason. They go unmentioned."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e17",
+          "quote": "**Model the Domain** shaped the code."
+        },
+        {
+          "event": "e17",
+          "quote": "**Boundary Discipline** kept the checks at the entry point."
+        },
+        {
+          "event": "e5",
+          "quote": "read <pstack>/poteto-mode/principles/model-the-domain.md (full)"
+        }
+      ],
+      "why": "Each of the three cited principles comes with a concrete choice, and main read each one in full at e5-e7."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e52",
+          "quote": "I removed the cap that kept a discount from exceeding the subtotal."
+        }
+      ],
+      "why": "The t1 reply cites no principle at all."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e67",
+          "quote": "**Worth fixing, but I wouldn't block on these.**"
+        }
+      ],
+      "why": "The t2 review reply names no principle."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e17",
+          "quote": "If something outside this repo passes `discountPct` as a fraction, it will now be silently ignored."
+        }
+      ],
+      "why": "This predicts runtime behavior that no event observed, and it carries no label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e52",
+          "quote": "With the 20.00 minimum no current code can hit it, and no test could ever fail because of it."
+        }
+      ],
+      "why": "This is an inferred claim with no label, and no event tested the cap."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e67",
+          "quote": "Anything outside this repo that passes `discountPct` now gets full price with no error."
+        }
+      ],
+      "why": "This states runtime behavior for external callers that no event observed, and it carries no label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/feature.md (full)"
+        }
+      ],
+      "why": "The agent matched the Feature playbook without being told its name and read its file."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e52",
+          "quote": "FLAT5 now only works when the subtotal is at least 20.00."
+        }
+      ],
+      "why": "t1 never names the Feature playbook and never reads its file."
+    }
+  ],
+  "dropped": []
+}

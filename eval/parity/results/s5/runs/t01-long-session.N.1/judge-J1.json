@@ -1,0 +1,204 @@
+{
+  "exit": 0,
+  "ms": 18860,
+  "timedOut": false,
+  "pid": 5064,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B2-mode-off",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t2"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "Orders over $50 after the discount now ship free, and the cart total includes it."
+        }
+      ],
+      "why": "The turn reads like a plain assistant reply: it matches no Feature playbook, carries no step list with states, and names no principles."
+    },
+    {
+      "behavior": "B2-mode-off",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "You're welcome. The fix still isn't committed, so tell me if you want me to commit it."
+        }
+      ],
+      "why": "The reply is short and plain, with no step list, no principle citations and no new work."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "I handled this as a normal request."
+        }
+      ],
+      "why": "The reply carries none of the bug-fix playbook's numbered steps and gives no step states."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "**Changes:**"
+        }
+      ],
+      "why": "The reply has a change summary but no Feature playbook steps with states and no throughput checkpoint."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "`/poteto-mode` isn't installed in this session, so it didn't run."
+        }
+      ],
+      "why": "No event opens the how or why SKILL.md, and the reply never mentions either skill or gives a skip reason."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "Orders over $50 after the discount now ship free, and the cart total includes it."
+        }
+      ],
+      "why": "The how and architect skills were never opened, and the reply never mentions them or gives a skip reason."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "I fixed the code rather than the test because the name `discountPct` also says it's a percentage."
+        }
+      ],
+      "why": "The work turn cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "**Decisions you may want to check:**"
+        }
+      ],
+      "why": "The work turn cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "With a discount, a cent-level mismatch can come back."
+        }
+      ],
+      "why": "This is an unobserved runtime prediction and carries no label or evidence."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "would count as \"over 50\" and ship free."
+        }
+      ],
+      "why": "The claim about $50.004 counting as over 50 is an unobserved runtime prediction and carries no label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "I handled this as a normal request."
+        }
+      ],
+      "why": "The agent never matched or read the bug-fix playbook."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e10",
+          "quote": "git status --short && grep -rn \"shippingFor\\|FLAT_SHIPPING\" --include=*.js ."
+        }
+      ],
+      "why": "The agent went straight to code work without matching or reading the Feature playbook."
+    }
+  ],
+  "dropped": []
+}

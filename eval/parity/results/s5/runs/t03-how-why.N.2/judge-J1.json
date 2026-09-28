@@ -1,0 +1,188 @@
+{
+  "exit": 0,
+  "ms": 17437,
+  "timedOut": false,
+  "pid": 36324,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "It rounds each line because finance reconciles invoices line by line."
+        }
+      ],
+      "why": "The t1 reply reads like a plain assistant answer: it matches no playbook, lists no steps with states and cites no principles."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e4",
+          "quote": "`/poteto-mode` isn't installed in this session, so I answered your question directly from the code."
+        }
+      ],
+      "why": "Neither the reply nor any task list carries the investigation playbook's numbered steps with states."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "**How the history went:**"
+        }
+      ],
+      "why": "The reply has no investigation steps with done, skipped or n/a states, only a free-form history summary."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e4",
+          "quote": "`/poteto-mode` isn't installed in this session, so I answered your question directly from the code."
+        }
+      ],
+      "why": "No event opened the how or unslop SKILL.md, and the reply neither mentions these skills nor skips them with a reason."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "git log --format='=== %h %an %ad%n%B' -p --stat"
+        }
+      ],
+      "why": "The agent read git history directly; no event opened the how, why or unslop SKILL.md, and the reply does not mention them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e4",
+          "quote": "Everything happens in `computeTotal` in `src/cart.js:8`"
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "The commit message doesn't mention this, so I can't tell whether it was intended."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e4",
+          "quote": "That's fine with flat whole-dollar shipping, but it's worth knowing if shipping ever becomes fractional."
+        }
+      ],
+      "why": "This is an unlabeled prediction about rounding behavior that no event observed."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "So any cart with a discount could bring back the one-cent mismatches FIN-212 fixed"
+        }
+      ],
+      "why": "This is an unlabeled runtime prediction that nothing in the session measured."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e4",
+          "quote": "`/poteto-mode` isn't installed in this session, so I answered your question directly from the code."
+        }
+      ],
+      "why": "The agent never read SKILL.md or investigation.md and matched no playbook."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "It rounds each line because finance reconciles invoices line by line."
+        }
+      ],
+      "why": "The agent matched no playbook and never read investigation.md."
+    }
+  ],
+  "dropped": []
+}

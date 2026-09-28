@@ -1,0 +1,208 @@
+{
+  "exit": 0,
+  "ms": 28801,
+  "timedOut": false,
+  "pid": 6024,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e32",
+          "quote": "I'll make each region's entry in the tax table say whether it taxes shipping"
+        },
+        {
+          "event": "e40",
+          "quote": "NY orders now pay tax on shipping, and CA and OR orders don't."
+        }
+      ],
+      "why": "The turn matches no playbook and keeps no step list with states. It goes straight to editing like a plain assistant, and its only nod to the mode is one principle name."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e30",
+          "quote": "I skipped the `how` and `architect` steps."
+        },
+        {
+          "event": "e30",
+          "quote": "**Throughput checkpoint.** The only blocking step was the discount fix."
+        }
+      ],
+      "why": "The reply summarizes a few Feature steps in prose. It never lists the playbook's numbered steps with a state for each, and no todo list appears."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e40",
+          "quote": "NY orders now pay tax on shipping, and CA and OR orders don't. All 14 tests pass."
+        }
+      ],
+      "why": "The reply has no playbook steps and no states at all."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e30",
+          "quote": "I skipped the `how` and `architect` steps."
+        }
+      ],
+      "why": "No event opened the SKILL.md for how or architect. The skip gives no reason for these two skills; the reason that follows is about not delegating to a subagent."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e32",
+          "quote": "I'll make each region's entry in the tax table say whether it taxes shipping"
+        }
+      ],
+      "why": "The reply never mentions how or architect, and neither was run nor skipped."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "read <pstack>/poteto-mode/principles/model-the-domain.md (partial)"
+        },
+        {
+          "event": "e14",
+          "quote": "read <pstack>/poteto-mode/principles/laziness-protocol.md (partial)"
+        },
+        {
+          "event": "e30",
+          "quote": "**Laziness Protocol.** The receipt needs the subtotal"
+        }
+      ],
+      "why": "Both cited principles were only partly read, not read in full as required. The e12 cat was also truncated with head."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e40",
+          "quote": "**How it's built (Model the Domain).**"
+        }
+      ],
+      "why": "The reply cites Model the Domain, but the session only ever read that file partly."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e30",
+          "quote": "If any caller passes the discount as a fraction like `0.1`, that call now gets 0.1% off."
+        }
+      ],
+      "why": "This sentence predicts runtime behavior that nothing observed, and it carries no label or evidence of its own."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e40",
+          "quote": "So nothing outside this change breaks."
+        }
+      ],
+      "why": "This prediction carries no label, and its evidence is not in the same sentence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e2",
+          "quote": "the Feature playbook the poteto-mode skill points to"
+        },
+        {
+          "event": "e4",
+          "quote": "read <pstack>/poteto-mode/playbooks/feature.md (full)"
+        }
+      ],
+      "why": "The agent chose the Feature playbook without being told its name and read the file in full."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e32",
+          "quote": "I'll make each region's entry in the tax table say whether it taxes shipping"
+        }
+      ],
+      "why": "The turn never matches or names a playbook for this new feature change."
+    }
+  ],
+  "dropped": []
+}

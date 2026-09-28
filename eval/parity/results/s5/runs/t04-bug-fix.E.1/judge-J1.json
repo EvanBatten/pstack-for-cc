@@ -1,0 +1,104 @@
+{
+  "exit": 0,
+  "ms": 23119,
+  "timedOut": false,
+  "pid": 36124,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "**Root cause.** `shippingFor` in `src/shipping.js` checked `items.length > 0`."
+        }
+      ],
+      "why": "The reply is organized into prose sections (Root cause, Fix, Verification). It never lists the six bug-fix playbook steps with a state for each, and no task list appears in the events."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "I reproduced the bug before touching any code."
+        },
+        {
+          "event": "e4",
+          "quote": "cat $P/principle-fix-root-causes/SKILL.md $P/principle-test-behavior-not-implementation/SKILL.md"
+        }
+      ],
+      "why": "Step 2 of the playbook names the how and why skills, but no event opens either SKILL.md, and the reply neither runs nor skips them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "principles/fix-root-causes.md (partial)"
+        },
+        {
+          "event": "e6",
+          "quote": "principles/test-behavior-not-implementation.md (partial)"
+        },
+        {
+          "event": "e13",
+          "quote": "The **Fix Root Causes** principle meant fixing that rule in `shippingFor`."
+        }
+      ],
+      "why": "The reply ties both cited principles to concrete choices, but both files were only partly read (through `head -80`), and the behavior requires a full read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "Customers who zero out every line in their cart now pay 0 at checkout instead of 5."
+        }
+      ],
+      "why": "The opening sentence claims runtime behavior at checkout, which nothing ran. It carries no label and no evidence in the same sentence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/bug-fix.md (full)"
+        }
+      ],
+      "why": "The agent picked the bug-fix playbook without being told its name and read the whole file before working."
+    }
+  ],
+  "dropped": []
+}

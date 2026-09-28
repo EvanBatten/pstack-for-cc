@@ -1,0 +1,256 @@
+{
+  "exit": 0,
+  "ms": 42968,
+  "timedOut": false,
+  "pid": 24988,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B2-mode-off",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t2"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e29",
+          "quote": "read <pstack>/poteto-mode/playbooks/feature.md (full)"
+        },
+        {
+          "event": "e30",
+          "quote": "[todo] 1. `how` over the affected subsystem."
+        },
+        {
+          "event": "e76",
+          "quote": "**Sequence Work into Verifiable Units.** This is why the failing tests come before the feature in history"
+        }
+      ],
+      "why": "Although the user did not reopen the mode, the agent matched the Feature playbook, kept its steps as a task list and cited principles it had read."
+    },
+    {
+      "behavior": "B2-mode-off",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e26",
+          "quote": "Glad it works. The fix is still uncommitted on `main`. I can commit it for you if you want."
+        }
+      ],
+      "why": "The reply is short and plain, with no step list, no principle citations and no new work started."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e96",
+          "quote": "principle-model-the-domain: the shape was already fixed by the caller"
+        },
+        {
+          "event": "e106",
+          "quote": "Done. Only `README.md` line 7 changed to the exact requested wording"
+        }
+      ],
+      "why": "The delegate cited principles at e96 before reading their files (e97-e99), and its final message to the parent has no steps or playbook with states."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e24",
+          "quote": "**Playbook steps.**"
+        }
+      ],
+      "why": "The reply has a 'Playbook steps' header with nothing under it, so no bug-fix step appears with a state."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e38",
+          "quote": "task list update: [doing] 7"
+        },
+        {
+          "event": "e76",
+          "quote": "**Throughput checkpoint.**"
+        }
+      ],
+      "why": "Steps 1-6 never get a state, step 7 (interrogate) is marked done without being run, updates point at steps 9-14 that do not exist, and the reply has no per-step list."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e24",
+          "quote": "**Playbook steps.**"
+        }
+      ],
+      "why": "No event opens how/SKILL.md or why/SKILL.md in t0, and neither skill is run or skipped with a reason."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t2",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e42",
+          "quote": "skip how: the subsystem is three files and 20 lines, and I read all of them in full"
+        },
+        {
+          "event": "e41",
+          "quote": "read <pstack>/architect/SKILL.md (full)"
+        },
+        {
+          "event": "e76",
+          "quote": "Put the free-shipping check directly in `computeTotal` | Rejected."
+        }
+      ],
+      "why": "how was opened and skipped with a concrete reason, and architect was opened and followed by a comparison of design alternatives."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "read <pstack>/poteto-mode/principles/fix-root-causes.md (full)"
+        },
+        {
+          "event": "e19",
+          "quote": "read <pstack>/poteto-mode/principles/model-the-domain.md (full)"
+        },
+        {
+          "event": "e24",
+          "quote": "**Fix Root Causes.** I fixed the real cause, which is the mismatch between percent and fraction."
+        }
+      ],
+      "why": "All four cited principles were read in full by main beforehand, and each is tied to a concrete choice."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e55",
+          "quote": "read <pstack>/poteto-mode/principles/sequence-verifiable-units.md (full)"
+        },
+        {
+          "event": "e76",
+          "quote": "**Laziness Protocol.** This is why the change adds one parameter and one condition"
+        }
+      ],
+      "why": "Main read all four cited principles earlier (e9, e10, e19, e55), and each is tied to a concrete choice."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e24",
+          "quote": "Before the fix, checkout charged the wrong total for any cart with a discount."
+        }
+      ],
+      "why": "This sentence generalizes a runtime claim to all discounted checkouts beyond the three values measured, with no label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e76",
+          "quote": "Any code outside this repo that calls `shippingFor(items)` with one argument would never get free shipping."
+        }
+      ],
+      "why": "This is an unlabeled prediction about runtime behavior that no event observed."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/bug-fix.md (full)"
+        }
+      ],
+      "why": "Without being told the name, the agent picked the bug-fix playbook and read it in full."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t2",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e29",
+          "quote": "read <pstack>/poteto-mode/playbooks/feature.md (full)"
+        }
+      ],
+      "why": "Without being told the name, the agent picked the feature playbook and read it in full."
+    }
+  ],
+  "dropped": []
+}

@@ -1,0 +1,216 @@
+{
+  "exit": 0,
+  "ms": 41015,
+  "timedOut": false,
+  "pid": 10644,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e27",
+          "quote": "Route through the how skill. For motivation questions, also route through the why skill."
+        },
+        {
+          "event": "e33",
+          "quote": "read <pstack>/why/SKILL.md (full)"
+        }
+      ],
+      "why": "The user did not repeat the mode command, but the turn rebuilt the investigation playbook's task list and opened the why skill, so it kept working in the mode."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e10",
+          "quote": "Apply the unslop skill to the reply."
+        },
+        {
+          "event": "e21",
+          "quote": "task list update: [done] 4"
+        }
+      ],
+      "why": "The agent kept a task list with the playbook's four steps nearly verbatim, marked each done, and the events show the work for each step."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e29",
+          "quote": "Produce the how-shaped output (Overview / Key Concepts / How It Works / Where Things Live / Gotchas)"
+        },
+        {
+          "event": "e38",
+          "quote": "task list update: [done] 8"
+        }
+      ],
+      "why": "Steps were marked done without the work in this turn: the how skill was not run, the reply is not how-shaped, and no unslop pass happened."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "read <pstack>/how/SKILL.md (full)"
+        },
+        {
+          "event": "e24",
+          "quote": "read <pstack>/unslop/SKILL.md (full)"
+        }
+      ],
+      "why": "The agent opened the how skill and wrote how-shaped output, then opened unslop and revised the interim draft (e22) into the final reply."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e33",
+          "quote": "read <pstack>/why/SKILL.md (full)"
+        },
+        {
+          "event": "e38",
+          "quote": "task list update: [done] 8"
+        }
+      ],
+      "why": "The agent ran the why skill, but in this turn it did not run how or unslop and did not skip them with a reason; it just marked those steps done."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e17",
+          "quote": "read <pstack>/poteto-mode/principles/guard-the-context-window.md (full)"
+        },
+        {
+          "event": "e25",
+          "quote": "*Guard the Context Window* is why I explained this myself."
+        }
+      ],
+      "why": "The reply names a principle the agent had read in full and gives the choice it changed: no explainer subagent."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e39",
+          "quote": "No principle file shaped this answer."
+        }
+      ],
+      "why": "This work turn cites no principle at all."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e25",
+          "quote": "An empty cart totals 0."
+        }
+      ],
+      "why": "This is a runtime claim that nothing in the session ran or observed, and it has no label or evidence."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e39",
+          "quote": "So the one-cent mismatches from FIN-212 could come back on discounted orders. This is inferred."
+        },
+        {
+          "event": "e39",
+          "quote": "I ran two lines at $0.125 each."
+        }
+      ],
+      "why": "Each cause and prediction either rests on the commit message or the node run, or is explicitly labeled as inferred."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/investigation.md (full)"
+        }
+      ],
+      "why": "Without being told its name, the agent picked the investigation playbook and read its file."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e27",
+          "quote": "Route through the how skill. For motivation questions, also route through the why skill."
+        }
+      ],
+      "why": "The agent matched the investigation playbook again, and it had already read that file earlier in the session."
+    }
+  ],
+  "dropped": []
+}

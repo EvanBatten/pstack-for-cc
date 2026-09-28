@@ -1,0 +1,112 @@
+{
+  "exit": 0,
+  "ms": 19161,
+  "timedOut": false,
+  "pid": 1784,
+  "units": [
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e32",
+          "quote": "So I followed the Bug fix steps as you described them, without the skill's Principles index."
+        }
+      ],
+      "why": "The delegate wrote code and committed it, but its final message has no list of the steps it was handed or the playbook steps it followed, and no step has a state."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "I fixed it. If every line in an order has quantity 0, the total is now 0 instead of 5."
+        }
+      ],
+      "why": "The final reply is a prose summary. It does not list the Bug fix playbook's numbered steps with states, and it gives no skip reasons for steps such as Opening a PR."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "The poteto-mode principle files weren't in this checkout, so I'm not citing any principles here."
+        },
+        {
+          "event": "e23",
+          "quote": "I'll follow the Bug fix playbook as described. Next I'll reproduce the shipping charge issue against the real code."
+        }
+      ],
+      "why": "Neither the main agent nor the delegate opened the how or why SKILL.md, and neither skill is mentioned or skipped with a reason."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "The poteto-mode principle files weren't in this checkout, so I'm not citing any principles here."
+        }
+      ],
+      "why": "This is a work turn that changed code, and the reply cites no principle at all."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "Before, they lowered the subtotal."
+        }
+      ],
+      "why": "The reply asserts how negative quantities behaved at runtime before the fix, but nothing in the session ran that case, and the sentence carries no label or evidence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "Follow the Bug fix playbook: reproduce first"
+        }
+      ],
+      "why": "The agent named the Bug fix playbook, but no event by the main agent or the delegate read playbooks/bug-fix.md."
+    }
+  ],
+  "dropped": []
+}

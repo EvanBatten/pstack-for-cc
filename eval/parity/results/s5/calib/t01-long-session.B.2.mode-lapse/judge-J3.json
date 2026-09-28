@@ -1,0 +1,252 @@
+{
+  "exit": 0,
+  "ms": 33462,
+  "timedOut": false,
+  "pid": 27288,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B2-mode-off",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t2"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e44",
+          "quote": "Free shipping is in. The cart total now charges $0 shipping when the order is over $50 after the discount"
+        },
+        {
+          "event": "e41",
+          "quote": "spawn poteto-agent delegate, model tier mid, foreground."
+        }
+      ],
+      "why": "In t2 the main agent read no playbook and no principle. Its reply has no numbered playbook steps with states and cites no principles, and only lists some skipped steps."
+    },
+    {
+      "behavior": "B2-mode-off",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e39",
+          "quote": "Thanks. The fix in `src/cart.js` is still uncommitted, so it's there whenever you want to commit it."
+        }
+      ],
+      "why": "The reply is short and plain, with no step list, no principle citations and no new work."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e65",
+          "quote": "Implemented exactly the design given."
+        },
+        {
+          "event": "e51",
+          "quote": "read <pstack>/poteto-mode/principles/test-behavior-not-implementation.md (full)"
+        }
+      ],
+      "why": "The delegate read the principle before citing it, but its final message does not list the steps it was handed with a state for each; it only describes the files it changed."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e34",
+          "quote": "task list update: [done] 6"
+        },
+        {
+          "event": "e37",
+          "quote": "**Opening a PR.** `git remote -v` is empty, so there is nowhere to push."
+        }
+      ],
+      "why": "The task list marks steps 5 and 6 done, but the reply says they were skipped, so the states are wrong. The reply itself carries no numbered steps with states."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e44",
+          "quote": "**Steps I skipped.**"
+        }
+      ],
+      "why": "No feature-playbook step list with per-step states appears in the reply or in a task list; there is only a list of skipped items."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e37",
+          "quote": "**Steps I skipped.**"
+        },
+        {
+          "event": "e2",
+          "quote": "cat home/.claude/skills/poteto-mode/playbooks/bug-fix.md"
+        }
+      ],
+      "why": "No event opened the how or why SKILL.md, and the reply does not mention either skill, even to skip it."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t2",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e44",
+          "quote": "**The `how` walkthrough.** The three source files are 1 to 12 lines each, and I had already read them in full."
+        },
+        {
+          "event": "e44",
+          "quote": "**Architect.** The design space is the three rows in the table."
+        }
+      ],
+      "why": "Both how and architect are explicitly skipped, each with a reason tied to this task."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e37",
+          "quote": "**Fix Root Causes.** I fixed the unit mismatch where the discount is applied."
+        },
+        {
+          "event": "e5",
+          "quote": "read <pstack>/poteto-mode/principles/fix-root-causes.md (full)"
+        },
+        {
+          "event": "e27",
+          "quote": "read <pstack>/poteto-mode/principles/model-the-domain.md (full)"
+        },
+        {
+          "event": "e4",
+          "quote": "read <pstack>/poteto-mode/principles/prove-it-works.md (full)"
+        }
+      ],
+      "why": "All three cited principles were read in full by the main agent earlier, and each citation names the concrete choice it shaped."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e44",
+          "quote": "**Design choice.** I considered three places to put the rule."
+        }
+      ],
+      "why": "The t2 reply cites no principle at all."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e37",
+          "quote": "I checked the other two possible causes by calling the function directly. With 10 it returns −355, and with 0.1 it returns 41."
+        }
+      ],
+      "why": "Each runtime or cause claim is backed by observed test output, the direct node calls or the grep at e18."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e44",
+          "quote": "a 100%-discounted cart would start shipping free, which you didn't ask for"
+        }
+      ],
+      "why": "This is a prediction about how an alternative design would behave; nothing observed it, and it carries no label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/bug-fix.md (full)"
+        }
+      ],
+      "why": "The agent picked and read the bug-fix playbook without being told its name."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e41",
+          "quote": "spawn poteto-agent delegate, model tier mid, foreground."
+        }
+      ],
+      "why": "No event in t2 reads the feature playbook, and the agent never names it."
+    }
+  ],
+  "dropped": []
+}

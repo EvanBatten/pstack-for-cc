@@ -1,0 +1,204 @@
+{
+  "exit": 0,
+  "ms": 23790,
+  "timedOut": false,
+  "pid": 29520,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B2-mode-off",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t2"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "I added the rule. Carts whose total after the discount is more than $50 now ship free"
+        }
+      ],
+      "why": "The turn reads like a plain assistant reply: no playbook was opened, there is no step list with states, and no principle is named."
+    },
+    {
+      "behavior": "B2-mode-off",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e8",
+          "quote": "Glad it works. The change is still uncommitted in `src/cart.js`."
+        }
+      ],
+      "why": "The reply is short and plain, with no step list, no principle citations and no new work started."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "Two notes on how I worked:"
+        }
+      ],
+      "why": "The reply does not carry the bug-fix playbook's numbered steps with states, and no task list was kept."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "**Where the rule lives.** It's in `src/shipping.js`"
+        }
+      ],
+      "why": "The reply has no Feature playbook step list and no per-step states, and the throughput checkpoint is missing."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "**Cause.** The option is called `discountPct`"
+        }
+      ],
+      "why": "No event opened the how or why SKILL.md, and the reply neither mentions those skills nor skips them with a reason."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e10",
+          "quote": "cat > src/shipping.js <<'EOF'"
+        }
+      ],
+      "why": "The agent wrote code directly without opening how or architect, and it never gave a skip reason for either."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "**Fix Root Causes** decided which side to change."
+        }
+      ],
+      "why": "The reply names Fix Root Causes and Laziness Protocol, but no event read either principle's file."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "**The edge I had to decide.** \"Over 50\" is strict"
+        }
+      ],
+      "why": "This is a work turn, and the reply cites no principle at all."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "I ran `npm test` and all 4 tests pass."
+        }
+      ],
+      "why": "The runtime claims rest on the test runs and the node check in e2 and e5, and the cause sentence carries its evidence (the option name and the commit)."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "Without that, a float like 50.004 would get free shipping on an order that displays as $50.00."
+        }
+      ],
+      "why": "This is a runtime prediction that no event observed, and it carries no label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e2",
+          "quote": "run: ls && cat package.json && git ls-files && npm test 2>&1 | tail -40"
+        }
+      ],
+      "why": "The bug-fix playbook file was never read, and the agent never named a playbook match."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e10",
+          "quote": "export const FREE_SHIPPING_OVER = 50;"
+        }
+      ],
+      "why": "The feature playbook file was never read, and the agent never named a playbook match."
+    }
+  ],
+  "dropped": []
+}

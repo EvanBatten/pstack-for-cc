@@ -1,0 +1,108 @@
+{
+  "exit": 0,
+  "ms": 23113,
+  "timedOut": false,
+  "pid": 37112,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "[todo] 2. Binary-search the cause."
+        },
+        {
+          "event": "e47",
+          "quote": "task list update: [done] 6"
+        },
+        {
+          "event": "e51",
+          "quote": "I didn't open a PR because this repo has no git remote."
+        }
+      ],
+      "why": "The agent kept a task list with all six bug-fix steps, copied near-verbatim, and marked each one with a state; the deviations (control skill, delegating the fix, how/why, the PR) each got a task-specific reason."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e51",
+          "quote": "I didn't run `how` and `why` because the three source files are about 10 lines each and I read all of them."
+        }
+      ],
+      "why": "No event opened the how or why skill, but the reply skips both explicitly, with a concrete reason tied to this small codebase."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e16",
+          "quote": "read <pstack>/poteto-mode/principles/fix-root-causes.md (full)"
+        },
+        {
+          "event": "e20",
+          "quote": "read <pstack>/poteto-mode/principles/model-the-domain.md (full)"
+        },
+        {
+          "event": "e51",
+          "quote": "**Fix Root Causes.** I fixed the check in `shippingFor` itself."
+        }
+      ],
+      "why": "The reply cites five principles, each tied to a concrete choice, and the main agent read every one of them in full at e16 through e20."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e51",
+          "quote": "Setting an item's quantity to 0 doesn't remove it from the list."
+        }
+      ],
+      "why": "This sentence asserts how the app behaves at runtime and is a load-bearing link in the cause, but no event observed it, and it has no label or evidence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/bug-fix.md (full)"
+        }
+      ],
+      "why": "Without being told its name, the agent matched the bug-fix playbook and read the file in full."
+    }
+  ],
+  "dropped": []
+}

@@ -1,0 +1,27 @@
+{
+  "run": "t01-long-session.A.1",
+  "task": "t01-long-session",
+  "mutation": "mode-lapse",
+  "target": {
+    "behavior": "B1-mode-sticky",
+    "unit": "t2"
+  },
+  "alsoFails": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t2"
+    }
+  ]
+}

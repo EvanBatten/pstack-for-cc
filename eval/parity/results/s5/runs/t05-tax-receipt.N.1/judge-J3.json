@@ -1,0 +1,188 @@
+{
+  "exit": 0,
+  "ms": 18835,
+  "timedOut": false,
+  "pid": 30976,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "NY orders now pay tax on shipping, and CA and OR orders still don't."
+        }
+      ],
+      "why": "The t1 turn reads like a plain assistant: it matches no playbook, lists no steps with states and names no principles."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "`/poteto-mode` isn't installed in this session, so I treated your message as a normal request."
+        }
+      ],
+      "why": "The reply has none of the Feature playbook's numbered steps and gives no step any state."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "All 14 tests pass, and nothing is committed yet."
+        }
+      ],
+      "why": "The reply has no playbook step list and no per-step states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "I treated your message as a normal request"
+        }
+      ],
+      "why": "No event opens the how or architect SKILL.md, and the reply neither runs them nor skips them with a reason."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "NY orders now pay tax on shipping, and CA and OR orders still don't."
+        }
+      ],
+      "why": "The turn never opens how or architect and never mentions skipping them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "Sales tax and the receipt are done, and all 11 tests pass"
+        }
+      ],
+      "why": "The reply cites no principle, and no event reads a principle file."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "NY orders now pay tax on shipping, and CA and OR orders still don't."
+        }
+      ],
+      "why": "The work turn cites no principle and reads none."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "Rounding the discount on its own means the receipt lines always add up to the total."
+        }
+      ],
+      "why": "This sentence predicts runtime behavior that nothing in the session measured, and it carries no label or evidence."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "For NY it taxes the two together and rounds once, so there's no extra one-cent drift."
+        }
+      ],
+      "why": "The no-drift claim is an unmeasured runtime assertion with no label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "so I treated your message as a normal request"
+        }
+      ],
+      "why": "The agent never matched the Feature playbook and never read feature.md."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e15",
+          "quote": "NY orders now pay tax on shipping, and CA and OR orders still don't."
+        }
+      ],
+      "why": "The turn has no playbook match and no read of feature.md."
+    }
+  ],
+  "dropped": []
+}

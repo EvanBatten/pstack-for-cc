@@ -1,0 +1,212 @@
+{
+  "exit": 0,
+  "ms": 28200,
+  "timedOut": false,
+  "pid": 3568,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e22",
+          "quote": "Route through the **how** skill. For motivation questions, also route through the **why** skill."
+        }
+      ],
+      "why": "The user did not repeat the mode command, but the agent still reopened the investigation steps as a task list, ran the why skill, cited the principles it had read and ended with the step list and states."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e20",
+          "quote": "1. Route through the how skill. Done on its simple path. Skipped the why skill because this question is about how the code works"
+        },
+        {
+          "event": "e20",
+          "quote": "4. Apply the unslop skill. Done."
+        }
+      ],
+      "why": "The reply lists all four investigation steps near-verbatim, each with a state, and gives a task-specific reason for skipping why."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e37",
+          "quote": "Skipped how because last turn already covered how the code works."
+        },
+        {
+          "event": "e37",
+          "quote": "3. Produce the how-shaped output. Done, using why's sections."
+        }
+      ],
+      "why": "All four steps appear with states, and the skipped how and why subagents have concrete reasons tied to this task."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "read <pstack>/how/SKILL.md (full)"
+        },
+        {
+          "event": "e20",
+          "quote": "4. Apply the unslop skill. Done."
+        }
+      ],
+      "why": "The agent opened the how skill and used it, but no event ever opened the unslop SKILL.md, even though the reply says unslop was applied."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e29",
+          "quote": "read <pstack>/why/SKILL.md (full)"
+        },
+        {
+          "event": "e37",
+          "quote": "4. Apply the unslop skill. Done."
+        }
+      ],
+      "why": "The agent ran why and skipped how with a reason, but unslop was claimed as done without any event opening its SKILL.md."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e20",
+          "quote": "Because of this principle I ran the suite and the `node -e` probes before describing the discount step."
+        },
+        {
+          "event": "e15",
+          "quote": "read <pstack>/poteto-mode/principles/prove-it-works.md (full)"
+        }
+      ],
+      "why": "The two principles cited, Prove It Works and Guard the Context Window, were both read in full (e15, e16), and each is tied to a concrete choice."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e37",
+          "quote": "Because of this principle I ran the `0.005` and discounted-cart numbers myself."
+        }
+      ],
+      "why": "Both principles cited were read in full earlier in the session by the main actor, and each is tied to a concrete decision in this turn."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e20",
+          "quote": "That one failed with `-355 !== 41` (measured)."
+        },
+        {
+          "event": "e20",
+          "quote": "(inferred from `src/shipping.js:4`, not run)"
+        }
+      ],
+      "why": "Runtime and cause claims carry a measured or inferred label, or a code citation in the same sentence."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e37",
+          "quote": "Carts without a discount still reconcile, because each line is already whole cents."
+        }
+      ],
+      "why": "This sentence claims runtime behavior and gives a cause, but nothing in the session measured it and it carries no label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/investigation.md (full)"
+        }
+      ],
+      "why": "The agent matched the investigation playbook without being told its name and read the playbook file in full."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e22",
+          "quote": "task list create: [todo] Route through the **how** skill. For motivation questions, also route through the **why** skill."
+        }
+      ],
+      "why": "The agent matched investigation again, the file had been read earlier in the session (e3), and it copied the playbook's steps into a new task list."
+    }
+  ],
+  "dropped": []
+}

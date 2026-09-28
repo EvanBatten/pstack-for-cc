@@ -1,0 +1,308 @@
+{
+  "exit": 0,
+  "ms": 49839,
+  "timedOut": false,
+  "pid": 27616,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d2"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e48",
+          "quote": "Small change, but it touches the registry, the cart and the tests, so I'll run it through the same delegate-and-review loop."
+        },
+        {
+          "event": "e51",
+          "quote": "The change is one more commit, `304976c`, on the local `coupon-codes` branch, and all 15 tests pass."
+        }
+      ],
+      "why": "The turn delegated and named principles, but it never matched the Feature playbook and never carried its steps with states."
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e79",
+          "quote": "I'd block this branch on three things. I found each by running the code."
+        }
+      ],
+      "why": "The review ran real checks and labeled its claims, but it names no principle it read, which the mode requires in every reply."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e20",
+          "quote": "invoke skill poteto-mode, which loads <pstack>/poteto-mode/SKILL.md in full"
+        },
+        {
+          "event": "e23",
+          "quote": "read <pstack>/poteto-mode/principles/model-the-domain.md (partial)"
+        },
+        {
+          "event": "e46",
+          "quote": "**0579108 \"treat discountPct as a percentage\".**"
+        }
+      ],
+      "why": "The code-writing delegate loaded the mode, read each principle it cited before citing it, and reported both commits it was handed along with their outcomes."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d2",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e53",
+          "quote": "invoke skill poteto-mode, which loads <pstack>/poteto-mode/SKILL.md in full"
+        },
+        {
+          "event": "e56",
+          "quote": "read <pstack>/poteto-mode/principles/test-behavior-not-implementation.md (full)"
+        },
+        {
+          "event": "e75",
+          "quote": "Tests (principle-test-behavior-not-implementation shaped them):"
+        }
+      ],
+      "why": "The delegate loaded the mode, read the one principle it cited, and its final message covers each part of the design it was handed along with its result."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "1. [x] `how` over the affected subsystem. skip: the subsystem is 3 files / 20 lines, read in full directly."
+        },
+        {
+          "event": "e11",
+          "quote": "2. [x] `architect` for parallel design exploration. skip: one obvious shape"
+        }
+      ],
+      "why": "The agent kept a todo file that copies the Feature steps near-verbatim, gives each a state, and gives each skip a reason tied to this task."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e51",
+          "quote": "FLAT5 now only applies when the order subtotal is at least 20."
+        }
+      ],
+      "why": "Neither the reply nor any task list for this feature turn carries the playbook steps with states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "skip: the subsystem is 3 files / 20 lines, read in full directly."
+        },
+        {
+          "event": "e11",
+          "quote": "skip: one obvious shape (code -> Discount registry); no competing shapes worth a panel."
+        }
+      ],
+      "why": "Both how and architect were explicitly skipped, each with a concrete reason tied to this task."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e51",
+          "quote": "**Design choices and the principles behind them:**"
+        }
+      ],
+      "why": "Neither how nor architect was run or explicitly skipped in this feature turn."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "read <pstack>/poteto-mode/principles/model-the-domain.md (full)"
+        },
+        {
+          "event": "e9",
+          "quote": "read <pstack>/poteto-mode/principles/redesign-from-first-principles.md (full)"
+        },
+        {
+          "event": "e18",
+          "quote": "**Redesign from First Principles.** Instead of adding coupons alongside the old discount math"
+        }
+      ],
+      "why": "Each principle the reply names was read in full by the main actor, and each is tied to a concrete choice."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e51",
+          "quote": "**Boundary Discipline.** `couponFor` now takes the subtotal and is the only place the minimum is checked."
+        }
+      ],
+      "why": "The three principles the reply cites were read in full earlier by the main actor, and each is tied to a concrete choice."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e79",
+          "quote": "**What I'd approve as is.** The coupon table design holds up, and each rule is checked in one place."
+        }
+      ],
+      "why": "The review reply cites no principle at all."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e18",
+          "quote": "Any caller that was passing a fraction like `0.1` will now get 0.1% off instead of 10%."
+        }
+      ],
+      "why": "This prediction was not measured in t0, and its guess label sits in the next sentence, not the same one."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e51",
+          "quote": "can't happen through checkout anymore, because the minimum (20) is above the discount (5)"
+        }
+      ],
+      "why": "This runtime claim was never observed and carries no label, and t2 later showed float subtotals break a related assumption."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e79",
+          "quote": "But any caller already passing `0.1` was getting a correct 10% off."
+        }
+      ],
+      "why": "This claim about how main behaved was not run on main and carries no label. Only the branch result was measured."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/feature.md (full)"
+        },
+        {
+          "event": "e11",
+          "quote": "# Feature: coupon codes"
+        }
+      ],
+      "why": "The agent picked the Feature playbook on its own and read the file in full."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e48",
+          "quote": "so I'll run it through the same delegate-and-review loop"
+        }
+      ],
+      "why": "The turn never matched or named the Feature playbook for this new requirement. It fell back on an ad-hoc delegate loop."
+    }
+  ],
+  "dropped": []
+}

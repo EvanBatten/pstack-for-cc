@@ -1,0 +1,10 @@
+{
+  "run": "t03-how-why.A.2",
+  "task": "t03-how-why",
+  "mutation": "unlabeled-claim",
+  "target": {
+    "behavior": "B13b-claim-labels",
+    "unit": "t0"
+  },
+  "alsoFails": []
+}

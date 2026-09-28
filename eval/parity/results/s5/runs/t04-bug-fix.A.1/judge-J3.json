@@ -1,0 +1,116 @@
+{
+  "exit": 0,
+  "ms": 22108,
+  "timedOut": false,
+  "pid": 37128,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e20",
+          "quote": "**What was broken.** `shippingFor` in `src/shipping.js` decided on shipping from `items.length > 0`."
+        },
+        {
+          "event": "e20",
+          "quote": "There's no git remote, so I didn't open a PR."
+        }
+      ],
+      "why": "The reply follows the playbook's reply sections but never lists the bug-fix playbook's numbered steps with states, and no todolist event exists."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e10",
+          "quote": "Root cause candidate is visible: `shippingFor` checks `items.length`, so zero-quantity lines still count."
+        },
+        {
+          "event": "e20",
+          "quote": "**Principles that shaped this.**"
+        }
+      ],
+      "why": "Step 2 names the how and why skills, but no event opens either SKILL.md and the reply never mentions them or gives a reason for skipping them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "read <pstack>/poteto-mode/principles/fix-root-causes.md (full)"
+        },
+        {
+          "event": "e12",
+          "quote": "read <pstack>/poteto-mode/principles/laziness-protocol.md (full)"
+        },
+        {
+          "event": "e13",
+          "quote": "read <pstack>/poteto-mode/principles/sequence-verifiable-units.md (full)"
+        },
+        {
+          "event": "e20",
+          "quote": "rather than special-casing zero totals in `computeTotal`"
+        }
+      ],
+      "why": "The reply names three principles, each with the concrete choice it changed, and main read each one in full earlier (e11-e13)."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e20",
+          "quote": "**Verification.** Measured on branch `fix/zero-qty-shipping`, in two commits."
+        },
+        {
+          "event": "e19",
+          "quote": "zero-qty total:"
+        }
+      ],
+      "why": "The runtime and cause claims rest on the repro and test output the agent ran (e14, e16, e19), which the reply pastes or labels as measured."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e4",
+          "quote": "read <pstack>/poteto-mode/playbooks/bug-fix.md (full)"
+        }
+      ],
+      "why": "Without being told its name, the agent chose the bug-fix playbook and read its file in full before working."
+    }
+  ],
+  "dropped": []
+}

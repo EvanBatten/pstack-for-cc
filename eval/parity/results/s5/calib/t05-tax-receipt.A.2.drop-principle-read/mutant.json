@@ -1,0 +1,19 @@
+{
+  "run": "t05-tax-receipt.A.2",
+  "task": "t05-tax-receipt",
+  "mutation": "drop-principle-read",
+  "target": {
+    "behavior": "B7-cite-read",
+    "unit": "t0"
+  },
+  "alsoFails": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    }
+  ]
+}

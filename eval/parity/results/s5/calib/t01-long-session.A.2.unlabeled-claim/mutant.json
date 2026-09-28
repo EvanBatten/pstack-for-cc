@@ -1,0 +1,10 @@
+{
+  "run": "t01-long-session.A.2",
+  "task": "t01-long-session",
+  "mutation": "unlabeled-claim",
+  "target": {
+    "behavior": "B13b-claim-labels",
+    "unit": "t0"
+  },
+  "alsoFails": []
+}

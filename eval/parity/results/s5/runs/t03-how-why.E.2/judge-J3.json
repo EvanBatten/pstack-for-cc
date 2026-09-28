@@ -1,0 +1,188 @@
+{
+  "exit": 0,
+  "ms": 23480,
+  "timedOut": false,
+  "pid": 37268,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "Each line is rounded first because Finance reconciles invoices line by line against the ledger export."
+        }
+      ],
+      "why": "The t1 reply reads like a plain assistant answer: it matches no playbook, lists no steps with states and cites no principles."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "It goes through four steps, and I checked each one against the running code."
+        }
+      ],
+      "why": "The reply never lists the investigation playbook's steps with states (route through how, throughput checkpoint, how-shaped output, unslop), and no task list was kept."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "The reason is written in commit `ed84e20` (Dana Reyes, 2026-07-11)."
+        }
+      ],
+      "why": "The reply has no numbered playbook steps and gives no step any state."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "I made no changes; this was a read-only look."
+        }
+      ],
+      "why": "No event opened the how or unslop SKILL.md, and the reply neither mentions nor skips either skill."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "The original design did round once."
+        }
+      ],
+      "why": "No event opened the how, why or unslop SKILL.md, and none of them is mentioned or skipped with a reason."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "You'll need to decide which discount format is correct before anyone fixes the failing test."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "Whoever fixes the discount format should also decide whether the discount belongs on each line or as its own ledger line."
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "Existing prices don't hit this yet."
+        }
+      ],
+      "why": "This asserts runtime behavior across existing prices, but no event observed it and the sentence has neither a label nor evidence."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "Each line is rounded first because Finance reconciles invoices line by line against the ledger export."
+        }
+      ],
+      "why": "This causal claim carries no label or evidence in the same sentence; the commit citation only comes two sentences later."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/investigation.md (full)"
+        }
+      ],
+      "why": "The agent picked the investigation playbook without being told its name and read the file in full."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e9",
+          "quote": "git log --format='%h %an %ad%n%B' -p ed84e20 -1"
+        }
+      ],
+      "why": "In t1 the agent went straight to git commands; it shows no playbook match and does not route through the investigation playbook's motivation step (why)."
+    }
+  ],
+  "dropped": []
+}

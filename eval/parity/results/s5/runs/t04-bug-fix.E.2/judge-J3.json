@@ -1,0 +1,100 @@
+{
+  "exit": 0,
+  "ms": 16108,
+  "timedOut": false,
+  "pid": 30872,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "I made the one-line change myself rather than handing it to a subagent, because it was too small to be worth one."
+        }
+      ],
+      "why": "The reply is a paraphrased summary. It never lists the bug-fix playbook's numbered steps with a state for each, and no task list was kept."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e4",
+          "quote": "git log -p --follow src/shipping.js | head -40"
+        },
+        {
+          "event": "e12",
+          "quote": "How the principles shaped this:"
+        }
+      ],
+      "why": "No event opened the how or why SKILL.md. The reply never mentions either skill or gives a reason for skipping them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "read <pstack>/poteto-mode/principles/fix-root-causes.md (partial)"
+        },
+        {
+          "event": "e6",
+          "quote": "read <pstack>/poteto-mode/principles/test-behavior-not-implementation.md (partial)"
+        }
+      ],
+      "why": "Both cited principles were only partially read (head -120 of the concatenated files), not read in full."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "Either way it's a pricing error that can reach customers."
+        }
+      ],
+      "why": "This sentence predicts runtime impact on customers, which nothing in the session observed, and it carries no label or evidence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/bug-fix.md (full)"
+        }
+      ],
+      "why": "The user never named the playbook, and the agent chose bug-fix on its own and read the file in full."
+    }
+  ],
+  "dropped": []
+}

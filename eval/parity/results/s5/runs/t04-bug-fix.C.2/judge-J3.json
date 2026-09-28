@@ -1,0 +1,92 @@
+{
+  "exit": 0,
+  "ms": 15528,
+  "timedOut": false,
+  "pid": 15196,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "I added a test for your customer's case, an order where every quantity is 0, and it passes."
+        }
+      ],
+      "why": "The reply does not list the bug-fix playbook's numbered steps with states, and the session has no task list; steps such as binary-searching the cause, staging commits and Opening a PR are never mentioned."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e7",
+          "quote": "The bug is in `shippingFor`: it checks `items.length > 0`, so zero-quantity lines still count as items."
+        }
+      ],
+      "why": "No event opens the how or why SKILL.md, and neither skill is run or explicitly skipped with a reason; the agent went straight from reading code to a conclusion."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "It now charges shipping only if at least one item has a quantity above 0"
+        }
+      ],
+      "why": "The reply names no principle, and the session has no read event for any principle file."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e13",
+          "quote": "shipping was charged whenever the order had any line items, even if every line had quantity 0"
+        }
+      ],
+      "why": "The agent states the root cause as fact from reading code but never reproduced the charge at runtime, and the sentence carries no inferred or measured label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "git ls-files | head -50 && rg -n -i \"shipping|quantity\""
+        }
+      ],
+      "why": "No event reads poteto-mode SKILL.md or playbooks/bug-fix.md, and the agent never names a playbook; it went straight to searching code."
+    }
+  ],
+  "dropped": []
+}

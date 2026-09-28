@@ -1,0 +1,116 @@
+{
+  "exit": 0,
+  "ms": 26648,
+  "timedOut": false,
+  "pid": 30680,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "1. Reproduce it yourself on the matching surface via the control skill (Non-negotiables)."
+        },
+        {
+          "event": "e11",
+          "quote": "6. Run **Opening a PR**."
+        },
+        {
+          "event": "e47",
+          "quote": "task list update: [done] 6"
+        },
+        {
+          "event": "e51",
+          "quote": "I didn't run `how` and `why` because the three source files are about 10 lines each and I read all of them."
+        }
+      ],
+      "why": "The agent kept a task list with all six bug-fix steps copied near-verbatim and marked each done, and the reply gives concrete, task-specific reasons for the parts it skipped (control skill, how/why, PR because there is no remote)."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e51",
+          "quote": "I didn't run `how` and `why` because the three source files are about 10 lines each and I read all of them."
+        }
+      ],
+      "why": "how and why were never opened, but the reply skips them explicitly with a concrete reason tied to this small codebase."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e16",
+          "quote": "read <pstack>/poteto-mode/principles/fix-root-causes.md (full)"
+        },
+        {
+          "event": "e18",
+          "quote": "read <pstack>/poteto-mode/principles/laziness-protocol.md (full)"
+        },
+        {
+          "event": "e51",
+          "quote": "**Fix Root Causes.** I fixed the check in `shippingFor` itself."
+        },
+        {
+          "event": "e51",
+          "quote": "**Model the Domain.** I kept the cart as a plain list of items."
+        }
+      ],
+      "why": "All five cited principles were read in full at e16-e20, and each citation names the concrete choice it changed."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e51",
+          "quote": "but the code treats that number as a fraction, so the discount becomes 1000%."
+        }
+      ],
+      "why": "This sentence asserts a cause that no run traced, and it carries no label; the label only appears in the next sentence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/bug-fix.md (full)"
+        }
+      ],
+      "why": "Without being told the playbook's name, the agent picked the bug-fix playbook and read its file in full."
+    }
+  ],
+  "dropped": []
+}

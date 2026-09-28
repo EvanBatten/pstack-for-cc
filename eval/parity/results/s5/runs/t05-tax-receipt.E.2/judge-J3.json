@@ -1,0 +1,232 @@
+{
+  "exit": 0,
+  "ms": 31662,
+  "timedOut": false,
+  "pid": 23432,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d2"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e53",
+          "quote": "NY orders now include shipping in the taxed amount, and CA and OR orders don't."
+        }
+      ],
+      "why": "The t1 reply names principles but shows no matched playbook and no step list with states, and nothing in t1 opens or reports the Feature steps."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e20",
+          "quote": "invoke skill poteto-mode, which loads <pstack>/poteto-mode/SKILL.md in full"
+        },
+        {
+          "event": "e46",
+          "quote": "Both commits are in, and `npm test` passes all 14 tests."
+        }
+      ],
+      "why": "The delegate loaded the mode, reports each of the two commits it was handed as done with its hash, and cites no principle it did not read."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d2",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e57",
+          "quote": "read <pstack>/poteto-mode/principles/model-the-domain.md (full)"
+        },
+        {
+          "event": "e81",
+          "quote": "a new region is just a new row in the table (principle-model-the-domain)"
+        }
+      ],
+      "why": "The delegate loaded the mode and read both principles before citing them, and its final message reports the one commit it was handed as done."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e18",
+          "quote": "I skipped the `how` and `architect` steps because the four source files are each under 15 lines"
+        }
+      ],
+      "why": "The reply gives a prose summary with no numbered Feature steps and no per-step states, and the throughput checkpoint, verify, commits and PR steps have no states."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e53",
+          "quote": "It's one new commit on local `main` (`8b3fb72`), not pushed"
+        }
+      ],
+      "why": "The t1 reply has no playbook step list and no states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e18",
+          "quote": "I skipped the `how` and `architect` steps because the four source files are each under 15 lines and there was one obvious design"
+        }
+      ],
+      "why": "Both named skills are explicitly skipped with a concrete reason tied to this repo."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e53",
+          "quote": "Each region's row in `tax.js` now holds its rate and whether it taxes shipping."
+        }
+      ],
+      "why": "In t1, how and architect are neither opened nor mentioned as skipped."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e18",
+          "quote": "That was Model the Domain: adding a state is one table entry, not a new branch."
+        },
+        {
+          "event": "e6",
+          "quote": "read <pstack>/poteto-mode/principles/model-the-domain.md (full)"
+        }
+      ],
+      "why": "Four principles are cited, each with the choice it changed, and main read all four in full at e6 to e9."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e53",
+          "quote": "That was Model the Domain: a second state that taxes shipping is a one-word edit in the table."
+        }
+      ],
+      "why": "Both principles cited in t1 were read in full earlier by main, and each is tied to a concrete choice."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e18",
+          "quote": "An item without one prints as `undefined x2`."
+        }
+      ],
+      "why": "This runtime claim was never observed in any event, and it carries no label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e53",
+          "quote": "I checked both by hand and printed them through `checkout` and `formatReceipt`."
+        }
+      ],
+      "why": "Each runtime claim is backed by the run at e52 or the delegate's mutation runs, and the remaining sentences are actions, a question or a proposal."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/feature.md (full)"
+        }
+      ],
+      "why": "The agent opened feature.md without being told its name and followed its how/architect/delegate/verify shape."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e53",
+          "quote": "NY orders now include shipping in the taxed amount, and CA and OR orders don't."
+        }
+      ],
+      "why": "Nothing in t1 matches or references the Feature playbook, and its file is not reopened."
+    }
+  ],
+  "dropped": []
+}

@@ -1,0 +1,108 @@
+{
+  "exit": 0,
+  "ms": 20730,
+  "timedOut": false,
+  "pid": 25904,
+  "units": [
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e32",
+          "quote": "So I followed the Bug fix steps as you described them, without the skill's Principles index."
+        }
+      ],
+      "why": "d1 reproduced, tested, fixed and committed code, but its final message has no playbook step list with a state for each step, and it never read the poteto-mode SKILL.md or the bug-fix playbook."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "I fixed it. If every line in an order has quantity 0, the total is now 0 instead of 5."
+        }
+      ],
+      "why": "The final reply is a Cause/Fix/Verification summary; it has none of the bug-fix playbook's numbered steps and no per-step states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "**Cause.** `computeTotal` in `src/cart.js` passed the full item list to `shippingFor`"
+        }
+      ],
+      "why": "Step 2 names the how and why skills, but no event opens either SKILL.md in main or d1, and the reply never mentions them or gives a reason to skip them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "so I'm not citing any principles here."
+        }
+      ],
+      "why": "This is a work turn and its reply cites no principle, so it fails."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "Lines with a negative quantity are now dropped too. Before, they lowered the subtotal."
+        }
+      ],
+      "why": "The reply states runtime behavior for negative quantities that no event ran or observed, and gives neither a label nor evidence in the same sentence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "Follow the Bug fix playbook: reproduce first"
+        }
+      ],
+      "why": "Main named the right playbook, but no event in main or d1 reads playbooks/bug-fix.md, and d1 never found the skill tree."
+    }
+  ],
+  "dropped": []
+}

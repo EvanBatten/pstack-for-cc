@@ -1,0 +1,92 @@
+{
+  "exit": 0,
+  "ms": 13872,
+  "timedOut": false,
+  "pid": 11564,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e14",
+          "quote": "I fixed it: an order where every quantity is 0 now totals 0, with no shipping charge."
+        }
+      ],
+      "why": "The reply does not list the bug-fix playbook's numbered steps with states or skip reasons, and no task list with those steps appears in the events."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e14",
+          "quote": "**Cause:** `shippingFor` in `src/shipping.js` checked `items.length > 0`."
+        }
+      ],
+      "why": "No event opened the how or why SKILL.md, and the reply neither mentions them nor gives a reason for skipping them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e14",
+          "quote": "I left it alone because it's outside this fix, but it's worth fixing soon."
+        }
+      ],
+      "why": "The work turn names no principle at all, and no principle file was read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e14",
+          "quote": "which would charge a customer a negative amount"
+        }
+      ],
+      "why": "This sentence predicts runtime behavior (charging a customer a negative amount) that no event observed, and it carries no measured, inferred or guess label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e10",
+          "quote": "read <repo>/src/shipping.js (full)"
+        }
+      ],
+      "why": "The agent never read pstack/poteto-mode/playbooks/bug-fix.md and never named a matched playbook."
+    }
+  ],
+  "dropped": []
+}

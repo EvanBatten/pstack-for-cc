@@ -1,0 +1,10 @@
+{
+  "run": "t04-bug-fix.A.1",
+  "task": "t04-bug-fix",
+  "mutation": "drop-principle-read",
+  "target": {
+    "behavior": "B7-cite-read",
+    "unit": "t0"
+  },
+  "alsoFails": []
+}

@@ -1,0 +1,212 @@
+{
+  "exit": 0,
+  "ms": 29063,
+  "timedOut": false,
+  "pid": 3568,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e22",
+          "quote": "I read the full git log and the diffs for `src/cart.js`, and checked the README and tests."
+        }
+      ],
+      "why": "The t1 reply names no playbook, has no step list with states, cites no principles, and the turn opened no pstack files, so it reads like a plain assistant."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e19",
+          "quote": "I couldn't find the `poteto-mode` `SKILL.md` anywhere on disk, so I did this without it."
+        }
+      ],
+      "why": "d1 did Investigation playbook work but never loaded the mode or the playbook, and its final message has no playbook steps with states."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "**Process.** I sent this to the poteto subagent as a read-only investigation."
+        }
+      ],
+      "why": "The reply has no Investigation steps with states (route through how, throughput checkpoint, how-shaped output, unslop), and the agent kept no task list."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e22",
+          "quote": "**How the code got here.** There are three commits in the history."
+        }
+      ],
+      "why": "The numbered list covers commit history, not the playbook's steps, and no step carries a state."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "I read all three source files and ran `node --test`."
+        }
+      ],
+      "why": "No event in main or d1 opened the how or unslop SKILL.md, and the reply does not mention either skill."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e21",
+          "quote": "git log --all --stat --format="
+        }
+      ],
+      "why": "The agent checked git history directly but never opened the how, why or unslop SKILL.md, and did not name or skip any of them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "so I'm not citing any principles here"
+        }
+      ],
+      "why": "This work turn cites no principle and read no principle file."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e22",
+          "quote": "The README doesn't explain the rounding choice. Nothing was changed."
+        }
+      ],
+      "why": "The reply names no principle, and the session never read any principle file."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e5",
+          "quote": "which I reproduced by running the tests"
+        },
+        {
+          "event": "e5",
+          "quote": "From reading the code, any value above 1 makes the total negative"
+        }
+      ],
+      "why": "Runtime claims either carry measured evidence from test and node runs or point to the code read in e4 in the same sentence."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e22",
+          "quote": "My guess is that discounted invoices could bring back the one-cent mismatches FIN-212 fixed"
+        },
+        {
+          "event": "e22",
+          "quote": "Commit `ed84e20` (Dana Reyes, Jul 11 2026, \"round each line to cents before summing\") gives the reason"
+        }
+      ],
+      "why": "The cause comes from the commit read in e21, and the unverified prediction is labeled as a guess."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "Brief: /poteto-mode Investigation playbook (read-only)."
+        }
+      ],
+      "why": "The agent named Investigation but no event in main or d1 read playbooks/investigation.md."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e22",
+          "quote": "Lines are rounded one at a time on purpose, for finance reconciliation."
+        }
+      ],
+      "why": "The turn names no playbook and never reads the Investigation playbook file."
+    }
+  ],
+  "dropped": []
+}

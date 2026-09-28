@@ -1,0 +1,196 @@
+{
+  "exit": 0,
+  "ms": 23926,
+  "timedOut": false,
+  "pid": 29732,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e34",
+          "quote": "I'll turn each region's rate into a small rule that also says whether shipping is taxed, then update the tests."
+        },
+        {
+          "event": "e41",
+          "quote": "NY orders now pay 4% tax on shipping as well as on the discounted subtotal."
+        }
+      ],
+      "why": "The turn does not match or reopen a playbook and lists no steps with states, so it reads like a plain assistant turn apart from naming one principle."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e32",
+          "quote": "I also skipped the `how` and `architect` steps and the separate throughput checklist."
+        }
+      ],
+      "why": "The reply sums up its departures in prose and does not list the Feature playbook's numbered steps, each with a state."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e41",
+          "quote": "**What changed.** In `src/tax.js`, each region's entry now holds its rate plus a yes/no for whether shipping is taxed."
+        }
+      ],
+      "why": "The reply has no playbook step list and no per-step states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e32",
+          "quote": "I also skipped the `how` and `architect` steps and the separate throughput checklist."
+        },
+        {
+          "event": "e32",
+          "quote": "The change is about 35 lines of source across four files, so I judged the overhead not worth it."
+        }
+      ],
+      "why": "Neither skill was opened, but both were explicitly skipped for a reason tied to this task: the change is about 35 lines across four files."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e41",
+          "quote": "**Open decision.** The Tax line looks the same whether or not it covers shipping."
+        }
+      ],
+      "why": "The turn never mentions how or architect, and no event opens either skill's SKILL.md."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e32",
+          "quote": "**Model the Domain.** Tax rates live in a lookup table rather than an if/else chain."
+        }
+      ],
+      "why": "The reply cites Model the Domain, but the session only read the boundary-discipline and test-behavior principle files, never model-the-domain."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e41",
+          "quote": "This follows **Model the Domain**."
+        }
+      ],
+      "why": "The reply cites Model the Domain, and no event in the session reads that principle's file."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e32",
+          "quote": "Tax is charged on the discounted subtotal, so it would have been wrong too."
+        }
+      ],
+      "why": "This sentence asserts a counterfactual runtime outcome that no event observed, and it carries no inferred or guess label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e41",
+          "quote": "Without the shipping it would be 1.44, so the test would catch that."
+        }
+      ],
+      "why": "This sentence predicts a test outcome that no run observed, and it carries no label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/feature.md (full)"
+        }
+      ],
+      "why": "The agent picked the Feature playbook without being told and read its file in full."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e34",
+          "quote": "I'll turn each region's rate into a small rule that also says whether shipping is taxed, then update the tests."
+        }
+      ],
+      "why": "The turn neither names nor reads a playbook and goes straight to edits."
+    }
+  ],
+  "dropped": []
+}

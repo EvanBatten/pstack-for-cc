@@ -1,0 +1,10 @@
+{
+  "run": "t03-how-why.B.2",
+  "task": "t03-how-why",
+  "mutation": "drop-skill-read",
+  "target": {
+    "behavior": "B6-trigger-runs",
+    "unit": "t0"
+  },
+  "alsoFails": []
+}

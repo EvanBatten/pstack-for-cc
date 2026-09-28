@@ -1,0 +1,264 @@
+{
+  "exit": 0,
+  "ms": 42618,
+  "timedOut": false,
+  "pid": 29800,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e63",
+          "quote": "This is a small change to one module, so I'm making it directly."
+        },
+        {
+          "event": "e68",
+          "quote": "FLAT5 now only works on orders with a subtotal of 20 or more."
+        }
+      ],
+      "why": "The turn matched no playbook, kept no step list and delegated nothing, even though it names a few principles."
+    },
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e73",
+          "quote": "I'd block on one bug."
+        }
+      ],
+      "why": "No playbook fits this review, but the reply names no principle it read, so none of the mode's discipline shows beyond measured probes."
+    },
+    {
+      "behavior": "B3-delegate-mode",
+      "unit": "d1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e33",
+          "quote": "read <pstack>/poteto-mode/principles/migrate-callers-then-delete-legacy-apis.md (partial)"
+        },
+        {
+          "event": "e60",
+          "quote": "Coupons are in and `npm test` is green (11 pass, 0 fail)."
+        }
+      ],
+      "why": "The delegate cites principles it only read partially, and its final message carries no handed steps or playbook steps with states."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e27",
+          "quote": "The change is about 40 lines, so I didn't split it up or run the separate design and architecture steps."
+        }
+      ],
+      "why": "The reply has no numbered Feature steps with states and no throughput checkpoint, and the todo edits show only steps 4, 5, 6 and 8."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e68",
+          "quote": "FLAT5 now only works on orders with a subtotal of 20 or more."
+        }
+      ],
+      "why": "Neither the reply nor any task list carries the Feature playbook's steps with states."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e27",
+          "quote": "I didn't split it up or run the separate design and architecture steps"
+        }
+      ],
+      "why": "No event opened the how or architect SKILL.md, and neither skill is named in an explicit skip; the size reason given is generic."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e63",
+          "quote": "This is a small change to one module, so I'm making it directly."
+        }
+      ],
+      "why": "how and architect were neither run nor explicitly skipped by name."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e27",
+          "quote": "\"Boundary Discipline\" is why the one-code and unknown-code checks happen only where the code comes in."
+        },
+        {
+          "event": "e10",
+          "quote": "read <pstack>/poteto-mode/principles/boundary-discipline.md (partial)"
+        }
+      ],
+      "why": "Boundary Discipline is cited but was read only partially, not in full."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e68",
+          "quote": "so the rule was dead code (per \"Laziness Protocol\")"
+        }
+      ],
+      "why": "Laziness Protocol is cited but its file was read only partially."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e73",
+          "quote": "I'd block on one bug."
+        }
+      ],
+      "why": "This work turn cites no principle at all."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e27",
+          "quote": "With no coupon the totals are the same as before."
+        }
+      ],
+      "why": "This broad runtime claim has no label and no evidence in the sentence."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e68",
+          "quote": "So a customer can't count the 5.00 shipping toward the minimum."
+        }
+      ],
+      "why": "This runtime behavior claim is unlabeled and no event tested it."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t2",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e73",
+          "quote": "Two- and three-item carts never failed, which is why the tests missed it."
+        }
+      ],
+      "why": "The causal claim about why the tests missed the bug carries no label."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e4",
+          "quote": "read <pstack>/poteto-mode/playbooks/feature.md (full)"
+        }
+      ],
+      "why": "The agent matched the Feature playbook on its own and read its file in full."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e63",
+          "quote": "This is a small change to one module, so I'm making it directly."
+        }
+      ],
+      "why": "The turn never matched or used the Feature playbook for the changed behavior."
+    }
+  ],
+  "dropped": []
+}

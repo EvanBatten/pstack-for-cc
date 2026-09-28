@@ -1,0 +1,15 @@
+{
+  "run": "t01-long-session.B.2",
+  "task": "t01-long-session",
+  "mutation": "drop-skill-read",
+  "target": {
+    "behavior": "B6-trigger-runs",
+    "unit": "t2"
+  },
+  "alsoFails": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t2"
+    }
+  ]
+}

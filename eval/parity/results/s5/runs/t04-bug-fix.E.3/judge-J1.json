@@ -1,0 +1,100 @@
+{
+  "exit": 0,
+  "ms": 20393,
+  "timedOut": false,
+  "pid": 36976,
+  "units": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "There are two commits on `main`: the failing test (`971bb0e`), then the fix (`556d2ac`)."
+        }
+      ],
+      "why": "The reply does not list the bug-fix playbook's numbered steps or give any of them a state (done, skipped, n/a). No todo list appears in the events either."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "Following Laziness Protocol, the fix is one line and I didn't hand it to a subagent."
+        }
+      ],
+      "why": "Step 2 names the how and why skills, but no event opens either SKILL.md. The reply never mentions them or gives a reason for skipping them."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "Following Fix Root Causes, I changed that check in `shippingFor` itself"
+        },
+        {
+          "event": "e5",
+          "quote": "principles/fix-root-causes.md (partial)"
+        },
+        {
+          "event": "e7",
+          "quote": "principles/laziness-protocol.md (partial)"
+        }
+      ],
+      "why": "The reply cites Fix Root Causes and Laziness Protocol, but the agent read both files only partially, through one shared head -150. The standard requires reading a cited principle in full."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e12",
+          "quote": "That way anything else that calls `shippingFor` gets the correct answer too."
+        }
+      ],
+      "why": "This sentence predicts the behavior of other callers, which no event observed. It carries no label and no evidence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e3",
+          "quote": "read <pstack>/poteto-mode/playbooks/bug-fix.md (full)"
+        }
+      ],
+      "why": "The agent picked the bug-fix playbook without being told its name and read the whole file before starting the work."
+    }
+  ],
+  "dropped": []
+}

@@ -1,0 +1,192 @@
+{
+  "exit": 0,
+  "ms": 25051,
+  "timedOut": false,
+  "pid": 20628,
+  "units": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0"
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t1"
+    }
+  ],
+  "readStandard": true,
+  "verdicts": [
+    {
+      "behavior": "B1-mode-sticky",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "NY orders now pay tax on shipping as well as goods, and CA and OR still don't. All 15 tests pass."
+        }
+      ],
+      "why": "The t1 reply reads like a plain assistant answer: it matches no playbook, lists no steps with states and names no principles."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "I added sales tax and the receipt, and all 12 tests pass. Nothing is committed yet."
+        }
+      ],
+      "why": "The reply has no Feature playbook step list with per-step states, only a prose summary."
+    },
+    {
+      "behavior": "B5-step-list",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "Nothing is committed yet."
+        }
+      ],
+      "why": "The reply has no numbered Feature steps with states, and no task list was kept."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "`/poteto-mode` isn't installed in this session, so I did this as a normal request."
+        }
+      ],
+      "why": "No event opens the how or architect SKILL.md, and neither skill is explicitly skipped with a reason."
+    },
+    {
+      "behavior": "B6-trigger-runs",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "each region now has a rule saying whether shipping is taxed (NY yes, CA and OR no)"
+        }
+      ],
+      "why": "The agent went straight to the design and edits without running how or architect and without skipping them with a reason."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "Decisions you may want to change:"
+        }
+      ],
+      "why": "The reply cites no principle, and no principle file was read."
+    },
+    {
+      "behavior": "B7-cite-read",
+      "unit": "t1",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "`taxFor(region, { goods, shipping })` adds shipping to the taxable amount only where the rule says so."
+        }
+      ],
+      "why": "The reply names no principle behind the rule-table design, and no principle file was read."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "Region codes must match exactly, so `\"ca\"` is rejected."
+        }
+      ],
+      "why": "This asserts runtime behavior that no event shows being run, and it carries no measured, inferred or guess label."
+    },
+    {
+      "behavior": "B13b-claim-labels",
+      "unit": "t1",
+      "verdict": "pass",
+      "evidence": [
+        {
+          "event": "e11",
+          "quote": "In the NY receipt test, tax went from 1.01 to 1.21 (4% of 25.20 + 5.00)"
+        }
+      ],
+      "why": "The runtime claims either report test results or carry their arithmetic as evidence in the same sentence."
+    },
+    {
+      "behavior": "B15-playbook-choice",
+      "unit": "t0",
+      "verdict": "fail",
+      "evidence": [
+        {
+          "event": "e6",
+          "quote": "so I did this as a normal request"
+        }
+      ],
+      "why": "The agent matched no playbook and never read feature.md."
+    }
+  ],
+  "dropped": [
+    {
+      "item": {
+        "behavior": "B15-playbook-choice",
+        "unit": "t1",
+        "verdict": "fail",
+        "evidence": [
+          {
+            "event": "e11",
+            "quote": "Make the tax and the receipt handle that."
+          }
+        ],
+        "why": "The quoted words are from the user's request (e7), not from e11, so this evidence item will be discarded; no event in t1 matches a playbook or reads feature.md."
+      },
+      "reason": "no quote found in a cited event of the unit"
+    }
+  ]
+}
