@@ -1,3 +1,6 @@
+import { docOf, openedDoc } from "./cursor-trace.mjs";
+import { shellReads } from "./shell-reads.mjs";
+
 /**
  * @typedef {import("./claude-trace.mjs").Trace} Trace
  * @typedef {import("./claude-trace.mjs").Turn} Turn
@@ -11,6 +14,10 @@ const STEP_LINE = /^\s*(?:[-*]\s*)?\d+\.\s.*$/gm;
 const STEP_HEAD = /^\s*(?:[-*]\s*)?\d+\.\s/;
 
 const all = (t) => [t, ...t.children.flatMap(all)];
+
+// A shell call that printed a doc still shows it in the packet once the read it produced is gone.
+const printed = (a) => (a.kind === "shell" ? shellReads(a.command, null).map((r) => docOf(r.path)).filter(Boolean) : []);
+const touches = (a, doc) => ((a.kind === "read" || a.kind === "skill") && a.doc === doc) || printed(a).includes(doc);
 
 const withReply = (turn, reply) => {
   const says = turn.actions.filter((a) => a.kind === "say");
@@ -48,12 +55,13 @@ export const MUTATIONS = [
           trace.turns
             .slice(0, spec.index + 1)
             .flatMap((u) => u.actions)
-            .filter((a) => a.kind === "read" && a.doc?.startsWith("principle:"))
-            .map((a) => a.doc.slice("principle:".length)),
+            .map(openedDoc)
+            .filter((doc) => doc?.startsWith("principle:"))
+            .map((doc) => doc.slice("principle:".length)),
         );
         const slug = citedPrinciples(turn.reply, titles).find((s) => readSlugs.has(s));
         if (!slug) continue;
-        for (const u of trace.turns) u.actions = u.actions.filter((a) => !(a.kind === "read" && a.doc === `principle:${slug}`));
+        for (const u of trace.turns) u.actions = u.actions.filter((a) => !touches(a, `principle:${slug}`));
         const unit = `t${spec.index}`;
         return { trace, target: { behavior: "B7-cite-read", unit }, alsoFails: [...stickyToo(spec.index), ...laterCiting(task, trace, spec.index, [slug], titles)] };
       }
@@ -90,9 +98,9 @@ export const MUTATIONS = [
             ...turn.reply.split("\n"),
             ...turn.actions.filter((a) => a.kind === "todo").flatMap((a) => a.items.map((i) => i.subject)),
           ].filter((line) => mentions.test(line));
-          const read = turn.actions.some((a) => a.kind === "read" && a.doc === doc);
+          const read = turn.actions.some((a) => openedDoc(a) === doc);
           if (!read || lines.length === 0 || lines.some((line) => /skip/i.test(line))) continue;
-          for (const t of all(trace)) for (const u of t.turns) u.actions = u.actions.filter((a) => !(a.kind === "read" && a.doc === doc));
+          for (const t of all(trace)) for (const u of t.turns) u.actions = u.actions.filter((a) => !touches(a, doc));
           return { trace, target: { behavior: "B6-trigger-runs", unit: `t${spec.index}` }, alsoFails: stickyToo(spec.index) };
         }
       }
@@ -123,9 +131,9 @@ export const MUTATIONS = [
           .filter((line) => !STEP_HEAD.test(line) && citedPrinciples(line, titles).length === 0 && !/principle|playbook|skip:/i.test(line))
           .join("\n");
         if (plain === turn.reply) continue;
-        const dropped = turn.actions.filter((a) => a.kind === "read" && a.doc?.startsWith("principle:")).map((a) => a.doc.slice("principle:".length));
+        const dropped = turn.actions.map(openedDoc).filter((doc) => doc?.startsWith("principle:")).map((doc) => doc.slice("principle:".length));
         withReply(turn, plain);
-        turn.actions = turn.actions.filter((a) => !(a.kind === "read" && a.doc) && a.kind !== "todo");
+        turn.actions = turn.actions.filter((a) => !openedDoc(a) && !printed(a).length && a.kind !== "todo");
         const unit = `t${spec.index}`;
         return {
           trace,

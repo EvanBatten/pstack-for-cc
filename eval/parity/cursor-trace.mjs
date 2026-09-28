@@ -1,5 +1,6 @@
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { shellReads, showsBody } from "./shell-reads.mjs";
 
 /**
  * @typedef {import("./claude-trace.mjs").Trace} Trace
@@ -22,6 +23,15 @@ export function docOf(path) {
   return null;
 }
 
+/** The document a Skill tool load opens, named like a read of that skill's file. @param {string} name @returns {DocId} */
+export function skillDoc(name) {
+  const slug = name.match(/^principle-([\w-]+)$/)?.[1];
+  return slug ? `principle:${slug}` : `skill:${name}`;
+}
+
+/** The document an action opened: a read's, or a Skill load's when it was not refused. @param {Action} a @returns {DocId | null} */
+export const openedDoc = (a) => (a.kind === "read" ? a.doc : a.kind === "skill" && !a.refused ? a.doc : null);
+
 const REDIRECT = /(?:^|[^\d&>])>>?\s*("[^"]+"|'[^']+'|[^\s|&;<>]+)/g;
 
 /** @param {string} command */
@@ -35,6 +45,15 @@ export function shellWrites(command) {
   return out;
 }
 
+/** A shell call, then a read of each pstack document it printed. @returns {Action[]} */
+export const shellActions = (command, cwd, ok) => [
+  { kind: "shell", command, writes: shellWrites(command) },
+  ...shellReads(command, cwd).flatMap(({ path, full, lines }) => {
+    const doc = docOf(path);
+    return doc ? [{ kind: "read", doc, path, full: full || (lines !== undefined && showsBody(path, lines)), ok }] : [];
+  }),
+];
+
 const readAction = (path, full) => ({ kind: "read", doc: docOf(path), path: slash(path), full, ok: true });
 
 export const STREAM_TOOLS = {
@@ -43,7 +62,7 @@ export const STREAM_TOOLS = {
     const full = ok ? ok.readRange?.startLine === 1 && ok.readRange?.endLine >= ok.totalLines : !args.offset && !args.limit;
     return { ...readAction(args.path, Boolean(full)), ok: Boolean(ok) || !result };
   },
-  shellToolCall: ({ args }) => ({ kind: "shell", command: args.command, writes: shellWrites(args.command) }),
+  shellToolCall: ({ args, result }, workspace) => shellActions(args.command, args.workingDirectory || workspace, !result || (Boolean(result.success) && !result.success.exitCode)),
   editToolCall: ({ args }) => ({ kind: "write", path: slash(args.path) }),
   deleteToolCall: ({ args }) => ({ kind: "write", path: slash(args.path) }),
   taskToolCall: ({ args, result }) => ({
@@ -67,7 +86,7 @@ const todoStatus = (s) =>
 
 export const CHILD_TOOLS = {
   Read: (i) => readAction(i.path, !i.offset && !i.limit),
-  Shell: (i) => ({ kind: "shell", command: i.command, writes: shellWrites(i.command) }),
+  Shell: (i, workspace) => shellActions(i.command, workspace, true),
   StrReplace: (i) => ({ kind: "write", path: slash(i.path) }),
   Write: (i) => ({ kind: "write", path: slash(i.path) }),
   Delete: (i) => ({ kind: "write", path: slash(i.path) }),
@@ -107,7 +126,7 @@ const closeTurn = (turn) => {
 /**
  * @param {string} streamPath @param {number} index @returns {{ turn: Turn, sessionId: string | null }}
  */
-function streamTurn(streamPath, index) {
+function streamTurn(streamPath, index, workspace) {
   const events = jsonl(streamPath);
   const init = events.find((e) => e.type === "system" && e.subtype === "init");
   const user = events.find((e) => e.type === "user");
@@ -120,14 +139,14 @@ function streamTurn(streamPath, index) {
     } else if (e.type === "tool_call" && e.subtype === "completed") {
       const [kind, call] = Object.entries(e.tool_call).find(([k]) => k.endsWith("ToolCall")) ?? ["unknown", {}];
       const toAction = STREAM_TOOLS[kind];
-      turn.actions.push(toAction ? toAction(call) : { kind: "other", tool: kind });
+      turn.actions.push(...[toAction ? toAction(call, workspace) : { kind: "other", tool: kind }].flat());
     }
   }
   return { turn: closeTurn(turn), sessionId: init?.session_id ?? null };
 }
 
-/** @param {string} path @param {string} actorId @returns {Trace} */
-function childTrace(path, actorId) {
+/** @param {string} path @param {string} actorId @param {string | null} workspace @returns {Trace} */
+function childTrace(path, actorId, workspace) {
   const lines = jsonl(path);
   const first = lines.find((l) => l.role === "user");
   const turn = newTurn(0, textOf(first?.message?.content));
@@ -135,7 +154,7 @@ function childTrace(path, actorId) {
     if (l.role !== "assistant") continue;
     for (const b of l.message?.content ?? []) {
       if (b.type === "text" && b.text.trim()) turn.actions.push({ kind: "say", text: b.text });
-      if (b.type === "tool_use") turn.actions.push(CHILD_TOOLS[b.name]?.(b.input ?? {}) ?? { kind: "other", tool: b.name });
+      if (b.type === "tool_use") turn.actions.push(...[CHILD_TOOLS[b.name]?.(b.input ?? {}, workspace) ?? { kind: "other", tool: b.name }].flat());
     }
   }
   return { actor: "delegate", actorId, turns: [closeTurn(turn)], children: [] };
@@ -144,10 +163,11 @@ function childTrace(path, actorId) {
 /**
  * @param {string[]} streamPaths
  * @param {string | null} transcriptsDir
+ * @param {string | null} [workspace] where a shell call with no directory of its own ran
  * @returns {Trace}
  */
-export function readCursorTrace(streamPaths, transcriptsDir) {
-  const parsed = streamPaths.map((p, i) => streamTurn(p, i));
+export function readCursorTrace(streamPaths, transcriptsDir, workspace = null) {
+  const parsed = streamPaths.map((p, i) => streamTurn(p, i, workspace));
   const turns = parsed.map((p) => p.turn);
   const mainIds = new Set(parsed.map((p) => p.sessionId).filter(Boolean));
   const children = [];
@@ -156,7 +176,7 @@ export function readCursorTrace(streamPaths, transcriptsDir) {
     if (a.kind !== "spawn" || !a.childId || !transcriptsDir) continue;
     const file = join(transcriptsDir, a.childId, `${a.childId}.jsonl`);
     if (!existsSync(file)) continue;
-    const child = childTrace(file, a.childId);
+    const child = childTrace(file, a.childId, workspace);
     child.actor = a.agentType;
     children.push(child);
     linked.add(a.childId);
@@ -164,7 +184,7 @@ export function readCursorTrace(streamPaths, transcriptsDir) {
   if (transcriptsDir && existsSync(transcriptsDir))
     for (const id of readdirSync(transcriptsDir)) {
       const file = join(transcriptsDir, id, `${id}.jsonl`);
-      if (!mainIds.has(id) && !linked.has(id) && existsSync(file)) children.push(childTrace(file, id));
+      if (!mainIds.has(id) && !linked.has(id) && existsSync(file)) children.push(childTrace(file, id, workspace));
     }
   return { actor: "main", actorId: [...mainIds][0] ?? "main", turns, children };
 }

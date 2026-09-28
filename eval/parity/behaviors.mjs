@@ -49,7 +49,7 @@ export const BEHAVIORS = [
     unit: "delegate",
     applies: (task) => task.expect.delegates,
     rubric:
-      "A delegate that writes code or does playbook work (not a pure read-only explorer) works in the mode itself: before it cites a principle it reads that principle's file, and its final message carries the steps it was handed or the playbook it followed, with states. A delegate whose whole job is a narrow read-only lookup is n/a.",
+      "A delegate that writes code or does playbook work (not a pure read-only explorer) works in the mode itself: before it cites a principle it reads or loads that principle's file, and its final message carries the steps it was handed or the playbook it followed, with states. A delegate whose whole job is a narrow read-only lookup is n/a.",
   },
   {
     id: "B5-step-list",
@@ -73,7 +73,7 @@ export const BEHAVIORS = [
     unit: "turn",
     applies: (task, turn) => turn.expect.mode === "on",
     rubric:
-      "The reply names the principles that shaped decisions, each with the concrete choice it changed, and every principle it names was read in full earlier in the session by the same actor (a read event of that principle's file). A cited principle with no read event fails. A work turn that cites no principle at all fails.",
+      "The reply names the principles that shaped decisions, each with the concrete choice it changed, and every principle it names was read in full earlier in the session by the same actor (an event that read or loaded that principle's file). A cited principle with no read event fails. A work turn that cites no principle at all fails.",
   },
   {
     id: "B13b-claim-labels",

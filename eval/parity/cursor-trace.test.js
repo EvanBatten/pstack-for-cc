@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import { mkdtempSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
@@ -73,5 +75,27 @@ test("shell redirections and tee count as writes, fd and null redirections do no
     "out.txt",
     "log file.md",
     "t.log",
+  ]);
+});
+
+test("a stream's shell call reads each pstack document it printed, resolved against the workspace", () => {
+  const shell = (command, exitCode) => ({
+    type: "tool_call",
+    subtype: "completed",
+    tool_call: { shellToolCall: { args: { command, workingDirectory: "" }, result: { success: { command, exitCode } } } },
+  });
+  const events = [
+    { type: "system", subtype: "init", session_id: "s1", model: "m" },
+    { type: "user", message: { content: [{ type: "text", text: "fix it" }] } },
+    shell("cd ../skills && cat principle-laziness-protocol/SKILL.md | head -30 && cat how/SKILL.md", 0),
+    shell("cat C:/h/skills/poteto-mode/playbooks/bug-fix.md; npm test", 1),
+  ];
+  const path = join(mkdtempSync(join(tmpdir(), "parity-cursor-")), "turn-0.jsonl");
+  writeFileSync(path, events.map((e) => JSON.stringify(e)).join("\n"));
+  const reads = readCursorTrace([path], null, "C:/h/ws").turns[0].actions.filter((a) => a.kind === "read");
+  assert.deepEqual(reads, [
+    { kind: "read", doc: "principle:laziness-protocol", path: "C:/h/skills/principle-laziness-protocol/SKILL.md", full: false, ok: true },
+    { kind: "read", doc: "skill:how", path: "C:/h/skills/how/SKILL.md", full: true, ok: true },
+    { kind: "read", doc: "playbook:bug-fix", path: "C:/h/skills/poteto-mode/playbooks/bug-fix.md", full: true, ok: false },
   ]);
 });

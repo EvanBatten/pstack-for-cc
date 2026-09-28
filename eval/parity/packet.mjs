@@ -1,3 +1,7 @@
+import { existsSync } from "node:fs";
+import { join } from "node:path";
+import { skillDoc } from "./cursor-trace.mjs";
+
 /**
  * @typedef {import("./claude-trace.mjs").Trace} Trace
  * @typedef {import("./claude-trace.mjs").Action} Action
@@ -55,8 +59,15 @@ export function role(agentType) {
 
 const STATUS = { completed: "done", in_progress: "doing", pending: "todo", skipped: "skipped" };
 
-/** @param {Action} a @param {(s: string) => string} p */
-function describe(a, p) {
+/** Where a port install keeps the document a pstack Skill load opens, or null for a skill no pstack root holds. @param {Action & { kind: "skill" }} a @param {Roots} roots */
+function loadedPath(a, roots) {
+  if (a.refused || !roots.skills.some((root) => existsSync(join(root, a.name, "SKILL.md")))) return null;
+  const [kind, name] = skillDoc(a.name).split(":");
+  return kind === "principle" ? `<pstack>/poteto-mode/principles/${name}.md` : `<pstack>/${name}/SKILL.md`;
+}
+
+/** @param {Action} a @param {(s: string) => string} p @param {Roots} roots */
+function describe(a, p, roots) {
   switch (a.kind) {
     case "read":
       return `read ${p(a.path)} (${a.full ? "full" : "partial"}${a.ok ? "" : ", failed"})`;
@@ -68,8 +79,10 @@ function describe(a, p) {
       return `spawn ${role(a.agentType)} delegate, model tier ${tier(a.model)}, ${a.background ? "background" : "foreground"}. Brief: ${clip(p(a.prompt), PROMPT_CHARS)}`;
     case "todo":
       return `task list ${a.op}: ${a.items.map((i) => `[${STATUS[i.status] ?? i.status}] ${p(i.subject)}`).join("; ")}`;
-    case "skill":
-      return `invoke skill ${a.name}${a.refused ? " (refused)" : ""}`;
+    case "skill": {
+      const loads = loadedPath(a, roots);
+      return `invoke skill ${a.name}${a.refused ? " (refused)" : ""}${loads ? `, which loads ${loads} in full` : ""}`;
+    }
     case "other":
       return "other tool call";
     default:
@@ -115,7 +128,7 @@ export function render(trace, roots) {
           emit(ti, actor, final ? `${who}:\n${clip(p(a.text), REPLY_CHARS)}` : `says (interim): ${clip(p(a.text), INTERIM_CHARS)}`);
           continue;
         }
-        const id = emit(ti, actor, describe(a, p));
+        const id = emit(ti, actor, describe(a, p, roots));
         if (a.kind === "spawn") spawned.push({ a, id });
       }
       for (const { a, id } of spawned) {

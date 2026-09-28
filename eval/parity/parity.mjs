@@ -7,10 +7,11 @@
 // %LOCALAPPDATA%\cursor-agent\versions, calling that build's node.exe because the .cmd shim goes through PowerShell,
 // and no other platform installs cursor-agent in that layout.
 //
-//   node eval/parity/parity.mjs --init --stamp S [--from S0] [--tasks t01,t02,t03,t04,t05] [--arms A,C,D,B] [--reps 2] [--tree B=<ref>]...
+//   node eval/parity/parity.mjs --init --stamp S [--from S0] [--tasks t01,t02,t03,t04,t05] [--arms A,C,B,E,N] [--reps 3] [--tree B=<ref>]...
 //   node eval/parity/parity.mjs --tick --stamp S [--budget 585]   run work on both lanes until the budget would be exceeded
 //   node eval/parity/parity.mjs --status --stamp S
 //   node eval/parity/parity.mjs --rejudge --stamp S               drop every verdict and calibration result; later ticks regrade the saved runs
+//   node eval/parity/parity.mjs --retrace --stamp S               rebuild each done run's trace and packet from its saved transcripts and drop its verdicts
 //   node eval/parity/parity.mjs --judges J1,J3 --exclude J2 --why "..." --stamp S   change the consensus pair; later ticks grade what it lacks
 //   node eval/parity/parity.mjs --report --stamp S                rescore and rewrite report.md from saved evidence, no model calls
 
@@ -20,14 +21,15 @@ import { closeSync, cpSync, existsSync, mkdirSync, openSync, readdirSync, readFi
 import { homedir, tmpdir } from "node:os";
 import { dirname, join, parse, relative } from "node:path";
 import { fileURLToPath } from "node:url";
-import { armById, copyable, cursorAgent, judgeCommand, judgeTree, parseTreeOverrides, planTrees, sealViolations, transcriptSource, treeDir, treesOf, withTree, workerCommand } from "./arms.mjs";
+import { armById, copyable, cursorAgent, ensurePluginSource, homeViolations, judgeCommand, judgeTree, parseTreeOverrides, planTrees, REAL_HOME, sealViolations, skillRoots, transcriptSource, treesOf, withTree, workerCommand } from "./arms.mjs";
 import { CONTROL_EXCLUDED, factVerdicts, LEFT_ROWS, promptsMatch } from "./behaviors.mjs";
 import { readClaudeTrace } from "./claude-trace.mjs";
 import { readCursorTrace } from "./cursor-trace.mjs";
 import { consensus, DEFAULT_JUDGE_SET, JUDGES, judgePrompt, parseVerdicts, requestUnits } from "./judge.mjs";
 import { MUTATIONS, principleTitles } from "./mutate.mjs";
 import { render } from "./packet.mjs";
-import { score } from "./score.mjs";
+import { planRuns, summary } from "./plan.mjs";
+import { CLAIMS, score } from "./score.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 // A turn that waits on its background delegate runs past 500 s (t05, s3); 575 still fits one 585 s tick.
@@ -68,17 +70,21 @@ const loadTask = (id) => readJson(join(HERE, "tasks", readdirSync(join(HERE, "ta
  * prompts than the task file's is not copied, so it is planned fresh. Each
  * arm's tree is its default unless `--tree B=<ref>` names another, and
  * plan.json records it; a source run whose arm ran at a different tree is not
- * copied either. Runs for arms the source lacks are added, and the source's
- * judge set carries over.
+ * copied either. An arm that keeps source runs keeps the reps its source ran;
+ * any other arm is planned at `--reps`. A plugin arm's tree is resolved to a
+ * full commit in a bare clone kept in the sandbox, the only step that reaches
+ * the network. The source's judge set carries over.
  */
 function init() {
   if (existsSync(join(E, "plan.json"))) {
     console.log(`plan exists: ${join(E, "plan.json")}`);
     return;
   }
-  const taskIds = opt("tasks", "t01,t02,t03,t04,t05").split(",");
-  const armIds = opt("arms", "A,C,D,B").split(",");
-  const reps = Number(opt("reps", "2"));
+  const taskIds = opt("tasks", "t01,t02,t03,t04,t05")
+    .split(",")
+    .map((t) => loadTask(t).id);
+  const armIds = opt("arms", "A,C,B,E,N").split(",");
+  const reps = Number(opt("reps", "3"));
   let trees;
   try {
     trees = planTrees(armIds, parseTreeOverrides(args, armIds));
@@ -86,49 +92,37 @@ function init() {
     console.error(e.message);
     process.exit(2);
   }
+  const plugins = {};
+  for (const id of armIds.filter((id) => armById[id].install === "claude-plugin")) {
+    trees[id] = ensurePluginSource(S, armById[id], trees[id]);
+    plugins[id] = { repo: armById[id].plugin.repo, commit: trees[id] };
+  }
   const from = opt("from", null);
   const source = from ? readJson(join(OUT, from, "plan.json")) : null;
-  const runs = [];
-  let otherTree = 0;
-  for (const r of source?.runs ?? []) {
-    if (!taskIds.some((t) => r.task.startsWith(t)) || !armIds.includes(r.arm) || r.rep > reps) continue;
-    if (!copyable(source, trees, r.arm)) {
-      otherTree++;
-      continue;
-    }
+  const reusable = (r) => {
+    if (!copyable(source, trees, r.arm)) return false;
     const trace = readJson(join(OUT, from, "runs", r.key, "trace.json"));
-    if (!trace || !promptsMatch(loadTask(r.task), trace)) continue;
-    // Verdicts stay behind: the rubric may have changed since the source graded them.
-    cpSync(join(OUT, from, "runs", r.key), join(E, "runs", r.key), { recursive: true, filter: (p) => !parse(p).base.startsWith("judge-") });
-    runs.push({ ...r, sandbox: r.sandbox ?? source.sandbox });
-  }
-  const rids = new Set(runs.map((r) => r.rid));
-  let next = 1;
-  const rid = () => {
-    while (rids.has(`r${String(next).padStart(2, "0")}`)) next++;
-    rids.add(`r${String(next).padStart(2, "0")}`);
-    return `r${String(next).padStart(2, "0")}`;
+    return Boolean(trace && promptsMatch(loadTask(r.task), trace));
   };
-  for (const t of taskIds) {
-    const task = loadTask(t);
-    for (let rep = 1; rep <= reps; rep++)
-      for (const arm of armIds) {
-        const key = `${task.id}.${arm}.${rep}`;
-        if (!runs.some((r) => r.key === key)) runs.push({ key, task: task.id, arm, rep, rid: rid(), sandbox: S });
-      }
-  }
+  const sourceRuns = (source?.runs ?? []).map((r) => ({ ...r, sandbox: r.sandbox ?? source.sandbox }));
+  const { runs, counts } = planRuns({ sourceRuns, taskIds, armIds, reps, reusable, sandbox: S });
+  // Verdicts stay behind: the rubric may have changed since the source graded them.
+  for (const r of runs.filter((r) => r.sandbox !== S))
+    cpSync(join(OUT, from, "runs", r.key), join(E, "runs", r.key), { recursive: true, filter: (p) => !parse(p).base.startsWith("judge-") });
   const claude = execFileSync("claude", ["--version"], { encoding: "utf8" }).trim();
   writeJson(join(E, "plan.json"), {
     stamp,
     sandbox: S,
     from,
     trees,
+    ...(Object.keys(plugins).length ? { plugins } : {}),
     runs,
     judges: source?.judges ?? DEFAULT_JUDGE_SET,
     versions: { claude, cursorAgent: cursorAgent().version, ...(source ? { [from]: source.versions } : {}) },
     created: new Date().toISOString(),
   });
-  console.log(`planned ${runs.length} runs in ${E} (${runs.filter((r) => r.sandbox !== S).length} copied from ${from ?? "nothing"}, ${otherTree} skipped for a tree mismatch); sandbox ${S}`);
+  console.log(`planned ${runs.length} runs in ${E} from ${from ?? "nothing"}; sandbox ${S}`);
+  console.log(summary(counts));
 }
 
 const plan = () => readJson(join(E, "plan.json")) ?? (console.error(`no plan at ${E}; run --init`), process.exit(2));
@@ -247,10 +241,44 @@ async function turnJob(run, index) {
 }
 
 function rootsOf(run) {
-  const arm = armOf(run);
   const { root, home, ws } = sandboxOf(run);
-  const skills = [join(home, ".claude", "skills"), ...(arm.tree ? [join(treeDir(root, arm.tree), "skills")] : [])];
-  return { workspace: ws, skills, home, sandbox: root };
+  return { workspace: ws, skills: skillRoots(armOf(run), root, home), home, sandbox: root };
+}
+
+/**
+ * A run's trace, built only from the transcripts saved in its evidence directory, or why it cannot be built.
+ * @returns {import("./claude-trace.mjs").Trace | string}
+ */
+function savedTrace(run) {
+  const task = loadTask(run.task);
+  const dir = runDir(run);
+  const { ws } = sandboxOf(run);
+  let trace;
+  if (armOf(run).harness === "claude") {
+    const main = join(dir, "transcript", "main.jsonl");
+    if (!existsSync(main)) return "no saved transcript/main.jsonl";
+    trace = readClaudeTrace(main, ws);
+  } else {
+    const missing = task.turns.find((t) => !existsSync(join(dir, `turn-${t.index}.jsonl`)));
+    if (missing) return `no saved turn-${missing.index}.jsonl`;
+    const transcripts = join(dir, "agent-transcripts");
+    trace = readCursorTrace(
+      task.turns.map((t) => join(dir, `turn-${t.index}.jsonl`)),
+      existsSync(transcripts) ? transcripts : null,
+      ws,
+    );
+  }
+  return trace.turns.length === task.turns.length ? trace : `trace has ${trace.turns.length} turns, task has ${task.turns.length}`;
+}
+
+/** @param {string[]} homeSeal what the sandbox home held after the run */
+function writeTrace(run, trace, homeSeal) {
+  const dir = runDir(run);
+  writeJson(join(dir, "trace.json"), trace);
+  writeJson(join(dir, "seal.json"), [...sealViolations(armOf(run), trace, REAL_HOME, sandboxOf(run).ws), ...homeSeal]);
+  const packet = render(trace, rootsOf(run));
+  writeFileSync(join(dir, "packet.md"), `${packet.text}\n`);
+  writeJson(join(dir, "packet.json"), packet);
 }
 
 function finalize(run) {
@@ -260,24 +288,14 @@ function finalize(run) {
   const { home, ws } = sandboxOf(run);
   const last = readJson(join(dir, `turn-${task.turns.length - 1}.json`));
   const src = transcriptSource(arm, home, ws, last.session);
-  let trace;
   if (arm.harness === "claude") {
     if (!src) return writeJson(join(dir, "FAILED.json"), { reason: "no Claude transcript for the session" });
     cpSync(src.main, join(dir, "transcript", "main.jsonl"));
     if (existsSync(src.children)) cpSync(src.children, join(dir, "transcript", "main"), { recursive: true });
-    trace = readClaudeTrace(join(dir, "transcript", "main.jsonl"));
-  } else {
-    if (src) cpSync(src.transcripts, join(dir, "agent-transcripts"), { recursive: true });
-    const streams = task.turns.map((t) => join(dir, `turn-${t.index}.jsonl`));
-    trace = readCursorTrace(streams, src ? join(dir, "agent-transcripts") : null);
-  }
-  if (trace.turns.length !== task.turns.length)
-    return writeJson(join(dir, "FAILED.json"), { reason: `trace has ${trace.turns.length} turns, task has ${task.turns.length}` });
-  writeJson(join(dir, "trace.json"), trace);
-  writeJson(join(dir, "seal.json"), sealViolations(arm, trace));
-  const packet = render(trace, rootsOf(run));
-  writeFileSync(join(dir, "packet.md"), `${packet.text}\n`);
-  writeJson(join(dir, "packet.json"), packet);
+  } else if (src) cpSync(src.transcripts, join(dir, "agent-transcripts"), { recursive: true });
+  const trace = savedTrace(run);
+  if (typeof trace === "string") return writeJson(join(dir, "FAILED.json"), { reason: trace });
+  writeTrace(run, trace, homeViolations(arm, home));
   writeFileSync(join(dir, "DONE"), new Date().toISOString());
 }
 
@@ -324,7 +342,7 @@ function buildMutants() {
   const made = Object.fromEntries(MUTATIONS.map((m) => [m.id, 0]));
   const keep = new Set();
   const pool = plan().runs.filter((r) => state(r).status === "done");
-  for (const run of ["A", "D", "B"].flatMap((arm) => pool.filter((r) => r.arm === arm))) {
+  for (const run of ["A", "D", "B", "E"].flatMap((arm) => pool.filter((r) => r.arm === arm))) {
     const dir = runDir(run);
     const fin = finalVerdicts(dir, run.task);
     const task = loadTask(run.task);
@@ -486,12 +504,23 @@ function gradersCell(obs, behavior, arm) {
 }
 
 
-/** Every comparison the report makes, reference first, among the arms planned. */
+/** Every comparison the report makes, reference first, among the arms planned, each with the control gate it rests on. */
 const COMPARISONS = [
-  { reference: "A", treatment: "B" },
-  { reference: "D", treatment: "B" },
-  { reference: "A", treatment: "D" },
+  { reference: "A", treatment: "B", gate: "V1-cursor" },
+  { reference: "D", treatment: "B", gate: "V1-cursor" },
+  { reference: "A", treatment: "D", gate: "V1-cursor" },
+  { reference: "E", treatment: "B", gate: "V1-claude" },
 ];
+
+/** Each harness's control gate: the best of its treatments must beat the control by the margin. */
+const CONTROLS = [
+  { id: "V1-cursor", treatments: ["A"], control: "C" },
+  { id: "V1-claude", treatments: ["B", "E"], control: "N" },
+];
+
+const ARM_ORDER = ["A", "C", "D", "B", "E", "N"];
+
+const signed = (x) => `${x >= 0 ? "+" : ""}${x.toFixed(2)}`;
 
 const pct = (c) => (c.fraction === null ? "-" : `${c.pass}/${c.applicable} (${Math.round(c.fraction * 100)}%)${c.unresolved ? `, ${c.unresolved} split` : ""}`);
 
@@ -499,8 +528,10 @@ function report() {
   const p = plan();
   const set = judgeSet();
   const runs = p.runs;
-  const arms = ["A", "C", "D", "B"].filter((a) => runs.some((r) => r.arm === a));
+  const arms = ARM_ORDER.filter((a) => runs.some((r) => r.arm === a));
   const pairings = COMPARISONS.filter((c) => arms.includes(c.reference) && arms.includes(c.treatment));
+  const controls = CONTROLS.map((c) => ({ ...c, treatments: c.treatments.filter((t) => arms.includes(t)) })).filter((c) => arms.includes(c.control) && c.treatments.length);
+  const claims = CLAIMS.filter((c) => arms.includes(c.treatment) && arms.includes(c.reference));
   const obs = observations();
   const seal = runs
     .filter((r) => state(r).status === "done")
@@ -512,8 +543,10 @@ function report() {
   const cal = calibration();
   const result = score({
     observations: obs,
-    control: { reference: "A", control: "C", exclude: CONTROL_EXCLUDED },
+    controls,
+    controlExclude: CONTROL_EXCLUDED,
     comparisons: pairings,
+    claims,
     seal,
     consensusJudges: set.pair,
     calibration: cal,
@@ -527,12 +560,22 @@ function report() {
   const name = (j) => `${j} (${JUDGES[j].model})`;
   const L = [];
   L.push(`# Parity smoke report, ${stamp}`, "");
+  if (result.claims.length) {
+    L.push("## Claims", "");
+    for (const c of result.claims) {
+      const g = result.gates.find((x) => x.id === c.gate);
+      const diff = c.diff === null ? "no behavior graded on both arms" : `${c.treatment} minus ${c.reference} = ${signed(c.diff)} over ${c.behaviors} behaviors`;
+      const table = c.certified ? "" : ` The per-behavior table below holds the ${c.treatment} vs ${c.reference} rows.`;
+      L.push(`- Claim ${c.id.replace(/^claim-/, "")}, "${c.statement}": **${c.resolution}**. ${diff}; ${c.gate} ${g ? (g.pass ? "pass" : "FAIL") : "not scored"}.${table}`);
+    }
+    L.push("");
+  }
   L.push("| Comparison | Outcome | Short by more than 0.10 | Too few units (under 4 graded on a side) |", "|---|---|---|---|");
   for (const c of result.comparisons) {
     const on = (v) => c.behaviors.filter((b) => b.verdict === v).map((b) => b.behavior).join(", ") || "none";
     L.push(`| ${c.treatment} vs ${c.reference} | **${c.outcome}** | ${on("short")} | ${on("inconclusive")} |`);
   }
-  if (result.failedGates.length) L.push("", `Every comparison is INCONCLUSIVE because these gates failed: ${result.failedGates.join(", ")}.`);
+  if (result.failedGates.length) L.push("", `These gates failed: ${result.failedGates.join(", ")}. A comparison that rests on a failed control gate, or any comparison when a common gate failed, is INCONCLUSIVE.`);
   L.push("", "## Arms", "");
   const trees = treesOf(p);
   for (const a of arms) L.push(`- ${a} (${trees[a] ? `tree ${trees[a]}` : "no tree"}): ${armById[a].note}.`);
@@ -558,7 +601,7 @@ function report() {
   L.push("");
   for (const [j, why] of Object.entries(set.excluded)) L.push(`- ${name(j)} graded no cell. Reason from plan.json: ${why}`);
   if (Object.keys(set.excluded).length) L.push("");
-  L.push("## Judge calibration (seeded mutations over A, D and B packets)", "", "| Judge | Role | Mutants | Detect | Untouched pairs | False flags |", "|---|---|---|---|---|---|");
+  L.push("## Judge calibration (seeded mutations over A, D, B and E packets)", "", "| Judge | Role | Mutants | Detect | Untouched pairs | False flags |", "|---|---|---|---|---|---|");
   for (const [j, c] of Object.entries(cal))
     L.push(
       c.mutants
@@ -598,10 +641,50 @@ function report() {
   return result;
 }
 
+const dropVerdicts = (dir, judges = ["J1", "J2", "J3"]) => {
+  for (const j of judges) for (const ext of ["json", "jsonl", "err"]) rmSync(join(dir, `judge-${j}.${ext}`), { force: true });
+};
+
 function rejudge() {
-  for (const run of plan().runs) for (const j of ["J1", "J2", "J3"]) for (const ext of ["json", "jsonl", "err"]) rmSync(join(runDir(run), `judge-${j}.${ext}`), { force: true });
+  for (const run of plan().runs) dropVerdicts(runDir(run));
   rmSync(join(E, "calib"), { recursive: true, force: true });
   console.log("dropped every verdict and the calibration set; the next ticks regrade the saved runs");
+}
+
+const actorCount = (t) => 1 + t.children.reduce((n, c) => n + actorCount(c), 0);
+
+/**
+ * Rebuilds every done run's trace, seal and packet from the transcripts saved with it, so a change to how traces are
+ * read reaches runs already graded, copied ones included. A run whose saved transcripts are gone fails rather than
+ * keep a trace no current code produced.
+ */
+function retrace() {
+  const done = plan().runs.filter((r) => state(r).status === "done");
+  const failed = [];
+  for (const run of done) {
+    const dir = runDir(run);
+    const arm = armOf(run);
+    const old = readJson(join(dir, "trace.json"));
+    const trace = savedTrace(run);
+    dropVerdicts(dir);
+    let why = typeof trace === "string" ? trace : null;
+    if (!why && old && actorCount(trace) < actorCount(old)) why = `saved transcripts hold ${actorCount(trace)} actors, the trace had ${actorCount(old)}`;
+    if (why) {
+      for (const f of ["DONE", "trace.json", "seal.json", "packet.md", "packet.json"]) rmSync(join(dir, f), { force: true });
+      writeJson(join(dir, "FAILED.json"), { reason: `retrace: ${why}` });
+      failed.push(`${run.key}: ${why}`);
+      continue;
+    }
+    const { home, ws } = sandboxOf(run);
+    // A home still on disk is rechecked; a gone one keeps the finding made when the run finished.
+    const fromTrace = new Set(old ? sealViolations(arm, old, REAL_HOME, ws) : []);
+    const homeSeal = existsSync(home) || !old ? homeViolations(arm, home) : (readJson(join(dir, "seal.json")) ?? []).filter((v) => !fromTrace.has(v));
+    writeTrace(run, trace, homeSeal);
+  }
+  rmSync(join(E, "calib", "PLANNED"), { force: true });
+  console.log(`retraced ${done.length - failed.length} of ${done.length} done runs and dropped their verdicts; the next ticks regrade them and replan the mutants`);
+  for (const f of failed) console.error(`retrace failed ${f}`);
+  if (failed.length) process.exitCode = 1;
 }
 
 function setJudges() {
@@ -615,7 +698,7 @@ function setJudges() {
   }
   const next = { pair, tiebreak: opt("tiebreak", null), excluded: out ? { ...before.excluded, [out]: opt("why", "excluded") } : before.excluded };
   for (const j of pair.filter((j) => j === before.tiebreak))
-    for (const d of [...p.runs.map(runDir), ...mutantDirs()]) for (const ext of ["json", "jsonl", "err"]) rmSync(join(d, `judge-${j}.${ext}`), { force: true });
+    for (const d of [...p.runs.map(runDir), ...mutantDirs()]) dropVerdicts(d, [j]);
   rmSync(join(E, "calib", "PLANNED"), { force: true });
   writeJson(join(E, "plan.json"), { ...p, judges: next });
   console.log(`judges now ${JSON.stringify(next)}`);
@@ -625,6 +708,7 @@ if (flag("init")) init();
 else if (flag("tick")) await tick();
 else if (flag("status")) status();
 else if (flag("rejudge")) rejudge();
+else if (flag("retrace")) retrace();
 else if (flag("judges")) setJudges();
 else if (flag("report")) report();
-else console.error("one of --init, --tick, --status, --rejudge, --judges, --report");
+else console.error("one of --init, --tick, --status, --rejudge, --retrace, --judges, --report");

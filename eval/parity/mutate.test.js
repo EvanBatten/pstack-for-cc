@@ -143,3 +143,17 @@ test("principle titles come from the SKILL.md index lines", () => {
   const md = "- **Laziness Protocol** (**principle-laziness-protocol**). Refactoring.\n- **Prove It Works** (**principle-prove-it-works**). After.";
   assert.deepEqual(principleTitles(md), { "laziness-protocol": "Laziness Protocol", "prove-it-works": "Prove It Works" });
 });
+
+test("a dropped read also drops the shell call that printed it, and keeps the other docs that call printed", () => {
+  const t = trace();
+  t.turns[0].actions.splice(0, 2,
+    { kind: "shell", command: "cat /p/skills/how/SKILL.md /p/poteto-mode/principles/fix-root-causes.md", writes: [] },
+    { kind: "read", doc: "skill:how", path: "/p/skills/how/SKILL.md", full: true, ok: true },
+    { kind: "read", doc: "principle:fix-root-causes", path: "/p/poteto-mode/principles/fix-root-causes.md", full: true, ok: true },
+  );
+  const m = MUTATIONS.find((x) => x.id === "drop-skill-read").apply(t, task, titles);
+  assert.deepEqual(
+    m.trace.turns[0].actions.filter((a) => a.kind !== "say").map((a) => a.doc ?? a.command),
+    ["principle:fix-root-causes", "principle:laziness-protocol"],
+  );
+});
