@@ -4,7 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.join(import.meta.dirname, "..");
-const DEFAULT_REPORT = path.join(ROOT, "eval", "parity", "results", "s4", "report.json");
+const DEFAULT_REPORT = path.join(ROOT, "eval", "parity", "results", "s5", "report.json");
 const DEFAULT_OUT = path.join(ROOT, "docs", "assets", "head-to-head.svg");
 
 const BEHAVIORS = [
@@ -20,6 +20,7 @@ const BEHAVIORS = [
 
 const ARMS = [
   { id: "B", label: "This port (Claude Code)", cls: "port" },
+  { id: "E", label: "pstack-claude (Claude Code)", cls: "plugin" },
   { id: "A", label: "pstack on Cursor", cls: "cursor" },
 ];
 
@@ -30,7 +31,7 @@ const PLOT_X = PAD + LABEL_COL;
 const PLOT_W = WIDTH - PLOT_X - PAD - 52;
 const BAR_H = 10;
 const BAR_GAP = 4;
-const ROW_H = 50;
+const ROW_H = 60;
 const ROWS_Y = 132;
 
 const escapeXml = (s) =>
@@ -61,7 +62,7 @@ export function renderChart(report) {
 
   out.push(
     `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${height}" viewBox="0 0 ${WIDTH} ${height}" role="img" aria-labelledby="t">`,
-    `<title id="t">Same model, same sealed tasks. Passing units over graded units per behavior, this port against pstack on Cursor.</title>`,
+    `<title id="t">Same model, same sealed tasks. Passing units over graded units per behavior, this port against pstack-claude and pstack on Cursor.</title>`,
     `<style>`,
     `text{font-family:-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;fill:#0b0b0b}`,
     `.card{fill:#fcfcfb;stroke:#e4e3df}`,
@@ -69,19 +70,21 @@ export function renderChart(report) {
     `.value{font-variant-numeric:tabular-nums}`,
     `.grid{stroke:#e4e3df}`,
     `.port{fill:#c15f3c}`,
-    `.cursor{fill:#9a9993}`,
+    `.plugin{fill:#2a78d6}`,
+    `.cursor{fill:#15936a}`,
     `@media (prefers-color-scheme:dark){`,
     `text{fill:#ffffff}`,
     `.card{fill:#1a1a19;stroke:#33332f}`,
     `.sub,.tick{fill:#c3c2b7}`,
     `.grid{stroke:#33332f}`,
-    `.port{fill:#d97757}`,
-    `.cursor{fill:#7c7b76}`,
+    `.port{fill:#d4714f}`,
+    `.plugin{fill:#3987e5}`,
+    `.cursor{fill:#1aa39a}`,
     `}`,
     `</style>`,
     `<rect class="card" x="0.5" y="0.5" width="${WIDTH - 1}" height="${height - 1}" rx="12"/>`,
     `<text x="${PAD}" y="46" font-size="20" font-weight="600">${escapeXml("Same model, same sealed tasks")}</text>`,
-    `<text class="sub" x="${PAD}" y="70" font-size="13">${escapeXml("Passing units over graded units, parity round s4")}</text>`,
+    `<text class="sub" x="${PAD}" y="70" font-size="13">${escapeXml("Passing units over graded units, parity round s5")}</text>`,
   );
 
   let legendX = PAD;
@@ -103,9 +106,9 @@ export function renderChart(report) {
 
   BEHAVIORS.forEach((behavior, i) => {
     const rowY = ROWS_Y + i * ROW_H;
-    const barsTop = rowY + (ROW_H - 2 * BAR_H - BAR_GAP) / 2 - 4;
+    const barsTop = rowY + (ROW_H - ARMS.length * BAR_H - (ARMS.length - 1) * BAR_GAP) / 2 - 4;
     out.push(
-      `<text x="${PAD}" y="${num(barsTop + BAR_H + BAR_GAP / 2 + 5)}" font-size="14">${escapeXml(behavior.label)}</text>`,
+      `<text x="${PAD}" y="${num(barsTop + (ARMS.length * BAR_H + (ARMS.length - 1) * BAR_GAP) / 2 + 5)}" font-size="14">${escapeXml(behavior.label)}</text>`,
     );
     ARMS.forEach((arm, j) => {
       const { pass, applicable } = findCell(cells, behavior.id, arm.id);

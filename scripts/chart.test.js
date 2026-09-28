@@ -6,7 +6,7 @@ import os from "node:os";
 import path from "node:path";
 
 const ROOT = path.join(import.meta.dirname, "..");
-const REPORT = path.join(ROOT, "eval", "parity", "results", "s4", "report.json");
+const REPORT = path.join(ROOT, "eval", "parity", "results", "s5", "report.json");
 
 function renderToTemp() {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "chart-"));
@@ -30,20 +30,21 @@ const values = (row) => [...row.matchAll(/class="value"[^>]*>([^<]+)</g)].map((m
 
 test("the chart carries its title and subtitle", () => {
   assert.ok(svg.includes(">Same model, same sealed tasks</text>"));
-  assert.ok(svg.includes(">Passing units over graded units, parity round s4</text>"));
+  assert.ok(svg.includes(">Passing units over graded units, parity round s5</text>"));
   assert.ok(svg.includes(">This port (Claude Code)</text>"));
+  assert.ok(svg.includes(">pstack-claude (Claude Code)</text>"));
   assert.ok(svg.includes(">pstack on Cursor</text>"));
 });
 
-test("each behavior shows this port then Cursor as k/n", () => {
-  assert.deepEqual(values(rowText("stays in mode")), ["10/10", "2/10"]);
-  assert.deepEqual(values(rowText("reads what it cites")), ["20/20", "7/20"]);
-  assert.deepEqual(values(rowText("picks the right playbook")), ["18/18", "11/18"]);
-  assert.deepEqual(values(rowText("runs named skills")), ["12/17", "5/18"]);
-  assert.deepEqual(values(rowText("carries the step list")), ["7/14", "3/17"]);
-  assert.deepEqual(values(rowText("delegates follow the mode")), ["3/10", "0/7"]);
-  assert.deepEqual(values(rowText("delegated")), ["6/10", "6/10"]);
-  assert.deepEqual(values(rowText("claim labels")), ["0/18", "2/17"]);
+test("each behavior shows this port, then pstack-claude, then Cursor as k/n", () => {
+  assert.deepEqual(values(rowText("stays in mode")), ["10/10", "0/13", "2/10"]);
+  assert.deepEqual(values(rowText("reads what it cites")), ["21/22", "9/28", "5/20"]);
+  assert.deepEqual(values(rowText("picks the right playbook")), ["21/21", "15/25", "11/18"]);
+  assert.deepEqual(values(rowText("runs named skills")), ["16/20", "4/26", "4/17"]);
+  assert.deepEqual(values(rowText("carries the step list")), ["12/21", "3/27", "3/17"]);
+  assert.deepEqual(values(rowText("delegates follow the mode")), ["4/10", "7/12", "0/7"]);
+  assert.deepEqual(values(rowText("delegated")), ["6/12", "8/15", "6/10"]);
+  assert.deepEqual(values(rowText("claim labels")), ["5/21", "3/21", "5/19"]);
 });
 
 test("a missing cell fails loudly instead of drawing zero", () => {

@@ -84,57 +84,49 @@ Then open `~/.claude/settings.json`, remove any hook entry that runs `pstack-hoo
 
 ## Results
 
-<img alt="This port against pstack on Cursor, passing units over graded units for eight behaviors" src="docs/assets/head-to-head.svg" width="100%">
+<img alt="This port against pstack-claude and pstack on Cursor, passing units over graded units for eight behaviors" src="docs/assets/head-to-head.svg" width="100%">
 
-The harness verdict is INCONCLUSIVE because its control check measured 0.26 and needs 0.30. This port trails on claim labels. [Full report](eval/parity/results/s4/report.md).
+Averaged over the behaviors both arms graded, this port leads [michael-denyer/pstack-claude](https://github.com/michael-denyer/pstack-claude), the most-starred pstack port for Claude Code, by **+0.30**, and upstream pstack on Cursor by **+0.31**. [Full report and logs](eval/parity/results/s5/report.md).
 
 <details>
-<summary><b>The full comparison and its caveats</b></summary>
+<summary><b>The full comparison</b></summary>
 
-The harness is `eval/parity`. It runs five synthetic tasks in sealed sandboxes, twice per task in each of three arms, with every worker on Opus 5.5 at medium effort:
+The harness is `eval/parity`. It runs five synthetic tasks in sealed sandboxes, with every worker on Opus 5.5 at medium effort, across five arms:
 
-- **A.** Cursor with upstream pstack v0.15.2.
-- **C.** Cursor with no pstack.
-- **B.** Claude Code with this port. The run used an earlier commit whose installed files differ from this tree only in the `check-port.mjs` maintenance script.
-
-Before it compares this port with upstream, the harness checks that upstream pstack on Cursor scores at least 0.30 above Cursor alone, averaged over the behaviors it scores. In round s4 that margin was 0.26, so the verdict is INCONCLUSIVE.
+- **B.** Claude Code with this port, three runs per task. The runs used an earlier commit whose installed files differ from this tree only in the `check-port.mjs` maintenance script and in test files and fixtures.
+- **E.** Claude Code with [michael-denyer/pstack-claude](https://github.com/michael-denyer/pstack-claude) at commit `c02fd49`, installed as its Claude Code plugin, three runs per task. It had 645 stars on 2026-09-27.
+- **A.** Cursor with upstream pstack v0.15.2, two runs per task.
+- **N.** Claude Code with no pstack, three runs per task.
+- **C.** Cursor with no pstack, two runs per task.
 
 Two judges grade each reply against a written rubric for each behavior, and a script decides the behaviors that are plain facts. Each cell is the passing units over the graded units. "Split" counts the units the two judges disagreed on, which are left out of the count. A dash means the arm had no unit to grade.
 
-| Behavior | What it measures | B, this port | A, Cursor with pstack | C, Cursor alone |
-|---|---|---|---|---|
-| Mode stays on | A later turn that the user did not open with `/poteto-mode` still matches a playbook, carries its steps with states, and names the principles it read | 10/10 | 2/10 | 0/10 |
-| No long dash | The reply contains no long dash | 20/20 | 20/20 | 20/20 |
-| Claim labels | Each sentence that claims runtime behavior, a cause or a prediction that nothing in the session observed carries a measured, inferred or guess label, or its evidence | 0/18, 2 split | 2/17, 3 split | 5/20 |
-| Playbook choice | The agent picks the playbook the request calls for without being told its name, and reads that playbook's file | 18/18 | 11/18 | 0/18 |
-| Mode off | A casual turn, such as a thank-you, gets a short plain answer with no step list or new work | 2/2 | 2/2 | 2/2 |
-| Delegates work in the mode | A delegate that writes code reads each principle before citing it, and its final message carries its steps with states | 3/10 | 0/7 | - |
-| Step list | The reply or the task list carries the playbook's steps, each with a state, and each skipped step with a reason | 7/14, 4 split | 3/17, 1 split | 0/18 |
-| Named skills run | Each skill a step names is run, or skipped with a reason | 12/17, 1 split | 5/18 | 0/18 |
-| Cited principles read | Every principle the reply names was read in full earlier in the session | 20/20 | 7/20 | 0/20 |
-| Read-only delegates | On a read-only task, no delegate writes a file | - | 1/1 | - |
-| Delegated | On a task that calls for a delegate, the run spawns at least one | 6/10 | 6/10 | 0/10 |
+| Behavior | What it measures | B, this port | E, pstack-claude | A, Cursor with pstack | N, Claude Code alone | C, Cursor alone |
+|---|---|---|---|---|---|---|
+| Mode stays on | A later turn that the user did not open with `/poteto-mode` still matches a playbook, carries its steps with states, and names the principles it read | 10/10 (100%) | 0/13 (0%), 2 split | 2/10 (20%) | 0/15 (0%) | 0/10 (0%) |
+| No long dash | The reply contains no long dash | 22/22 (100%) | 30/30 (100%) | 20/20 (100%) | 30/30 (100%) | 20/20 (100%) |
+| Claim labels | Each sentence that claims runtime behavior, a cause or a prediction that nothing in the session observed carries a measured, inferred or guess label, or its evidence | 5/21 (24%), 1 split | 3/21 (14%), 9 split | 5/19 (26%), 1 split | 5/27 (19%), 3 split | 5/20 (25%) |
+| Playbook choice | The agent picks the playbook the request calls for without being told its name, and reads that playbook's file | 21/21 (100%) | 15/25 (60%), 2 split | 11/18 (61%) | 0/26 (0%), 1 split | 0/18 (0%) |
+| Mode off | A casual turn, such as a thank-you, gets a short plain answer with no step list or new work | 3/3 (100%) | 3/3 (100%) | 2/2 (100%) | 3/3 (100%) | 2/2 (100%) |
+| Delegates work in the mode | A delegate that writes code reads each principle before citing it, and its final message carries its steps with states | 4/10 (40%) | 7/12 (58%) | 0/7 (0%) | - | - |
+| Step list | The reply or the task list carries the playbook's steps, each with a state, and each skipped step with a reason | 12/21 (57%) | 3/27 (11%) | 3/17 (18%), 1 split | 0/27 (0%) | 0/18 (0%) |
+| Named skills run | Each skill a step names is run, or skipped with a reason | 16/20 (80%), 1 split | 4/26 (15%), 1 split | 4/17 (24%), 1 split | 0/27 (0%) | 0/18 (0%) |
+| Cited principles read | Every principle the reply names was read in full earlier in the session | 21/22 (95%) | 9/28 (32%), 2 split | 5/20 (25%) | 0/30 (0%) | 0/20 (0%) |
+| Read-only delegates | On a read-only task, no delegate writes a file | - | - | 1/1 (100%) | - | - |
+| Delegated | On a task that calls for a delegate, the run spawns at least one | 6/12 (50%) | 8/15 (53%) | 6/10 (60%) | 0/15 (0%) | 0/10 (0%) |
 
-The harness marks this port short of upstream pstack by more than 0.10 on claim labels. It has too few graded units to compare the two on mode off and read-only delegates.
+The raw counts and intervals are in [`report.json`](eval/parity/results/s5/report.json). `node scripts/chart.mjs` draws the chart from it. Each run's judge packet, seal and verdicts are under [`eval/parity/results/s5/runs/`](eval/parity/results/s5/runs/).
 
-- The samples are small. Most cells hold 10 to 20 graded units, and the mode-off and read-only-delegate cells hold 1 or 2.
-- 19 of the 20 Cursor runs were recorded in an earlier round and graded again in this one.
-- Both judges are Claude Opus. A third judge on a non-Claude model was left out after it failed calibration and then reached its usage limit before it could be calibrated again.
-- On seeded faults, both judges detected 1.00 of the faults, with false-flag rates of 0.02 and 0.07 on untouched units.
-- This stage did not score model per role, panel width, a standing objective, file-pattern attach, a pause before an irreversible action, or cloud workers, routines and webhooks.
-
-The raw counts and intervals are in [`report.json`](eval/parity/results/s4/report.json). `node scripts/chart.mjs` draws the chart from it.
-
-To run the comparison again, you need Windows with `cursor-agent` installed by its Windows installer, Claude Code, and Cursor usage for the Cursor arms. Run the tick until `--status` shows every run and judgment done:
+To run the comparison again, you need Windows with `cursor-agent` installed by its Windows installer, Claude Code, and Cursor usage for the Cursor arms. `--init` clones pstack-claude once, so it needs the network. Run the tick until `--status` shows every run and judgment done:
 
 ```sh
-node eval/parity/parity.mjs --init --stamp s4 --arms A,C,B --tree B=HEAD
-node eval/parity/parity.mjs --tick --stamp s4
-node eval/parity/parity.mjs --status --stamp s4
-node eval/parity/parity.mjs --report --stamp s4
+node eval/parity/parity.mjs --init --stamp s5 --tree B=HEAD --tree E=c02fd4922b25ee005f42042463d741d236c2c35e
+node eval/parity/parity.mjs --tick --stamp s5
+node eval/parity/parity.mjs --status --stamp s5
+node eval/parity/parity.mjs --report --stamp s5
 ```
 
-`--report` writes `report.md` and `report.json` under `pstack-parity/s4` in the temp directory.
+`--report` writes `report.md` and `report.json` under `pstack-parity/s5` in the temp directory.
 
 </details>
 
@@ -248,7 +240,7 @@ flowchart LR
 | `docs/guide/` | Lauren Tan's guide to pstack | No |
 | `docs/research/` | Notes on pstack's method, skills and playbooks | No |
 | `docs/port-audit/` | The earlier reference port's `PORT.md` and `PATCHES.md`, and the `check-port.mjs` census runs from the port sweep | No |
-| `eval/parity/` | The eval behind the chart, and its round s4 results | No |
+| `eval/parity/` | The eval behind the chart, and its round s4 and s5 results | No |
 | `scripts/` | The installer, the drift map, the chart, the transcript audit and replay, and their tests | No |
 
 </details>
