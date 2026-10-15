@@ -82,6 +82,18 @@ Then open `~/.claude/settings.json`, remove any hook entry that runs `pstack-hoo
 
 </details>
 
+<details>
+<summary><b>Uninstall</b></summary>
+
+There's no `--uninstall` flag. To remove this by hand:
+
+1. Delete the links this repo made: every entry under `~/.claude/skills` and `~/.claude/agents` (and `~/.agents/skills` if you passed `--opt-in agents`) that is a symlink or junction pointing back into your `pstack-for-cc` clone. If you installed with `--copy`, or on Windows without the right to make links, some entries are copies instead: `~/.claude/pstack/install-copies.json` lists them, so delete those too before step 3 removes that list.
+2. Open `~/.claude/settings.json` and remove every hook entry whose command runs `pstack-hook.mjs` (or the older `session-context.mjs`). The installer also sets two env keys, `CLAUDE_CODE_ENABLE_TODO_TOOLS` and `CLAUDE_CODE_PRINT_BG_WAIT_CEILING_MS`; drop those too if you don't want them. If nothing else has touched `settings.json` since your first install, restoring the oldest `settings.json.bak-<time>` in `~/.claude` does the same thing. A later one may already hold these hooks, since each install that changes `settings.json` backs it up first.
+3. Remove the state the hook wrote: `~/.claude/pstack/` (trace cache, live-session markers, logs), and `~/.claude/pstack-models.md` if you ran `/setup-pstack`.
+4. Delete the clone.
+
+</details>
+
 ## Results
 
 **Scores higher than pstack on Cursor and the most-starred Claude Code port.**
